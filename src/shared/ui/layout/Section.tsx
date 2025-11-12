@@ -1,11 +1,12 @@
 import { forwardRef } from 'react'
+import type { ElementType } from 'react'
 
 import { cn } from '@/shared/lib/cn'
 
 type SectionPadding = 'none' | 'compact' | 'default' | 'comfortable'
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
-  as?: keyof JSX.IntrinsicElements
+  as?: ElementType
   padding?: SectionPadding
 }
 
