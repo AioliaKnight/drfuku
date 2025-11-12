@@ -39,7 +39,7 @@ export function buttonVariants({
   variant?: ButtonVariant
   size?: ButtonSize
   fullWidth?: boolean
-  className?: string
+  className?: string | undefined
 } = {}) {
   return cn(
     baseClasses,
