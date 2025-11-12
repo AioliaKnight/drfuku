@@ -1,40 +1,32 @@
 import { Metadata } from 'next'
-import { allPosts } from 'contentlayer/generated'
-import { compareDesc } from 'date-fns'
-import PostCard from '@/components/blog/PostCard'
+import { BlogPageContent } from '@/modules/blog'
 
+// Server component for metadata
 export const metadata: Metadata = {
-  title: '醫療部落格',
-  description: '專業醫療知識分享，提供痔瘡預防、治療和保健等相關資訊。',
+  metadataBase: new URL('https://hsucliniccare.com'),
+  title: '醫療知識部落格 | 痔瘡治療與保健資訊',
+  description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
   openGraph: {
-    title: '醫療部落格 | 痔瘡醫生',
-    description: '專業醫療知識分享，提供痔瘡預防、治療和保健等相關資訊。',
+    title: '醫療知識部落格 | 痔瘡治療與保健資訊',
+    description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/blog',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 
 export default function BlogPage() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
-  )
-
-  return (
-    <main className="bg-gradient-to-b from-neutral-50 via-white to-neutral-50">
-      <div className="container mx-auto px-4 py-12 md:py-24">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">
-            醫療部落格
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-neutral-600">
-            專業醫療知識分享，幫助您更了解痔瘡的預防、治療和保健方法。
-          </p>
-        </div>
-        
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </div>
-    </main>
-  )
-} 
+  return <BlogPageContent />
+}

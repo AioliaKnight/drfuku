@@ -1,40 +1,35 @@
 import { MetadataRoute } from 'next'
+import { posts as allPosts } from '@/velite'
 
 export const dynamic = 'force-static'
+export const revalidate = false
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hemorrhoid-doctor.vercel.app'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hemorrhoid-doctor.com'
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'yearly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/#about`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#services`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#testimonials`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#faq`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+  const staticRoutes: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
+    { path: '', priority: 1, changeFrequency: 'daily' },
+    { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/services', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/faq', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/consultation', priority: 0.6, changeFrequency: 'monthly' }
   ]
-} 
+
+  const routes = staticRoutes.map(({ path, priority, changeFrequency }) => ({
+    url: `${siteUrl}${path}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency,
+    priority,
+  }))
+
+  const blogPosts = allPosts.filter(post => !post.draft).map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.publishedAt).toISOString(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }))
+
+  return [...routes, ...blogPosts]
+}

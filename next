@@ -1,0 +1,11 @@
+<script>start("e:\\hemorrhoid-doctor-old\\.next\\");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("cache","cache",1,0,"0 B",1754894316,"8/11/25, 2:38:36 PM");</script>
+<script>addRow("server","server",1,0,"0 B",1762766303,"11/10/25, 5:18:23 PM");</script>
+<script>addRow("static","static",1,0,"0 B",1762766314,"11/10/25, 5:18:34 PM");</script>
+<script>addRow("types","types",1,0,"0 B",1762766303,"11/10/25, 5:18:23 PM");</script>
+<script>addRow("app-build-manifest.json","app-build-manifest.json",0,594,"594 B",1762766315,"11/10/25, 5:18:35 PM");</script>
+<script>addRow("build-manifest.json","build-manifest.json",0,388,"388 B",1762766314,"11/10/25, 5:18:34 PM");</script>
+<script>addRow("package.json","package.json",0,20,"20 B",1762766279,"11/10/25, 5:17:59 PM");</script>
+<script>addRow("react-loadable-manifest.json","react-loadable-manifest.json",0,488,"488 B",1762766314,"11/10/25, 5:18:34 PM");</script>
+<script>addRow("trace","trace",0,842079,"822 kB",1762766315,"11/10/25, 5:18:35 PM");</script>

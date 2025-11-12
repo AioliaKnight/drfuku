@@ -4,5 +4,15 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "printWidth": 100,
-  "plugins": ["prettier-plugin-tailwindcss"]
-} 
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "embeddedLanguageFormatting": "auto",
+  "tailwindConfig": "./tailwind.config.ts",
+  "tailwindFunctions": ["clsx", "cn", "cva", "twMerge"]
+}
