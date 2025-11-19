@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡治療', '痔瘡手術', '微創治療', '痔瘡藥物', '治療方法', '痔瘡醫師']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-treatment'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-treatment'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精痔瘡微創治療'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡健康重要性', '痔瘡影響', '痔瘡健康管理', '痔瘡預防', '健康生活', '疾病預防']
-  canonical: 'https://hsucliniccare.com/blog/health-importance'
+  canonical: 'https://drfuku.com/blog/health-importance'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精健康影響評估'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

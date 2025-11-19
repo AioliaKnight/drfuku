@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['血便', '便血', '大便出血', '消化道出血', '直腸出血', '血便原因', '血便處理']
-  canonical: 'https://hsucliniccare.com/blog/blood-in-stool-guide'
+  canonical: 'https://drfuku.com/blog/blood-in-stool-guide'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精消化道出血診治'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

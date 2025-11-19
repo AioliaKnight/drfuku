@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡預防', '預防痔瘡', '痔瘡預防方法', '生活習慣', '運動預防', '飲食預防']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-prevention-guide'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-prevention-guide'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精痔瘡預防醫學'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

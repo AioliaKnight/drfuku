@@ -16,7 +16,7 @@ Disallow: /private/
 Disallow: /_*
 
 # Host
-Host: https://hsucliniccare.com
+Host: https://drfuku.com
 
 # Sitemaps
-Sitemap: https://hsucliniccare.com/sitemap.xml
+Sitemap: https://drfuku.com/sitemap.xml

@@ -13,7 +13,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
-  const fullUrl = `https://hsucliniccare.com${url}`
+  const fullUrl = `https://drfuku.com${url}`
 
   const shareData = [
     {

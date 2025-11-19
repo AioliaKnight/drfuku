@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡飲食', '痔瘡食療', '高纖維飲食', '痔瘡禁忌食物', '腸道健康', '便秘預防']
-  canonical: 'https://hsucliniccare.com/blog/diet-tips'
+  canonical: 'https://drfuku.com/blog/diet-tips'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精營養與腸道健康'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

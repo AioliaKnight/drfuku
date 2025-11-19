@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const fullTitle = `${title} | 痔瘡醫生`
 
   return {
-    metadataBase: new URL('https://hsucliniccare.com'),
+    metadataBase: new URL('https://drfuku.com'),
     title: fullTitle,
     description: summary,
     openGraph: {
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [{ url: image, width: 1200, height: 630, alt: title }]
     },
     alternates: {
-      canonical: `https://hsucliniccare.com/blog/${slug}`
+      canonical: `https://drfuku.com/blog/${slug}`
     },
     robots: {
       index: true,

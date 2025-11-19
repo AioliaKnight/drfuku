@@ -14,7 +14,7 @@ export const dynamic = 'force-static'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hsucliniccare.com'),
+  metadataBase: new URL('https://drfuku.com'),
   title: '徐彥勳大腸直腸外科 | 台北台中痔瘡治療權威醫師',
   description: '徐彥勳醫師專精於痔瘡微創手術、肛門疾病治療，在台北、台中提供專業診療服務。採用先進微創技術，免開刀、恢復快、術後不復發。提供內痔、外痔、混合痔、血栓痔、肛裂、肛瘻等治療，重視隱私、專業保密。',
   keywords: [
@@ -49,12 +49,12 @@ export const metadata: Metadata = {
     '痔瘡醫師諮詢'
   ].join(', '),
   alternates: {
-    canonical: 'https://hsucliniccare.com/',
+    canonical: 'https://drfuku.com/',
   },
   openGraph: {
     title: '徐彥勳大腸直腸外科 | 台北台中痔瘡治療權威醫師',
     description: '徐彥勳醫師專精於痔瘡微創手術、肛門疾病治療，在台北、台中提供專業診療服務。採用先進微創技術，免開刀、恢復快、術後不復發。提供內痔、外痔、混合痔、血栓痔、肛裂、肛瘻等治療，重視隱私、專業保密。',
-    url: 'https://hsucliniccare.com/',
+    url: 'https://drfuku.com/',
     siteName: '徐彥勳大腸直腸外科',
     locale: 'zh_TW',
     type: 'website',

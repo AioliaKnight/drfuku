@@ -3,7 +3,7 @@ export const SITE = {
   name: '痔瘡醫生 徐彥勳大腸直腸外科',
   shortName: '痔瘡醫生',
   description: '專業痔瘡診療與保健資訊，提供完整的痔瘡治療建議和預防方法。由徐彥勳醫師主持的專業醫療資訊平台，專精於痔瘡微創手術、肛門疾病治療。台北、新北地區推薦的痔瘡專科醫師。',
-  url: 'https://hsucliniccare.com',
+  url: 'https://drfuku.com',
   locale: 'zh_TW',
   themeColor: '#0ea5e9'
 } as const
@@ -16,15 +16,15 @@ export const DOCTOR = {
   title: '大腸直腸外科醫師',
   alternateName: '徐彥勳醫師',
   description: '專精於痔瘡微創手術、大腸直腸疾病診療的專業醫師。擁有豐富的臨床經驗，致力於提供病患安心舒適的診療體驗。',
-  image: 'https://hsucliniccare.com/doctor-photo.jpg',
-  url: 'https://hsucliniccare.com/about'
+  image: 'https://drfuku.com/doctor-photo.jpg',
+  url: 'https://drfuku.com/about'
 } as const
 
 // 診所信息
 export const CLINIC = {
   name: '徐彥勳大腸直腸外科',
   alternateName: ['痔瘡醫生', '徐彥勳醫師', '徐醫師'],
-  logo: 'https://hsucliniccare.com/logo.png',
+  logo: 'https://drfuku.com/logo.png',
   telephone: '+886-2-2712-0589',
   address: {
     street: '南京東路三段219號5樓',

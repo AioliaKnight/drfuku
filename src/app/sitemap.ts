@@ -5,7 +5,7 @@ export const dynamic = 'force-static'
 export const revalidate = false
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hemorrhoid-doctor.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://drfuku.com'
 
   const staticRoutes: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
     { path: '', priority: 1, changeFrequency: 'daily' },

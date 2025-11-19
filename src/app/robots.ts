@@ -25,7 +25,7 @@ export default function robots(): MetadataRoute.Robots {
         '/*.xml$',
       ],
     },
-    sitemap: 'https://hsucliniccare.com/sitemap.xml',
-    host: 'https://hsucliniccare.com'
+    sitemap: 'https://drfuku.com/sitemap.xml',
+    host: 'https://drfuku.com'
   }
 }

@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['特殊族群痔瘡', '孕婦痔瘡', '老年痔瘡', '特殊照護', '安全治療', '個別化治療']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-special-groups'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-special-groups'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精特殊族群照護'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

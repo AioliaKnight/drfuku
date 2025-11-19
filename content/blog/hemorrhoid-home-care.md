@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡居家照護', '痔瘡護理', '痔瘡自我照護', '痔瘡飲食', '痔瘡生活習慣', '痔瘡預防']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-home-care'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-home-care'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精居家照護指導'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

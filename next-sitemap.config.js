@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://hsucliniccare.com',
+  siteUrl: 'https://drfuku.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   outDir: 'out',
@@ -23,7 +23,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      'https://hsucliniccare.com/sitemap.xml',
+      'https://drfuku.com/sitemap.xml',
     ],
   },
   transform: async (config, path) => {
@@ -33,7 +33,7 @@ module.exports = {
     // 首頁
     if (cleanPath === '') {
       return {
-        loc: 'https://hsucliniccare.com/',
+        loc: 'https://drfuku.com/',
         lastmod: new Date().toISOString(),
       }
     }
@@ -41,14 +41,14 @@ module.exports = {
     // 部落格文章
     if (cleanPath.startsWith('/blog')) {
       return {
-        loc: `https://hsucliniccare.com${cleanPath}`,
+        loc: `https://drfuku.com${cleanPath}`,
         lastmod: new Date().toISOString(),
       }
     }
 
     // 其他頁面
     return {
-      loc: `https://hsucliniccare.com${cleanPath}`,
+      loc: `https://drfuku.com${cleanPath}`,
       lastmod: new Date().toISOString(),
     }
   },

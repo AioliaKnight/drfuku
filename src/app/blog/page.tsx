@@ -3,7 +3,7 @@ import { BlogPageContent } from '@/modules/blog'
 
 // Server component for metadata
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hsucliniccare.com'),
+  metadataBase: new URL('https://drfuku.com'),
   title: '醫療知識部落格 | 痔瘡治療與保健資訊',
   description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
   openGraph: {

@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['大腸鏡檢查', '腸鏡準備', '大腸癌篩檢', '內視鏡檢查', '腸道檢查', '消化道健康']
-  canonical: 'https://hsucliniccare.com/blog/colonoscopy-guide'
+  canonical: 'https://drfuku.com/blog/colonoscopy-guide'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精痔瘡及大腸直腸疾病診治'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['中醫痔瘡治療', '中藥治療痔瘡', '針灸治痔瘡', '中醫辨證', '痔瘡中醫', '中西醫結合']
-  canonical: 'https://hsucliniccare.com/blog/tcm-hemorrhoid-treatment'
+  canonical: 'https://drfuku.com/blog/tcm-hemorrhoid-treatment'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精中西醫結合治療'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

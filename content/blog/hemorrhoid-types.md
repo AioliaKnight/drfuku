@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡類型', '內痔外痔', '痔瘡分類', '痔瘡症狀', '痔瘡診斷', '混合痔']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-types'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-types'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精痔瘡診斷分類'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

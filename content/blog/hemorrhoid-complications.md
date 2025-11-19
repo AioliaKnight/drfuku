@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡併發症', '痔瘡出血', '血栓性痔瘡', '肛門感染', '痔瘡嵌頓', '緊急處置']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-complications'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-complications'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精痔瘡急症處理'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

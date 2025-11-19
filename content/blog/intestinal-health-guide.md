@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['腸道健康', '腸道保養', '消化系統', '益生菌', '膳食纖維', '腸道微生物']
-  canonical: 'https://hsucliniccare.com/blog/intestinal-health-guide'
+  canonical: 'https://drfuku.com/blog/intestinal-health-guide'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精腸道健康維護'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']

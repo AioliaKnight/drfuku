@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ['痔瘡術後照護', '痔瘡手術恢復', '術後護理', '傷口照護', '術後飲食', '恢復期指導']
-  canonical: 'https://hsucliniccare.com/blog/hemorrhoid-postop-care'
+  canonical: 'https://drfuku.com/blog/hemorrhoid-postop-care'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精術後照護指導'
   certifications: ['中華民國外科醫學會專科醫師', '中華民國大腸直腸外科醫學會專科醫師', '中國醫藥大學中西醫雙學士學位', '台灣微創手術醫學會會員', '亞洲大腸直腸外科醫學會會員']
