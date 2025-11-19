@@ -15,23 +15,9 @@ interface Experience {
   items: string[]
 }
 
-interface Publication {
-  title: string
-  journal: string
-  year: string
-  authors: string
-}
-
 interface ExperienceCardProps {
   category: Experience
   index: number
-  isInView: boolean
-  variants: AnimationVariantsType
-  transitions: AnimationTransitions
-}
-
-interface PublicationCardProps {
-  publication: Publication
   isInView: boolean
   variants: AnimationVariantsType
   transitions: AnimationTransitions
@@ -79,21 +65,6 @@ const experience: Experience[] = [
   }
 ]
 
-const publications: Publication[] = [
-  {
-    title: 'Laparoscopic Primary Repair of Iatrogenic Colon Perforation',
-    journal: 'Journal of the Society of Colon and Rectal Surgeons (Taiwan)',
-    year: '2010',
-    authors: 'Yen-Shin Hsu, Hong-Chang Chen, et al.'
-  },
-  {
-    title: '微創痔瘡手術的臨床應用與成果分析',
-    journal: '台灣大腸直腸外科醫學會年會',
-    year: '2023',
-    authors: '徐彥勳醫師'
-  }
-]
-
 // 優化子組件
 const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, variants, transitions }) => (
   <motion.div
@@ -130,39 +101,6 @@ const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, v
 ))
 
 ExperienceCard.displayName = 'ExperienceCard'
-
-const PublicationCard = memo<PublicationCardProps>(({ publication, isInView, variants, transitions }) => (
-  <motion.div
-    variants={variants.fadeIn}
-    initial="hidden"
-    animate={isInView ? "visible" : "hidden"}
-    transition={transitions.default}
-    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-    whileTap={{ scale: 0.98 }}
-    className="rounded-2xl bg-white/80 backdrop-blur-sm p-6 shadow-sm ring-1 ring-neutral-100/80"
-    role="article"
-  >
-    <div className="mb-4 flex items-center gap-3">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50/80 backdrop-blur-sm" aria-hidden="true">
-        <HiOutlineAcademicCap className="h-6 w-6 text-brand-600" />
-      </div>
-      <h3 className="text-xl font-bold text-neutral-900">
-        學術著作
-      </h3>
-    </div>
-    <div className="rounded-xl bg-neutral-50/80 backdrop-blur-sm p-4">
-      <h4 className="mb-2 font-bold text-neutral-900">{publication.title}</h4>
-      <p className="text-sm text-neutral-600">
-        {publication.authors}
-      </p>
-      <p className="text-sm text-neutral-500">
-        {publication.journal}, {publication.year}
-      </p>
-    </div>
-  </motion.div>
-))
-
-PublicationCard.displayName = 'PublicationCard'
 
 export default function AboutSection() {
   const { ref, isInView, variants, transitions } = useScrollAnimation()
@@ -272,17 +210,6 @@ export default function AboutSection() {
                 key={index}
                 category={category}
                 index={index}
-                isInView={isInView}
-                variants={variants}
-                transitions={transitions}
-              />
-            ))}
-
-            {/* 學術著作 */}
-            {publications.map((pub, index) => (
-              <PublicationCard
-                key={index}
-                publication={pub}
                 isInView={isInView}
                 variants={variants}
                 transitions={transitions}
