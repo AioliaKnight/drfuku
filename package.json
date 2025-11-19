@@ -13,9 +13,6 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "deploy": "cross-env NODE_ENV=production npm run build && node deploy.mjs",
-    "deploy:staging": "cross-env NODE_ENV=staging npm run build && node deploy.mjs",
-    "deploy:prod": "cross-env NODE_ENV=production npm run build && node deploy.mjs",
     "postbuild": "next-sitemap"
   },
   "browserslist": [

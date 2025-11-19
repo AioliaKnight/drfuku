@@ -6,9 +6,6 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 
 const nextConfig = {
-  images: {
-    unoptimized: true,
-  },
   experimental: {
     scrollRestoration: true,
     optimizePackageImports: [
@@ -54,7 +51,6 @@ const nextConfig = {
 
     return config;
   },
-  output: 'export',
   compress: true,
   productionBrowserSourceMaps: false,
   trailingSlash: true,
