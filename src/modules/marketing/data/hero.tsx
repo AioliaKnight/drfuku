@@ -2,8 +2,6 @@ import {
   HiOutlineShieldCheck,
   HiOutlineUserGroup,
   HiOutlineHeart,
-  HiOutlineMapPin,
-  HiOutlineArrowTopRightOnSquare,
 } from 'react-icons/hi2'
 
 export const features = [

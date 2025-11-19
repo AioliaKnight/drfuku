@@ -4,7 +4,7 @@ import { memo } from 'react'
 import { HiOutlineStar, HiStar, HiOutlineChatBubbleLeftRight } from 'react-icons/hi2'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useScrollAnimation } from '@/shared/hooks/useAnimation'
+import { useScrollAnimation, type AnimationVariants } from '@/shared/hooks/useAnimation'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { testimonials } from '../data/testimonials'
@@ -29,7 +29,7 @@ const TestimonialCard = memo(({ testimonial, index, isInView, variants }: {
   testimonial: typeof testimonials[0],
   index: number,
   isInView: boolean,
-  variants: any
+  variants: AnimationVariants
 }) => {
   return (
     <motion.div
