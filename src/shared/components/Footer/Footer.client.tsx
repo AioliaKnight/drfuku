@@ -21,7 +21,7 @@ const socialLinks = [
   },
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/dr.hsu.care/',
+    href: 'https://www.instagram.com/drfuku',
     icon: <RiInstagramLine className="h-5 w-5" />,
     hoverColor: 'hover:text-[#E4405F]',
     ariaLabel: '前往Instagram帳號'

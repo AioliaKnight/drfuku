@@ -134,7 +134,7 @@ export default function Header() {
     },
     {
       name: 'Instagram',
-      href: 'https://www.instagram.com/dr.hsu.care/',
+      href: 'https://www.instagram.com/drfuku',
       icon: FaInstagram,
       bgClass: 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737]'
     }

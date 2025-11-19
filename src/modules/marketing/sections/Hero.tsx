@@ -4,18 +4,16 @@ import { useRef, memo, useMemo, useCallback } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import {
-  HiOutlineShieldCheck,
-  HiOutlineUserGroup,
-  HiOutlineHeart,
-  HiOutlineMapPin,
+  HiChevronRight,
   HiOutlineArrowTopRightOnSquare,
-  HiChevronRight
+  HiOutlineMapPin
 } from 'react-icons/hi2'
 import { useScrollAnimation } from '@/shared/hooks/useAnimation'
 import { buttonVariants } from '@/shared/ui/primitives'
 import { cn } from '@/shared/lib/cn'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
+import { features, achievements, locations } from '../data/hero'
 
 // 動畫變體
 const animationVariants = {
@@ -37,59 +35,7 @@ const animationVariants = {
 } as const
 
 // 使用 memo 優化靜態內容
-const features = [
-  {
-    icon: <HiOutlineShieldCheck className="h-5 w-5" />,
-    text: '隱私保護・安心就醫'
-  },
-  {
-    icon: <HiOutlineUserGroup className="h-5 w-5" />,
-    text: '專業團隊・細心照護'
-  },
-  {
-    icon: <HiOutlineHeart className="h-5 w-5" />,
-    text: '以人為本・溫暖服務'
-  }
-] as const
-
-const achievements = [
-  {
-    icon: <HiOutlineUserGroup className="h-8 w-8 text-brand-600" />,
-    title: '專業資格',
-    description: '大腸直腸外科專科醫師',
-    stats: '中西醫雙學位'
-  },
-  {
-    icon: <HiOutlineHeart className="h-8 w-8 text-brand-600" />,
-    title: '臨床經驗',
-    description: '豐富診療經驗',
-    stats: '5000+ 成功案例'
-  },
-  {
-    icon: <HiOutlineShieldCheck className="h-8 w-8 text-brand-600" />,
-    title: '醫療團隊',
-    description: '專業醫護照護',
-    stats: '98% 手術成功率'
-  }
-] as const
-
-const locations = [
-  {
-    name: '禾馨台中安和婦幼診所',
-    address: '台中市西屯區安和路118-18號',
-    link: 'https://maps.app.goo.gl/44N7BPKayB43GcPx8'
-  },
-  {
-    name: '禾馨內湖民權婦幼診所',
-    address: '台北市內湖區民權東路六段42號',
-    link: 'https://maps.app.goo.gl/KfcLKTevaovLt8r97'
-  },
-  {
-    name: '佑民醫院（草屯）',
-    address: '南投縣草屯鎮太平路一段200號',
-    link: 'https://maps.app.goo.gl/X4S4WEJbC8msm4qr6'
-  }
-] as const
+// features, achievements, locations 已經移至 data/hero.tsx
 
 // 常量樣式定義
 const STYLES = {
@@ -181,7 +127,7 @@ export default function Hero() {
       ref={containerRef}
       aria-label="首頁主視覺"
       padding="none"
-      className="min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-neutral-50"
+      className="min-h-[calc(100dvh-4rem)] overflow-hidden bg-gradient-to-b from-brand-50/40 via-white to-neutral-50/50"
     >
       {/* 無障礙跳過導航 */}
       <a
@@ -197,7 +143,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-50/30 via-transparent to-brand-100/30"
       />
 
-      <Container id="main-content" className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center py-20 md:py-28">
+      <Container id="main-content" className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 md:py-28">
         <div className="mx-auto max-w-4xl space-y-10 text-center">
           {/* 主標題區塊 */}
           <div className="relative mb-8">

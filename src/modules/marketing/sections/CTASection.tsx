@@ -71,13 +71,11 @@ export default function CTASection() {
             transition={transitions.withDelay(0.2)}
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-              安心預約諮詢
+              現在就開始，找回自在生活
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-7 text-neutral-600 [text-wrap:balance] md:text-lg md:leading-8">
-              您的健康與隱私，都是我們最關心的事。
-              如果您正在困擾著相關疾病問題，
-              歡迎透過保密的諮詢管道與我們聯繫，
-              讓專業的醫療團隊為您提供協助。
+              別讓隱疾成為生活的負擔。我們提供絕對保密的諮詢管道，
+              由專業團隊為您解答疑惑，協助您邁出治療的第一步。
             </p>
           </motion.div>
         </div>
@@ -90,20 +88,35 @@ export default function CTASection() {
           transition={transitions.withDelay(0.4)}
           className="mt-14 md:mt-20"
         >
-          <div className="mx-auto max-w-2xl rounded-3xl bg-gradient-to-br from-brand-600 to-brand-500 p-[1px] shadow-2xl">
-            <div className="rounded-[1.25rem] bg-white p-6 md:p-10">
-              <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
-                <QRCode />
+          <div className="mx-auto max-w-3xl rounded-3xl bg-gradient-to-br from-brand-500 to-brand-600 p-[2px] shadow-2xl">
+            <div className="rounded-[1.4rem] bg-white p-8 md:p-12">
+              <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
                 <div className={STYLES.contentWrapper}>
-                  <h3 className={STYLES.title}>
-                    安全預約諮詢
+                  <h3 className="text-2xl font-bold text-neutral-900 md:text-3xl">
+                    線上預約・專業諮詢
                   </h3>
-                  <p className={STYLES.description}>
-                    透過加密的 LINE 一對一諮詢，
-                    立即獲得專業建議、術前評估與預約協助，
-                    全程由專人跟進，保障隱私零壓力。
+                  <p className="text-lg text-neutral-600 leading-relaxed">
+                    加入官方 LINE 帳號，即刻享有：
                   </p>
+                  <ul className="text-left space-y-3 my-6 pl-2">
+                    <li className="flex items-center gap-3 text-neutral-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#06C755]" />
+                        <span>一對一私密諮詢，保障隱私</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-neutral-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#06C755]" />
+                        <span>專業術前評估與建議</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-neutral-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#06C755]" />
+                        <span>專人協助安排看診時間</span>
+                    </li>
+                  </ul>
                   <LineButton />
+                </div>
+                <div className="relative flex-shrink-0">
+                    <div className="absolute inset-0 bg-brand-100 rounded-full blur-2xl opacity-50 transform scale-90 translate-y-4"></div>
+                    <QRCode />
                 </div>
               </div>
             </div>
