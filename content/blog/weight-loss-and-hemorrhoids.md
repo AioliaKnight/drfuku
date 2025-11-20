@@ -5,7 +5,7 @@ publishedAt: '2025-11-20'
 updatedAt: '2025-11-20'
 image: 'https://images.unsplash.com/photo-1550831107-1553da8c8464?q=80&w=1024'
 author: '徐彥勳醫師'
-category: '減重與腸道健康'
+category: '預防保健'
 tags: ['猛健樂', '瘦瘦針', 'GLP-1', '痔瘡', '便秘', '腸道健康', '醫療趨勢']
 featured: true
 draft: false
