@@ -131,7 +131,7 @@ export default function BlogPageContent() {
           </p>
 
           {/* 統計資訊 */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-center mb-3">
                 <HiDocumentText className="h-7 w-7 text-brand-600" />
@@ -153,34 +153,6 @@ export default function BlogPageContent() {
               <div className="text-3xl font-bold text-gray-900 mb-1">{stats.totalReadingTime}</div>
               <div className="text-sm text-gray-600 font-medium">分鐘內容</div>
             </div>
-            <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-center mb-3">
-                <HiAcademicCap className="h-7 w-7 text-brand-600" />
-              </div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">{featuredPosts.length}</div>
-              <div className="text-sm text-gray-600 font-medium">重點推薦</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 重點推薦文章區塊 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-16"
-        >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="flex items-center justify-center w-8 h-8 bg-brand-100 rounded-lg">
-              <HiSparkles className="h-5 w-5 text-brand-600" />
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900">重點推薦</h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-brand-200 to-transparent"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredPosts.map((post, index) => (
-              <PostCard key={post.slug} post={post} index={index} featured />
-            ))}
           </div>
         </motion.div>
 
