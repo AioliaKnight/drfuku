@@ -4,4 +4,7 @@ export { default as PostCard } from './components/PostCard'
 export { default as ScrollProgress } from './components/ScrollProgress'
 export { default as ShareButtons } from './components/ShareButtons'
 export { default as BackToTop } from './components/BackToTop'
-
+export { default as PostCover } from './components/PostCover'
+export { default as PostHeader } from './components/PostHeader'
+export { default as AuthorInfo } from './components/AuthorInfo'
+export { default as RelatedPosts } from './components/RelatedPosts'

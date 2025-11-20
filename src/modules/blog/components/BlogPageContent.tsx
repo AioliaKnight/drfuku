@@ -114,7 +114,7 @@ export default function BlogPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-medical-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-brand-50">
       <section className="container-padding section-spacing">
         {/* 頭部標題區域 */}
         <motion.div
@@ -123,7 +123,7 @@ export default function BlogPageContent() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-medical-700 via-medical-600 to-medical-800 bg-clip-text text-transparent sm:text-6xl mb-6">
+          <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-700 via-brand-600 to-brand-800 bg-clip-text text-transparent sm:text-6xl mb-6">
             醫療知識庫
           </h1>
           <p className="text-xl leading-8 text-gray-600 max-w-3xl mx-auto mb-12">
@@ -134,28 +134,28 @@ export default function BlogPageContent() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-center mb-3">
-                <HiDocumentText className="h-7 w-7 text-medical-600" />
+                <HiDocumentText className="h-7 w-7 text-brand-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-1">{stats.totalPosts}</div>
               <div className="text-sm text-gray-600 font-medium">醫療文章</div>
             </div>
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-center mb-3">
-                <HiFolder className="h-7 w-7 text-medical-600" />
+                <HiFolder className="h-7 w-7 text-brand-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-1">{stats.totalCategories}</div>
               <div className="text-sm text-gray-600 font-medium">專科分類</div>
             </div>
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-center mb-3">
-                <HiClock className="h-7 w-7 text-medical-600" />
+                <HiClock className="h-7 w-7 text-brand-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-1">{stats.totalReadingTime}</div>
               <div className="text-sm text-gray-600 font-medium">分鐘內容</div>
             </div>
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-center mb-3">
-                <HiAcademicCap className="h-7 w-7 text-medical-600" />
+                <HiAcademicCap className="h-7 w-7 text-brand-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-1">{featuredPosts.length}</div>
               <div className="text-sm text-gray-600 font-medium">重點推薦</div>
@@ -171,11 +171,11 @@ export default function BlogPageContent() {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-8">
-            <div className="flex items-center justify-center w-8 h-8 bg-medical-100 rounded-lg">
-              <HiSparkles className="h-5 w-5 text-medical-600" />
+            <div className="flex items-center justify-center w-8 h-8 bg-brand-100 rounded-lg">
+              <HiSparkles className="h-5 w-5 text-brand-600" />
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">重點推薦</h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-medical-200 to-transparent"></div>
+            <div className="flex-1 h-px bg-gradient-to-r from-brand-200 to-transparent"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredPosts.map((post, index) => (
@@ -202,7 +202,7 @@ export default function BlogPageContent() {
                   placeholder="搜尋醫療文章、症狀、治療方法..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
+                  className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
                 />
               </div>
 
@@ -212,7 +212,7 @@ export default function BlogPageContent() {
                   onClick={() => setViewMode('grid')}
                   className={`p-3 rounded-lg transition-all ${
                     viewMode === 'grid'
-                      ? 'bg-medical-600 text-white shadow-sm'
+                      ? 'bg-brand-600 text-white shadow-sm'
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
@@ -222,7 +222,7 @@ export default function BlogPageContent() {
                   onClick={() => setViewMode('list')}
                   className={`p-3 rounded-lg transition-all ${
                     viewMode === 'list'
-                      ? 'bg-medical-600 text-white shadow-sm'
+                      ? 'bg-brand-600 text-white shadow-sm'
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
@@ -242,7 +242,7 @@ export default function BlogPageContent() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition-all text-gray-900"
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-gray-900"
               >
                 <option value="all">所有分類</option>
                 {stats.categories.map(category => (
@@ -254,7 +254,7 @@ export default function BlogPageContent() {
               <select
                 value={selectedTag}
                 onChange={(e) => setSelectedTag(e.target.value)}
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition-all text-gray-900"
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-gray-900"
               >
                 <option value="all">所有標籤</option>
                 {stats.allTags.slice(0, 20).map(tag => (
@@ -266,7 +266,7 @@ export default function BlogPageContent() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as 'date' | 'title' | 'reading')}
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition-all text-gray-900"
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-gray-900"
               >
                 <option value="date">依發布日期</option>
                 <option value="title">依文章標題</option>
@@ -287,7 +287,7 @@ export default function BlogPageContent() {
             {/* 篩選結果統計 */}
             <div className="mt-6 pt-6 border-t border-gray-100 flex items-center justify-between text-sm text-gray-600">
               <div>
-                共找到 <span className="font-semibold text-medical-600">{filteredPosts.length}</span> 篇文章
+                共找到 <span className="font-semibold text-brand-600">{filteredPosts.length}</span> 篇文章
                 {filteredPosts.length !== publishedPosts.length && (
                   <span className="text-gray-500"> （總計 {publishedPosts.length} 篇）</span>
                 )}
@@ -347,7 +347,7 @@ export default function BlogPageContent() {
                   </p>
                   <button
                     onClick={clearFilters}
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-medical-600 hover:bg-medical-700 transition-colors shadow-sm"
+                    className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm"
                   >
                     重置篩選條件
                   </button>
@@ -393,7 +393,7 @@ export default function BlogPageContent() {
                         onClick={() => setCurrentPage(page)}
                         className={`px-4 py-3 rounded-xl border transition-all font-medium ${
                           currentPage === page
-                            ? 'bg-medical-600 text-white border-medical-600 shadow-sm'
+                            ? 'bg-brand-600 text-white border-brand-600 shadow-sm'
                             : 'border-gray-300 text-gray-600 hover:bg-gray-50'
                         }`}
                       >

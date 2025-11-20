@@ -27,7 +27,7 @@ export default function ArticleContent({ content }: ArticleContentProps) {
   return (
     <div
       ref={contentRef}
-      className="article-content"
+      // 移除 article-content class，因為樣式已經整合到 Tailwind Typography prose 中
       dangerouslySetInnerHTML={{ __html: content }}
     />
   )

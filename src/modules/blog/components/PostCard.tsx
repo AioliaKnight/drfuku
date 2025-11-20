@@ -58,13 +58,13 @@ export default function PostCard({
           transition: { duration: 0.2, ease: "easeOut" }
         }}
         className={`group relative bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 ${
-          featured ? 'ring-2 ring-medical-200 ring-opacity-50' : ''
+          featured ? 'ring-2 ring-brand-200 ring-opacity-50' : ''
         }`}
       >
         {/* 精選標記 */}
         {featured && (
           <div className="absolute top-4 right-4 z-10">
-            <div className="flex items-center gap-1 bg-medical-600 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+            <div className="flex items-center gap-1 bg-brand-600 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
               <HiOutlineBookmark className="h-3 w-3" />
               <span>推薦</span>
             </div>
@@ -84,19 +84,19 @@ export default function PostCard({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-medical-50 to-medical-100 flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-brand-50 to-brand-100 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-3 bg-medical-200 rounded-full flex items-center justify-center">
-                    <HiOutlineBookmark className="h-8 w-8 text-medical-600" />
+                  <div className="w-16 h-16 mx-auto mb-3 bg-brand-200 rounded-full flex items-center justify-center">
+                    <HiOutlineBookmark className="h-8 w-8 text-brand-600" />
                   </div>
-                  <p className="text-sm text-medical-600 font-medium">醫療文章</p>
+                  <p className="text-sm text-brand-600 font-medium">醫療文章</p>
                 </div>
               </div>
             )}
 
             {/* 分類標籤 */}
             <div className="absolute bottom-4 left-4">
-              <span className="inline-flex items-center bg-white/90 backdrop-blur-sm text-medical-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm">
+              <span className="inline-flex items-center bg-white/90 backdrop-blur-sm text-brand-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm">
             {post.category}
           </span>
         </div>
@@ -105,7 +105,7 @@ export default function PostCard({
           {/* 內容區域 */}
           <div className="p-6">
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-medical-700 transition-colors">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-brand-700 transition-colors">
               {post.title}
           </h3>
               <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
@@ -144,7 +144,7 @@ export default function PostCard({
                   {format(new Date(post.publishedAt), 'yyyy/MM/dd', { locale: zhTW })}
                 </time>
               </div>
-              <div className="flex items-center gap-1 text-medical-600 group-hover:text-medical-700 transition-colors">
+              <div className="flex items-center gap-1 text-brand-600 group-hover:text-brand-700 transition-colors">
                 <span className="text-xs font-medium">閱讀更多</span>
                 <HiOutlineArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
               </div>
@@ -162,7 +162,7 @@ export default function PostCard({
       initial="hidden"
       animate="visible"
       className={`group relative bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 ${
-        featured ? 'ring-2 ring-medical-200 ring-opacity-50' : ''
+        featured ? 'ring-2 ring-brand-200 ring-opacity-50' : ''
       }`}
     >
       <Link href={`/blog/${post.slug}`} className="block">
@@ -179,8 +179,8 @@ export default function PostCard({
                 sizes="128px"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-medical-50 to-medical-100 flex items-center justify-center">
-                <HiOutlineBookmark className="h-6 w-6 text-medical-600" />
+              <div className="w-full h-full bg-gradient-to-br from-brand-50 to-brand-100 flex items-center justify-center">
+                <HiOutlineBookmark className="h-6 w-6 text-brand-600" />
               </div>
             )}
           </div>
@@ -189,11 +189,11 @@ export default function PostCard({
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center bg-medical-50 text-medical-700 px-2 py-1 rounded text-xs font-medium">
+                <span className="inline-flex items-center bg-brand-50 text-brand-700 px-2 py-1 rounded text-xs font-medium">
                   {post.category}
                 </span>
                 {featured && (
-                  <div className="flex items-center gap-1 bg-medical-600 text-white px-2 py-1 rounded text-xs font-medium">
+                  <div className="flex items-center gap-1 bg-brand-600 text-white px-2 py-1 rounded text-xs font-medium">
                     <HiOutlineBookmark className="h-3 w-3" />
                     <span>推薦</span>
                   </div>
@@ -201,7 +201,7 @@ export default function PostCard({
               </div>
             </div>
 
-            <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-medical-700 transition-colors">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-brand-700 transition-colors">
               {post.title}
             </h3>
 
@@ -240,7 +240,7 @@ export default function PostCard({
                   {format(new Date(post.publishedAt), 'yyyy/MM/dd', { locale: zhTW })}
                 </time>
               </div>
-              <div className="flex items-center gap-1 text-medical-600 group-hover:text-medical-700 transition-colors">
+              <div className="flex items-center gap-1 text-brand-600 group-hover:text-brand-700 transition-colors">
                 <span className="text-xs font-medium">閱讀更多</span>
                 <HiOutlineArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
               </div>

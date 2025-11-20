@@ -97,12 +97,12 @@ export default function Home() {
       </div>
 
       {/* Services Section */}
-      <div className="relative bg-gradient-to-b from-neutral-100 via-medical-50 to-medical-100">
+      <div className="relative bg-gradient-to-b from-neutral-100 via-brand-50 to-brand-100">
         <ServicesSection />
       </div>
 
       {/* Blog Section */}
-      <div className="relative bg-gradient-to-b from-medical-100 via-neutral-50 to-white">
+      <div className="relative bg-gradient-to-b from-brand-100 via-neutral-50 to-white">
         <BlogSection />
       </div>
 
