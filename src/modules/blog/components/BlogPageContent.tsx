@@ -9,14 +9,12 @@ import {
   HiMagnifyingGlass,
   HiAdjustmentsHorizontal,
   HiDocumentText,
-  HiAcademicCap,
   HiClock,
   HiFolder,
   HiViewColumns,
   HiListBullet,
   HiChevronLeft,
-  HiChevronRight,
-  HiSparkles
+  HiChevronRight
 } from 'react-icons/hi2'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -82,13 +80,6 @@ export default function BlogPageContent() {
       return matchesSearch && matchesCategory && matchesTag
     })
   }, [sortedPosts, searchTerm, selectedCategory, selectedTag])
-
-  // 精選文章（featured文章或最新文章）
-  const featuredPosts = useMemo(() => {
-    const featured = publishedPosts.filter(post => post.featured)
-    if (featured.length >= 3) return featured.slice(0, 3)
-    return sortedPosts.slice(0, 3)
-  }, [publishedPosts, sortedPosts])
 
   // 分頁邏輯
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
