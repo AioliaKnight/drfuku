@@ -51,7 +51,7 @@ const config: Config = {
 
             maxWidth: 'none',
             lineHeight: '1.8',
-            
+
             // 段落
             p: {
               marginBottom: '1.5rem',
@@ -96,7 +96,7 @@ const config: Config = {
                 fontSize: '1rem',
               },
             },
-            
+
             // 連結
             a: {
               textDecoration: 'none',

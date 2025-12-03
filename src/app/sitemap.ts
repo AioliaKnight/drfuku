@@ -1,11 +1,13 @@
 import { MetadataRoute } from 'next'
 import { posts as allPosts } from '@/velite'
+import { SITE } from '@/config/constants'
 
 export const dynamic = 'force-static'
 export const revalidate = false
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://drfuku.com'
+  // 單一來源：使用 SITE.url，避免被舊的環境變數覆蓋成測試網域
+  const siteUrl = SITE.url
 
   const staticRoutes: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
     { path: '', priority: 1, changeFrequency: 'daily' },
