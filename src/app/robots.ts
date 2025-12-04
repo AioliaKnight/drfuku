@@ -22,7 +22,7 @@ export default function robots(): MetadataRoute.Robots {
         '/500/',
         '/_next/',
         '/*.json$',
-        '/*.xml$',
+        // 保留 sitemap.xml 供搜尋引擎讀取，不再全域封鎖 xml
       ],
     },
     sitemap: 'https://drfuku.com/sitemap.xml',
