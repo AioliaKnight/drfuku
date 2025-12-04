@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { posts as allPosts } from '@/velite'
 import { compareDesc } from 'date-fns'
 import PostCard from './PostCard'
