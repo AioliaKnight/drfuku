@@ -38,6 +38,7 @@ export function useFAQState(category: FAQCategory) {
   const [isAnimating, setIsAnimating] = useState(false)
   const { trackToggle } = useEventTracking()
   const { variants, transition } = useFAQAnimation({ once: true })
+  const transitionMs = (transition.duration ?? 0.4) * 1000
 
   // 處理 FAQ 切換
   const handleToggle = useCallback((index: number) => {
@@ -70,8 +71,8 @@ export function useFAQState(category: FAQCategory) {
     // 動畫完成後重置狀態
     setTimeout(() => {
       setIsAnimating(false)
-    }, transition.duration * 1000)
-  }, [category.title, category.faqs, openIndex, isAnimating, transition.duration, trackToggle])
+    }, transitionMs)
+  }, [category.title, category.faqs, openIndex, isAnimating, transitionMs, trackToggle])
 
   // 獲取 FAQ 狀態
   const getFAQState = useCallback((index: number): FAQState => ({
