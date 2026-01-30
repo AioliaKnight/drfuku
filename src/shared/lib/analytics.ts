@@ -6,7 +6,7 @@ const config = {
   debug: process.env.NODE_ENV === 'development',
   version: '1.0.0',
   environment: process.env.NODE_ENV,
-  site: '痔瘡醫生 徐彥勳大腸直腸專科',
+  site: '阿福醫師-大腸直腸外科徐彥勳',
   keywords: keywords.getPrimary()
 }
 

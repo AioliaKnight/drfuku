@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { HiOutlineChatBubbleBottomCenterText } from 'react-icons/hi2'
 import { useScrollAnimation } from '@/shared/hooks/useAnimation'
+import { baseTransition, getTransition } from '@/shared/animation'
 import LineButton from '@/shared/components/common/LineButton'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
@@ -39,7 +40,7 @@ const QRCode = memo(function QRCode() {
 
 // 主要組件
 export default function CTASection() {
-  const { variants, transitions } = useScrollAnimation({ once: true })
+  const { variants } = useScrollAnimation({ once: true })
 
   return (
     <Section className={STYLES.section}>
@@ -56,7 +57,7 @@ export default function CTASection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            transition={transitions.default}
+            transition={baseTransition}
             className="mb-6 flex justify-center"
           >
             <div className={STYLES.iconWrapper}>
@@ -68,7 +69,7 @@ export default function CTASection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            transition={transitions.withDelay(0.2)}
+            transition={getTransition(0.2)}
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
               現在就開始，找回自在生活
@@ -85,7 +86,7 @@ export default function CTASection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={transitions.withDelay(0.4)}
+          transition={getTransition(0.4)}
           className="mt-14 md:mt-20"
         >
           <div className="mx-auto max-w-3xl rounded-3xl bg-gradient-to-br from-brand-500 to-brand-600 p-[2px] shadow-2xl">

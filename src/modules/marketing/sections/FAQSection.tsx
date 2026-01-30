@@ -7,24 +7,7 @@ import { useFAQState, type FAQCategory } from '@/shared/hooks/useFAQState'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { faqCategories } from '../data/faq'
-
-// 動畫配置
-const animations = {
-  fadeInUp: {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, ease: 'easeOut' }
-  },
-  expand: {
-    initial: { height: 0, opacity: 0 },
-    animate: { height: 'auto', opacity: 1 },
-    exit: { height: 0, opacity: 0 },
-    transition: { duration: 0.2 }
-  },
-  stagger: {
-    transition: { staggerChildren: 0.2 }
-  }
-} as const
+import { fadeInUpAnimation, expandAnimation, staggerAnimation } from '@/shared/animation'
 
 // FAQ項目組件
 const FAQItem = memo(({ faq, isOpen, onToggle }: {
@@ -34,20 +17,20 @@ const FAQItem = memo(({ faq, isOpen, onToggle }: {
 }) => {
   return (
     <motion.div
-      {...animations.fadeInUp}
-      className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-neutral-100"
+      {...fadeInUpAnimation}
+      className="overflow-hidden rounded-2xl bg-white/85 shadow-md ring-1 ring-white/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-lg"
     >
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+        className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-neutral-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${faq.question}`}
       >
-        <span className="text-base font-medium text-neutral-900">
+        <span className="text-lg font-semibold text-neutral-900 leading-7">
           {faq.question}
         </span>
         <HiChevronDown
-          className={`h-5 w-5 text-neutral-500 transition-transform ${
+          className={`mt-1 h-5 w-5 text-neutral-500 transition-transform ${
             isOpen ? 'rotate-180' : ''
           }`}
           aria-hidden="true"
@@ -56,20 +39,15 @@ const FAQItem = memo(({ faq, isOpen, onToggle }: {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            {...animations.expand}
+            {...expandAnimation}
             id={`faq-answer-${faq.question}`}
             role="region"
             aria-labelledby={`faq-question-${faq.question}`}
           >
-            <div className="border-t border-neutral-100 px-6 pb-6 pt-4">
-              {faq.answer.split('\n').map((line, index) => (
-                <p
-                  key={index}
-                  className="text-sm leading-relaxed text-neutral-600"
-                >
-                  {line}
-                </p>
-              ))}
+            <div className="border-t border-neutral-100/80 px-6 pb-6 pt-4">
+              <p className="text-base leading-7 text-neutral-700 whitespace-pre-line">
+                {faq.answer}
+              </p>
             </div>
           </motion.div>
         )}
@@ -89,16 +67,16 @@ const FAQCategory = memo(({ category }: { category: FAQCategory }) => {
       <div className="mb-8">
         <h3
           id={`faq-category-${category.title}`}
-          className="text-xl font-bold text-neutral-900"
+          className="text-2xl font-semibold text-neutral-900"
         >
           {category.title}
         </h3>
-        <p className="mt-2 text-base text-neutral-600">{category.description}</p>
+        <p className="mt-2 text-base leading-7 text-neutral-600">{category.description}</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {category.keywords.map((keyword, index) => (
             <span
               key={index}
-              className="rounded-full bg-brand-50 px-3 py-1 text-xs text-brand-600"
+              className="rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-white/70 shadow-sm"
             >
               {keyword}
             </span>
@@ -129,7 +107,7 @@ export default function FAQSection() {
     <Section
       id="faq"
       aria-label="常見問題區塊"
-      className="overflow-hidden bg-neutral-50/50"
+      className="overflow-hidden bg-gradient-to-b from-white via-brand-50/20 to-neutral-50/80"
     >
       {/* 背景裝飾 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -139,9 +117,9 @@ export default function FAQSection() {
       <div className="relative">
         <Container>
           <motion.div
-            {...animations.fadeInUp}
+            {...fadeInUpAnimation}
             viewport={{ once: true }}
-            className="mx-auto max-w-2xl space-y-4 text-center"
+            className="mx-auto max-w-3xl space-y-4 text-center"
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
               常見問題
@@ -156,14 +134,14 @@ export default function FAQSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            {...animations.stagger}
-            className="mx-auto mt-16 max-w-4xl"
+            {...staggerAnimation}
+            className="mx-auto mt-16 max-w-5xl"
           >
             <div className="space-y-16">
               {faqCategories.map((category, index) => (
                 <motion.div
                   key={index}
-                  {...animations.fadeInUp}
+                {...fadeInUpAnimation}
                   viewport={{ once: true }}
                 >
                   <FAQCategory category={category} />

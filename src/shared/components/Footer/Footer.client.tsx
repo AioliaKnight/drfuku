@@ -8,6 +8,7 @@ import { RiInstagramLine } from 'react-icons/ri'
 import { FaFacebook } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useScrollAnimation } from '@/shared/hooks/useAnimation'
+import { getTransition } from '@/shared/animation'
 import { useEventTracking } from '@/shared/hooks/useEventTracking'
 
 // 將靜態數據移到組件外部
@@ -30,13 +31,13 @@ const socialLinks = [
 
 const clinics = [
   {
-    name: '禾馨台中安和婦幼診所',
-    address: '台中市西屯區安和路118-18號',
+    name: '禾馨民權婦幼診所',
+    address: '台北市內湖區民權東路六段42號',
     type: '主治醫師'
   },
   {
-    name: '禾馨民權婦幼診所',
-    address: '台北市內湖區民權東路六段42號',
+    name: '顧芳瑜泌尿科診所 大安分院',
+    address: '106臺北市大安區信義路三段192-1號4樓',
     type: '主治醫師'
   },
   {
@@ -89,11 +90,11 @@ const ClinicCard = memo(function ClinicCard({ clinic, index }: { clinic: typeof 
   return (
     <motion.div
       variants={variants.slideInUp}
-      transition={{ delay: index * 0.1 }}
-      className={`group rounded-xl p-4 shadow-sm ring-1 transition-all hover:-translate-y-0.5 hover:shadow-md focus-within:ring-2 focus-within:ring-brand-600 ${
+      transition={getTransition(index * 0.1)}
+      className={`group rounded-xl bg-white/85 p-4 shadow-md ring-1 ring-white/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-lg focus-within:ring-2 focus-within:ring-brand-600 ${
         isSpecialClinic
-          ? 'bg-gradient-to-r from-white to-brand-50/30 ring-brand-100'
-          : 'bg-white ring-neutral-100'
+          ? 'from-white to-brand-50/30 ring-brand-100/70'
+          : 'ring-neutral-100/60'
       }`}
       tabIndex={0}
       role="region"
@@ -136,7 +137,7 @@ const QuickLink = memo(function QuickLink({ link }: { link: typeof quickLinks[0]
 })
 
 export default function Footer() {
-  const { variants, transitions } = useScrollAnimation({ once: true })
+  const { variants } = useScrollAnimation({ once: true })
   const { trackEvent } = useEventTracking()
 
   return (
@@ -166,7 +167,7 @@ export default function Footer() {
               >
                 <Link
                   href="/"
-                  className="group relative mb-6 inline-flex items-center gap-3 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
+                  className="group relative mb-6 inline-flex items-center gap-3 rounded-2xl bg-white/85 p-2 shadow-md ring-1 ring-white/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
                   aria-label="回到首頁"
                   onClick={() => trackEvent('logo_click')}
                 >
@@ -174,7 +175,7 @@ export default function Footer() {
                     <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/20 to-brand-400/20 blur transition-all group-hover:inset-0 group-hover:blur-md" aria-hidden="true" />
                     <Image
                       src="/logo.png"
-                      alt="徐彥勳大腸直腸專科"
+                      alt="阿福醫師-大腸直腸外科徐彥勳"
                       width={48}
                       height={48}
                       className="relative h-12 w-12 rounded-full transition-transform duration-300 group-hover:scale-105"
@@ -183,17 +184,17 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col pr-2">
                     <span className="text-xl font-bold text-neutral-900">
-                      徐彥勳
+                      阿福醫師（徐彥勳）
                     </span>
                     <span className="text-sm font-medium text-neutral-500">
-                      大腸直腸專科醫師
+                      大腸直腸外科醫師
                     </span>
                   </div>
                 </Link>
                 <div className="space-y-4">
                   <p className="text-base leading-relaxed text-neutral-600">
                     專精於大腸直腸疾病診療，致力於提供專業且溫暖的醫療服務。
-                    在禾馨診所服務，為您打造安心的就醫體驗。
+                    於多處門診服務，為您打造安心的就醫體驗。
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link
@@ -239,19 +240,19 @@ export default function Footer() {
         </div>
 
         {/* 下方區域 */}
-        <div className="bg-gradient-to-b from-neutral-50/80 to-white py-8">
+          <div className="bg-gradient-to-b from-neutral-50/80 to-white py-10">
           <div className="container mx-auto px-4">
             <motion.div
               variants={variants.slideInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              transition={transitions.withDelay(0.4)}
+              transition={getTransition(0.4)}
               className="space-y-6 text-center"
             >
               {/* 醫療警語 */}
               <div
-                className="mx-auto max-w-3xl space-y-2 rounded-2xl bg-white p-6 text-sm text-neutral-500 shadow-sm ring-1 ring-neutral-100"
+                className="mx-auto max-w-3xl space-y-2 rounded-2xl bg-white/85 p-6 text-sm text-neutral-500 shadow-md ring-1 ring-white/70 backdrop-blur"
                 role="alert"
                 aria-label="醫療警語"
               >
@@ -262,7 +263,7 @@ export default function Footer() {
 
               {/* 版權聲明 */}
               <p className="text-sm text-neutral-400">
-                © {new Date().getFullYear()} 徐彥勳醫師 - 大腸直腸專科. All rights reserved.
+                © {new Date().getFullYear()} 阿福醫師（徐彥勳醫師）- 大腸直腸外科. All rights reserved.
               </p>
             </motion.div>
           </div>

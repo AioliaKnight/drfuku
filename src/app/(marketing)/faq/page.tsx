@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 import { FAQSection } from '@/modules/marketing'
+import JsonLd from '@/shared/components/common/JsonLd'
+import { faqCategories } from '@/modules/marketing/data/faq'
 
 export const metadata: Metadata = {
   title: '常見問題 | 痔瘡治療、術後照護與預約資訊',
@@ -12,8 +14,28 @@ export const metadata: Metadata = {
 }
 
 export default function FAQPage() {
+  const faqs = faqCategories.flatMap((category) =>
+    category.faqs.map((faq) => ({
+      '@type': 'Question' as const,
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer' as const,
+        name: faq.question,
+        text: faq.answer
+      }
+    }))
+  )
+
   return (
     <main className="bg-white">
+      <JsonLd
+        type="FAQPage"
+        data={{
+          '@type': 'FAQPage',
+          name: '痔瘡與肛門疾病常見問題',
+          mainEntity: faqs
+        }}
+      />
       <FAQSection />
     </main>
   )

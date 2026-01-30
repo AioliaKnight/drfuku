@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const dynamic = 'force-static'
 export const revalidate = false
-export const alt = '痔瘡醫生'
+export const alt = '阿福醫師-大腸直腸外科徐彥勳'
 export const size = {
   width: 1200,
   height: 630,
@@ -23,7 +23,7 @@ export default async function Image() {
           justifyContent: 'center',
         }}
       >
-        痔瘡醫生
+        阿福醫師 大腸直腸外科徐彥勳
       </div>
     ),
     {

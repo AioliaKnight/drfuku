@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     template: `%s | ${SITE.name}`,
-    default: `${SITE.name} | 專業痔瘡治療・安心舒適就醫`
+    default: `${SITE.name} | 大腸直腸外科專業・安心就醫`
   },
   description: SITE.description,
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: SITE.locale,
     url: SITE.url,
-    title: `${SITE.name} | 專業痔瘡治療・安心舒適就醫`,
+    title: `${SITE.name} | 大腸直腸外科專業・安心就醫`,
     description: SITE.description,
     siteName: SITE.name,
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE.name} | 專業痔瘡治療・安心舒適就醫`,
+    title: `${SITE.name} | 大腸直腸外科專業・安心就醫`,
     description: SITE.description,
     images: [`${SITE.url}/og-image.jpg`]
   },

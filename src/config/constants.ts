@@ -1,8 +1,8 @@
 // 網站基本信息
 export const SITE = {
-  name: '痔瘡醫生 徐彥勳大腸直腸外科',
-  shortName: '痔瘡醫生',
-  description: '專業痔瘡診療與保健資訊，提供完整的痔瘡治療建議和預防方法。由徐彥勳醫師主持的專業醫療資訊平台，專精於痔瘡微創手術、肛門疾病治療。台北、新北地區推薦的痔瘡專科醫師。',
+  name: '阿福醫師-大腸直腸外科徐彥勳',
+  shortName: '阿福醫師',
+  description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）主持，專精痔瘡微創手術、大腸直腸與肛門疾病診療。提供專業痔瘡治療建議與保健資訊，台北、台中地區推薦的大腸直腸外科醫師。',
   url: 'https://drfuku.com',
   locale: 'zh_TW',
   themeColor: '#0ea5e9'
@@ -14,16 +14,16 @@ export const DOCTOR = {
   givenName: '彥勳',
   familyName: '徐',
   title: '大腸直腸外科醫師',
-  alternateName: '徐彥勳醫師',
-  description: '專精於痔瘡微創手術、大腸直腸疾病診療的專業醫師。擁有豐富的臨床經驗，致力於提供病患安心舒適的診療體驗。',
+  alternateName: '阿福醫師（徐彥勳醫師）',
+  description: '大腸直腸外科專科醫師，專精痔瘡微創手術與大腸直腸疾病診療。擁有豐富臨床經驗，致力於提供病患安心舒適的診療體驗。',
   image: 'https://drfuku.com/doctor-photo.jpg',
   url: 'https://drfuku.com/about'
 } as const
 
 // 診所信息
 export const CLINIC = {
-  name: '徐彥勳大腸直腸外科',
-  alternateName: ['痔瘡醫生', '徐彥勳醫師', '徐醫師'],
+  name: '大腸直腸外科徐彥勳',
+  alternateName: ['阿福醫師', '徐彥勳醫師', '徐醫師', '痔瘡醫生'],
   logo: 'https://drfuku.com/logo.png',
   telephone: '+886-2-2712-0589',
   address: {
@@ -87,9 +87,9 @@ export const KEYWORDS = {
     '微創痔瘡手術',
 
     // 醫師相關
+    '阿福醫師',
     '徐彥勳醫師',
-    '痔瘡 徐彥勳',
-    '徐彥勳大腸直腸外科',
+    '大腸直腸外科徐彥勳',
     '大腸直腸外科醫師',
 
     // 地理位置

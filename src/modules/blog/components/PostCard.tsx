@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { type Post } from '@/velite'
 import { motion } from 'framer-motion'
+import { baseTransition, getTransition } from '@/shared/animation'
 
 interface PostCardProps {
   post: Post
@@ -24,6 +25,7 @@ export default function PostCard({
 }: PostCardProps) {
   const [imageError, setImageError] = useState(false)
 
+  const hoverTransition = { duration: 0.2, ease: baseTransition.ease }
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -34,11 +36,7 @@ export default function PostCard({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: "easeOut"
-      }
+      transition: { ...baseTransition, duration: 0.5, delay: index * 0.1 }
     }
   }
 
@@ -55,9 +53,9 @@ export default function PostCard({
         animate="visible"
         whileHover={{
           y: -4,
-          transition: { duration: 0.2, ease: "easeOut" }
+          transition: hoverTransition
         }}
-        className={`group relative bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 ${
+      className={`group relative rounded-2xl bg-white/85 shadow-md ring-1 ring-white/70 backdrop-blur overflow-hidden hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 ${
           featured ? 'ring-2 ring-brand-200 ring-opacity-50' : ''
         }`}
       >
@@ -73,7 +71,7 @@ export default function PostCard({
 
         <Link href={`/blog/${post.slug}`} className="block">
           {/* 圖片區域 */}
-          <div className="relative h-48 bg-gray-100 overflow-hidden">
+          <div className="relative h-48 bg-neutral-100/80 overflow-hidden">
             {!imageError && post.image ? (
           <Image
             src={post.image}
@@ -96,7 +94,7 @@ export default function PostCard({
 
             {/* 分類標籤 */}
             <div className="absolute bottom-4 left-4">
-              <span className="inline-flex items-center bg-white/90 backdrop-blur-sm text-brand-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm">
+              <span className="inline-flex items-center bg-white/90 backdrop-blur-sm text-brand-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm ring-1 ring-white/60">
             {post.category}
           </span>
         </div>
@@ -105,10 +103,10 @@ export default function PostCard({
           {/* 內容區域 */}
           <div className="p-6">
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-brand-700 transition-colors">
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3 line-clamp-2 group-hover:text-brand-700 transition-colors">
               {post.title}
           </h3>
-              <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+              <p className="text-neutral-600 text-sm leading-relaxed line-clamp-3">
             {post.summary}
           </p>
         </div>
@@ -119,14 +117,14 @@ export default function PostCard({
                 {post.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md"
+                    className="inline-flex items-center gap-1 text-xs text-neutral-600 bg-neutral-100/80 px-2 py-1 rounded-md"
                   >
                     <HiOutlineTag className="h-3 w-3" />
                     {tag}
                   </span>
                 ))}
                 {post.tags.length > 3 && (
-                  <span className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-md">
+                  <span className="text-xs text-neutral-500 bg-neutral-50 px-2 py-1 rounded-md">
                     +{post.tags.length - 3}
                   </span>
                 )}
@@ -134,7 +132,7 @@ export default function PostCard({
             )}
 
             {/* 底部資訊 */}
-            <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100">
+            <div className="flex items-center justify-between text-sm text-neutral-500 pt-4 border-t border-neutral-100/80">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1">
             <HiOutlineClock className="h-4 w-4" />
@@ -161,14 +159,14 @@ export default function PostCard({
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      className={`group relative bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 ${
+      className={`group relative rounded-xl bg-white/85 shadow-md ring-1 ring-white/70 backdrop-blur overflow-hidden hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 ${
         featured ? 'ring-2 ring-brand-200 ring-opacity-50' : ''
       }`}
     >
       <Link href={`/blog/${post.slug}`} className="block">
         <div className="flex gap-6 p-6">
           {/* 圖片區域 */}
-          <div className="relative w-32 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+          <div className="relative w-32 h-24 bg-neutral-100/80 rounded-lg overflow-hidden flex-shrink-0">
             {!imageError && post.image ? (
               <Image
                 src={post.image}
@@ -189,7 +187,7 @@ export default function PostCard({
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center bg-brand-50 text-brand-700 px-2 py-1 rounded text-xs font-medium">
+                <span className="inline-flex items-center bg-brand-50/80 text-brand-700 px-2 py-1 rounded text-xs font-medium">
                   {post.category}
                 </span>
                 {featured && (

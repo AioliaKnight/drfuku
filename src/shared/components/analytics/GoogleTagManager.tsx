@@ -21,7 +21,7 @@ export default function GoogleTagManager() {
     if (!isMounted) return
 
     const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
-    const title = document.title || pathname.split('/').pop() || '痔瘡醫生'
+    const title = document.title || pathname.split('/').pop() || '阿福醫師 大腸直腸外科'
     const description = document.querySelector('meta[name="description"]')?.getAttribute('content') || ''
 
     trackPageView({

@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
-module.exports = {
+export default {
   siteUrl: 'https://drfuku.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,

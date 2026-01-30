@@ -1,40 +1,41 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Transition } from 'framer-motion'
 import {
   HiOutlineHeart
 } from 'react-icons/hi2'
-import { useScrollAnimation, type AnimationVariants, type AnimationTransitions } from '@/shared/hooks/useAnimation'
+import { useScrollAnimation, type AnimationVariants } from '@/shared/hooks/useAnimation'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { memo } from 'react'
 import { services, type Service } from '../data/services'
+import { baseTransition, getTransition } from '@/shared/animation'
 
 const ServiceCard = memo(function ServiceCard({
   service,
   index,
   isInView,
   variants,
-  transitions
+  getCardTransition
 }: {
   service: Service
   index: number
   isInView: boolean
   variants: AnimationVariants
-  transitions: AnimationTransitions
+  getCardTransition: (delay: number) => Transition
 }) {
   return (
     <motion.div
       variants={variants.fadeIn}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      transition={transitions.withDelay(index * 0.1)}
+      transition={getCardTransition(index * 0.1)}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
       whileTap={{ scale: 0.98 }}
-      className={`group relative overflow-hidden rounded-2xl p-6 shadow-sm ring-1 transition-all hover:shadow-lg ${
+      className={`group relative overflow-hidden rounded-2xl bg-white/80 p-6 shadow-md ring-1 ring-white/70 backdrop-blur transition-all hover:-translate-y-1 hover:shadow-xl ${
         service.highlight
-          ? 'bg-gradient-to-br from-brand-50 to-white ring-brand-100 hover:ring-brand-200'
-          : 'bg-white ring-neutral-100 hover:ring-neutral-200'
+          ? 'from-brand-50/70 to-white ring-brand-100/60 hover:ring-brand-200/70'
+          : 'ring-neutral-100/60 hover:ring-neutral-200/70'
       }`}
     >
       {service.highlight && (
@@ -47,8 +48,8 @@ const ServiceCard = memo(function ServiceCard({
 
       <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${
         service.highlight
-          ? 'bg-brand-100 text-brand-600'
-          : 'bg-neutral-100 text-neutral-600'
+          ? 'bg-brand-100/80 text-brand-600'
+          : 'bg-neutral-100/80 text-neutral-600'
       } transition-colors group-hover:scale-110`}>
         {service.icon}
       </div>
@@ -63,7 +64,7 @@ const ServiceCard = memo(function ServiceCard({
 
       <ul className="space-y-2">
         {service.features.map((feature, featureIndex) => (
-          <li key={featureIndex} className="flex items-center gap-2 text-sm leading-6 text-neutral-600">
+          <li key={featureIndex} className="flex items-start gap-2 text-sm leading-6 text-neutral-600">
             <span className={`h-1.5 w-1.5 rounded-full ${
               service.highlight ? 'bg-brand-600' : 'bg-neutral-400'
             }`} />
@@ -82,14 +83,15 @@ const ServiceCard = memo(function ServiceCard({
 })
 
 export default function ServicesSection() {
-  const { ref, isInView, variants, transitions } = useScrollAnimation()
+  const { ref, isInView, variants } = useScrollAnimation()
+  const getCardTransition = (delay: number) => getTransition(delay)
 
   return (
     <Section
       ref={ref}
       id="services"
       aria-label="診療服務"
-      className="overflow-hidden bg-gradient-to-b from-white via-neutral-50 to-white"
+      className="overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-neutral-50/80"
     >
       {/* 背景裝飾 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -104,7 +106,7 @@ export default function ServicesSection() {
             variants={variants.scaleIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.default}
+            transition={baseTransition}
             className="mb-6 flex justify-center"
           >
             <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/20 to-brand-600/20">
@@ -116,7 +118,7 @@ export default function ServicesSection() {
             variants={variants.fadeIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.withDelay(0.2)}
+            transition={getTransition(0.2)}
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
               專業診療服務
@@ -138,7 +140,7 @@ export default function ServicesSection() {
                 index={index}
                 isInView={isInView}
                 variants={variants}
-                transitions={transitions}
+                getCardTransition={getCardTransition}
               />
             ))}
           </div>
@@ -149,10 +151,10 @@ export default function ServicesSection() {
           variants={variants.fadeIn}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          transition={transitions.withDelay(1)}
+          transition={getTransition(1)}
           className="mt-12 md:mt-24"
         >
-          <div className="mx-auto max-w-4xl rounded-2xl bg-gradient-to-br from-brand-50 to-white p-6 shadow-sm ring-1 ring-brand-100 sm:p-8">
+          <div className="mx-auto max-w-4xl rounded-2xl bg-white/80 p-6 shadow-lg ring-1 ring-brand-100/60 backdrop-blur sm:p-8">
             <h3 className="mb-6 text-center text-2xl font-semibold tracking-tight text-neutral-900">
               診所特色服務
             </h3>
@@ -160,7 +162,8 @@ export default function ServicesSection() {
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-brand-600">多點門診服務</h4>
                 <ul className="space-y-2 text-sm text-neutral-600">
-                  <li>• 禾馨台中安和、內湖民權婦幼診所主治醫師</li>
+                  <li>• 禾馨內湖民權婦幼診所主治醫師</li>
+                  <li>• 顧芳瑜泌尿科診所 大安分院主治醫師</li>
                   <li>• 佑民醫院（草屯）大腸直腸外科主治醫師</li>
                   <li>• 賦真妍診所特約痔瘡專科門診</li>
                   <li>• 秘境美學診所特約痔瘡專科門診</li>

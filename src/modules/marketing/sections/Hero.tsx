@@ -8,12 +8,12 @@ import {
   HiOutlineArrowTopRightOnSquare,
   HiOutlineMapPin
 } from 'react-icons/hi2'
-import { useScrollAnimation } from '@/shared/hooks/useAnimation'
+import { baseTransition, getTransition } from '@/shared/animation'
 import { buttonVariants } from '@/shared/ui/primitives'
 import { cn } from '@/shared/lib/cn'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
-import { features, achievements, locations } from '../data/hero'
+import { features, locations } from '../data/hero'
 
 // 動畫變體
 const animationVariants = {
@@ -40,7 +40,6 @@ const animationVariants = {
 // 常量樣式定義
 const STYLES = {
   featureIcon: 'flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-4 ring-brand-50/50 md:h-12 md:w-12',
-  achievementCard: 'group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-neutral-50 p-6 text-center shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-1 hover:shadow-md will-change-transform',
   locationCard: 'group flex items-center justify-between gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md'
 } as const
 
@@ -57,32 +56,6 @@ const Feature = memo(function Feature({ icon, text }: typeof features[number]) {
         {icon}
       </div>
       <span className="text-sm font-medium md:text-base">{text}</span>
-    </motion.div>
-  )
-})
-
-const Achievement = memo(function Achievement({ icon, title, description, stats }: typeof achievements[number]) {
-  return (
-    <motion.div
-      variants={animationVariants.bounce}
-      className={STYLES.achievementCard}
-      tabIndex={0}
-      role="article"
-      aria-label={`${title}: ${description}`}
-      whileHover={{ y: -4, transition: { type: 'spring', stiffness: 300 } }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <div className="mb-3 flex justify-center">{icon}</div>
-      <h3 className="mb-2 text-lg font-bold text-neutral-900 group-hover:text-brand-600">
-        {title}
-      </h3>
-      <p className="mb-3 text-sm text-neutral-600">{description}</p>
-      <p className="text-base font-semibold text-brand-600">{stats}</p>
-      <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-50 to-transparent opacity-0"
-        initial={false}
-        whileHover={{ opacity: 1 }}
-      />
     </motion.div>
   )
 })
@@ -113,8 +86,6 @@ export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
   const { scrollY } = useScroll()
   const opacity = useTransform(scrollY, [0, 300], [1, 0])
-  const { transitions } = useScrollAnimation({ once: true })
-
   const backgroundStyle = useMemo(() => ({ opacity }), [opacity])
 
   const handleServicesClick = useCallback((e: React.MouseEvent) => {
@@ -127,7 +98,7 @@ export default function Hero() {
       ref={containerRef}
       aria-label="首頁主視覺"
       padding="none"
-      className="min-h-[calc(100dvh-4rem)] overflow-hidden bg-gradient-to-b from-brand-50/40 via-white to-neutral-50/50"
+      className="min-h-[calc(100dvh-4rem)] overflow-hidden bg-gradient-to-b from-brand-50/50 via-white to-neutral-100/60"
     >
       {/* 無障礙跳過導航 */}
       <a
@@ -144,39 +115,39 @@ export default function Hero() {
       />
 
       <Container id="main-content" className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 md:py-28">
-        <div className="mx-auto max-w-4xl space-y-10 text-center">
+        <div className="mx-auto max-w-5xl space-y-10 rounded-3xl bg-white/75 p-8 text-center shadow-xl ring-1 ring-white/70 backdrop-blur md:p-12">
           {/* 主標題區塊 */}
           <div className="relative mb-8">
             <motion.div
               variants={animationVariants.slideInUp}
               initial="hidden"
               animate="visible"
-              transition={transitions.default}
+              transition={baseTransition}
               className="relative"
             >
               <span className="mb-4 inline-block rounded-full bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-600 ring-1 ring-brand-100 md:text-base">
-                台灣痔瘡治療專家
+                大腸直腸外科專科
               </span>
               <h1 className="mt-4 text-4xl font-semibold tracking-tight text-neutral-900 [text-wrap:balance] sm:text-5xl md:text-6xl md:font-bold">
-                專業、安心、保密
+                阿福醫師
                 <br className="hidden sm:inline" />
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
-                    微創痔瘡治療
+                    大腸直腸外科徐彥勳
                   </span>
                   <motion.span
                     variants={animationVariants.scaleIn}
                     initial="hidden"
                     animate="visible"
-                    transition={{ ...transitions.default, delay: 0.2 }}
+                    transition={getTransition(0.2)}
                     className="absolute -inset-1 -z-10 block rounded-lg bg-brand-50"
                   />
                 </span>
                 <br className="hidden sm:inline" />
-                專科醫療
+                微創痔瘡・專科醫療
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-neutral-600 md:text-xl md:leading-8">
-                徐彥勳醫師擁有中西醫雙專業與十五年以上臨床經驗，
+                大腸直腸外科專科醫師徐彥勳（阿福醫師）擁有中西醫雙專業與十五年以上臨床經驗，
                 以微創技術與貼心照護協助您在最短時間內找回自在生活。
               </p>
             </motion.div>
@@ -187,7 +158,7 @@ export default function Hero() {
             variants={animationVariants.stagger}
             initial="hidden"
             animate="visible"
-            className="flex flex-wrap justify-center gap-4 text-neutral-600"
+            className="flex flex-wrap justify-center gap-6 text-neutral-700"
           >
             {features.map((feature, index) => (
               <Feature key={index} {...feature} />
@@ -199,7 +170,7 @@ export default function Hero() {
             variants={animationVariants.slideInUp}
             initial="hidden"
             animate="visible"
-            transition={transitions.withDelay(0.8)}
+            transition={getTransition(0.8)}
             className="flex flex-wrap justify-center gap-4"
           >
             <Link
@@ -226,27 +197,12 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* 成就卡片 */}
-        <motion.div
-          variants={animationVariants.stagger}
-          initial="hidden"
-          animate="visible"
-          transition={transitions.withDelay(1)}
-          className="mt-12 md:mt-16"
-        >
-          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-            {achievements.map((achievement, index) => (
-              <Achievement key={index} {...achievement} />
-            ))}
-          </div>
-        </motion.div>
-
         {/* 診所位置 */}
         <motion.div
           variants={animationVariants.slideInUp}
           initial="hidden"
           animate="visible"
-          transition={transitions.withDelay(1.2)}
+          transition={getTransition(1.2)}
           className="mt-12 md:mt-16"
         >
           <div className="mx-auto max-w-4xl">

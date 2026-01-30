@@ -17,22 +17,22 @@ import PostCard from '@/modules/blog/components/PostCard'
 // 加載中的骨架屏組件
 const BlogCardSkeleton = memo(function BlogCardSkeleton() {
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg animate-pulse">
-      <div className="aspect-[16/9] bg-gray-200 sm:aspect-[2/1] lg:aspect-[3/2]" />
+    <div className="flex flex-col overflow-hidden rounded-2xl bg-white/80 shadow-lg ring-1 ring-white/70 backdrop-blur animate-pulse">
+      <div className="aspect-[16/9] bg-neutral-200/80 sm:aspect-[2/1] lg:aspect-[3/2]" />
       <div className="p-6 lg:p-8">
-        <div className="mb-4 h-4 w-20 bg-gray-200 rounded" />
-        <div className="mb-3 h-6 w-3/4 bg-gray-200 rounded" />
+        <div className="mb-4 h-4 w-20 bg-neutral-200/80 rounded" />
+        <div className="mb-3 h-6 w-3/4 bg-neutral-200/80 rounded" />
         <div className="mb-6 space-y-2">
-          <div className="h-4 w-full bg-gray-200 rounded" />
-          <div className="h-4 w-2/3 bg-gray-200 rounded" />
+          <div className="h-4 w-full bg-neutral-200/80 rounded" />
+          <div className="h-4 w-2/3 bg-neutral-200/80 rounded" />
         </div>
         <div className="flex gap-2 mb-6">
-          <div className="h-6 w-16 bg-gray-200 rounded-full" />
-          <div className="h-6 w-20 bg-gray-200 rounded-full" />
+          <div className="h-6 w-16 bg-neutral-200/80 rounded-full" />
+          <div className="h-6 w-20 bg-neutral-200/80 rounded-full" />
         </div>
         <div className="flex items-center justify-between">
-          <div className="h-4 w-24 bg-gray-200 rounded" />
-          <div className="h-4 w-16 bg-gray-200 rounded" />
+          <div className="h-4 w-24 bg-neutral-200/80 rounded" />
+          <div className="h-4 w-16 bg-neutral-200/80 rounded" />
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@ export default function BlogSection() {
   }
 
   return (
-    <Section id="blog" aria-label="部落格文章區塊">
+    <Section id="blog" aria-label="部落格文章區塊" className="bg-gradient-to-b from-white via-brand-50/20 to-neutral-50/70">
       <Container>
         <motion.div
           variants={variants.slideInUp}

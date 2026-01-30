@@ -1,5 +1,11 @@
 // 結構化數據類型
-export type JsonLdType = 'WebSite' | 'MedicalClinic' | 'Person' | 'MedicalWebPage'
+export type JsonLdType =
+  | 'WebSite'
+  | 'MedicalClinic'
+  | 'Person'
+  | 'MedicalWebPage'
+  | 'FAQPage'
+  | 'Article'
 
 // Schema.org 通用類型
 export type Thing = {
@@ -81,12 +87,43 @@ export type MedicalWebPage = Thing & {
   about?: MedicalCondition
 }
 
+// FAQPage 類型
+export type Answer = Thing & {
+  '@type': 'Answer'
+  text: string
+}
+
+export type Question = Thing & {
+  '@type': 'Question'
+  acceptedAnswer: Answer
+}
+
+export type FAQPage = Thing & {
+  '@type': 'FAQPage'
+  mainEntity: Question[]
+}
+
+// 文章類型
+export type Article = Thing & {
+  '@type': 'Article'
+  headline: string
+  description?: string
+  image?: string | string[]
+  datePublished?: string
+  dateModified?: string
+  author?: Person
+  publisher?: MedicalClinic
+  mainEntityOfPage?: string
+}
+
 // 結構化數據類型映射
 export type StructuredDataTypeMap = {
   WebSite: WebSite
   MedicalClinic: MedicalClinic
   Person: Person
   MedicalWebPage: MedicalWebPage
+  FAQPage: FAQPage
+  Article: Article
 }
 
 // 結構化數據類型

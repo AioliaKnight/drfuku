@@ -1,12 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, type Transition } from 'framer-motion'
 import { HiOutlineUserCircle, HiOutlineAcademicCap, HiOutlineBriefcase, HiOutlineClipboardDocument } from 'react-icons/hi2'
-import { useScrollAnimation, type AnimationVariants as AnimationVariantsType, type AnimationTransitions } from '@/shared/hooks/useAnimation'
+import { useScrollAnimation, type AnimationVariants as AnimationVariantsType } from '@/shared/hooks/useAnimation'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { memo, ReactElement } from 'react'
+import { baseTransition, getTransition } from '@/shared/animation'
 
 // 定義類型
 interface Experience {
@@ -20,61 +21,62 @@ interface ExperienceCardProps {
   index: number
   isInView: boolean
   variants: AnimationVariantsType
-  transitions: AnimationTransitions
+  getTransition: (delay: number) => Transition
 }
 
 // 將靜態數據移到組件外部
 const experience: Experience[] = [
   {
     icon: <HiOutlineAcademicCap className="h-6 w-6 text-brand-600" aria-hidden="true" />,
-    title: '專業資格與認證',
+    title: '學歷',
     items: [
-      '中華民國外科醫學會專科醫師',
-      '中華民國大腸直腸外科醫學會專科醫師',
-      '中國醫藥大學中西醫雙學士學位',
-      '台灣微創手術醫學會會員',
-      '亞洲大腸直腸外科醫學會會員',
-      '中華民國醫師高等考試及格'
+      '中國醫藥大學中西醫雙學士'
     ]
   },
   {
     icon: <HiOutlineBriefcase className="h-6 w-6 text-brand-600" aria-hidden="true" />,
-    title: '學經歷與專業訓練',
+    title: '經歷',
     items: [
-      '中國醫藥大學醫學系畢業（中西醫雙學位）',
+      '大腸直腸外科專科醫師 ■ 直專醫字第324號',
+      '外科專科醫師 ■ 外專醫字第006107號',
+      '中華民國醫師高等考試及格',
+      '台灣外科醫學會專科醫師',
+      '中華民國醫師公會聯合會會員',
+      '中華民國大腸直腸外科醫學會專科醫師',
       '彰化基督教醫院外科部住院醫師',
       '彰化基督教醫院大腸直腸外科研究醫師',
-      '禾馨台中安和婦幼診所大腸直腸外科主治醫師',
-      '禾馨內湖民權婦幼診所大腸直腸外科主治醫師',
-      '佑民醫院（草屯）大腸直腸外科主治醫師',
-      '賦真妍診所特約痔瘡專科醫師',
-      '秘境美學診所特約痔瘡專科醫師'
+      '草屯佑民醫院大腸直腸外科主治醫師',
+      '賦真妍特約痔瘡專科醫師',
+      '秘境美學診所特約痔瘡專科醫師',
+      '禾馨內湖民權婦幼診所大腸直腸外科主治醫師'
     ]
   },
   {
     icon: <HiOutlineClipboardDocument className="h-6 w-6 text-brand-600" aria-hidden="true" />,
-    title: '專精診療項目',
+    title: '主治項目',
     items: [
-      '痔瘡微創治療：採用最新微創技術，傷口小、恢復快、疼痛少',
-      '肛門裂隙治療：個人化治療方案，有效改善疼痛與出血',
-      '肛門廔管治療：精準手術技術，降低復發率',
-      '大腸直腸疾病診治：完整評估與治療計畫',
-      '術前詳細評估：全方位健康檢查與風險評估',
-      '術後專業照護：一對一追蹤關懷，確保最佳恢復效果'
+      '微創痔瘡手術（包含雷射痔瘡手術、冷凝刀痔瘡手術、組織凝集儀痔瘡手術等）',
+      '微創肛門手術',
+      '肛門濕疹（菜花）治療',
+      '肛門膿瘍、肛門瘻管',
+      '肛門皮膚疾患',
+      '肛周疾患（肛裂、肛門搔癢）',
+      '發炎性腸道疾病',
+      '腸躁症、便秘'
     ]
   }
 ]
 
 // 優化子組件
-const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, variants, transitions }) => (
+const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, variants, getTransition }) => (
   <motion.div
     variants={variants.fadeIn}
     initial="hidden"
     animate={isInView ? "visible" : "hidden"}
-    transition={transitions.withDelay(index * 0.1)}
+    transition={getTransition(index * 0.1)}
     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
     whileTap={{ scale: 0.98 }}
-    className="group rounded-2xl bg-white/80 backdrop-blur-sm p-6 shadow-sm ring-1 ring-neutral-100/80 transition-all hover:-translate-y-1 hover:shadow-lg hover:bg-white"
+    className="group rounded-2xl bg-white/85 backdrop-blur-sm p-6 shadow-md ring-1 ring-white/70 transition-all hover:-translate-y-1 hover:shadow-xl"
     role="article"
     aria-labelledby={`category-${index}`}
   >
@@ -87,10 +89,10 @@ const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, v
       </h3>
     </div>
     <ul className="space-y-3" role="list">
-      {category.items.map((item, itemIndex) => (
+      {category.items.map((item) => (
         <li
-          key={itemIndex}
-          className="flex items-center gap-3 text-base text-neutral-600 md:text-lg"
+          key={item}
+          className="flex items-start gap-3 text-base text-neutral-600 md:text-lg"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-brand-600" aria-hidden="true" />
           {item}
@@ -103,14 +105,15 @@ const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, v
 ExperienceCard.displayName = 'ExperienceCard'
 
 export default function AboutSection() {
-  const { ref, isInView, variants, transitions } = useScrollAnimation()
+  const { ref, isInView, variants } = useScrollAnimation()
+  const getCardTransition = (delay: number): Transition => getTransition(delay)
 
   return (
     <Section
       ref={ref}
       id="about"
-      aria-label="關於徐醫師"
-      className="overflow-hidden bg-gradient-to-b from-brand-50 via-white to-brand-100/60"
+      aria-label="關於阿福醫師"
+      className="overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-neutral-50/80"
     >
       {/* 背景裝飾 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -126,7 +129,7 @@ export default function AboutSection() {
             variants={variants.scaleIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.default}
+            transition={baseTransition}
             className="mb-6 flex justify-center"
             aria-hidden="true"
           >
@@ -138,27 +141,15 @@ export default function AboutSection() {
             variants={variants.fadeIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.withDelay(0.2)}
+            transition={getTransition(0.2)}
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-              認識徐彥勳醫師
+              認識阿福醫師（徐彥勳）
             </h2>
             <p className="mx-auto mb-6 max-w-2xl text-base leading-7 text-neutral-600 [text-wrap:balance] md:text-lg md:leading-8">
               擁有中西醫雙學位與 15 年臨床經驗，徐醫師善於結合微創技術與貼心照護，
               針對每位病患的生活型態與需求，提供客製化治療與完整術後追蹤。
             </p>
-            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-4 text-sm md:grid-cols-3">
-              {[
-                { label: '成功治療案例', value: '5000+' },
-                { label: '患者滿意度', value: '98%' },
-                { label: '年臨床經驗', value: '15+' }
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-2xl bg-white/70 p-5 text-center shadow-sm backdrop-blur">
-                  <div className="text-2xl font-semibold text-brand-600 md:text-3xl">{stat.value}</div>
-                  <div className="mt-1 text-neutral-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
 
@@ -168,22 +159,35 @@ export default function AboutSection() {
             variants={variants.slideInLeft}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.default}
-            className="w-full md:w-1/2 lg:w-2/5"
+            transition={baseTransition}
+            className="w-full space-y-8 md:w-1/2 lg:w-2/5"
           >
             <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-3xl shadow-2xl transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="absolute -right-6 -top-6 h-full w-full rounded-3xl bg-gradient-to-br from-neutral-100 to-white/80" aria-hidden="true" />
               <div className="absolute -left-6 -bottom-6 h-full w-full rounded-3xl bg-gradient-to-br from-brand-600 to-brand-500/90" aria-hidden="true" />
               <div className="relative h-full w-full overflow-hidden rounded-3xl" style={{ position: 'relative', minHeight: '400px' }}>
                 <Image
-                  src="/doctor-profile2.jpg"
-                  alt="徐彥勳醫師 - 專業的大腸直腸外科醫師，擁有豐富的臨床經驗，專注於提供高品質的醫療服務"
+                  src="/doctor-profile3.jpg"
+                  alt="阿福醫師（徐彥勳）- 大腸直腸外科專科醫師，擁有豐富的臨床經驗，專注於提供高品質的醫療服務"
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 40vw, 500px"
                   priority
                   className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/30 to-transparent" aria-hidden="true" />
+              </div>
+            </div>
+            <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-neutral-100 transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="absolute -right-4 -top-4 h-full w-full rounded-2xl bg-gradient-to-br from-neutral-50 to-white/80" aria-hidden="true" />
+              <div className="relative h-full w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/徐彥勳醫師-直外科學會醫師證書.webp"
+                  alt="徐彥勳醫師 大腸直腸外科學會專科醫師證書"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 420px"
+                  loading="lazy"
+                  className="object-contain object-center p-4 transition-transform duration-300 group-hover:scale-[1.02]"
+                />
               </div>
             </div>
           </motion.div>
@@ -193,7 +197,7 @@ export default function AboutSection() {
             variants={variants.slideInRight}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.default}
+            transition={baseTransition}
             className="w-full space-y-8 md:w-1/2 lg:w-3/5"
           >
             <div className="prose-custom">
@@ -212,7 +216,7 @@ export default function AboutSection() {
                 index={index}
                 isInView={isInView}
                 variants={variants}
-                transitions={transitions}
+                getTransition={getCardTransition}
               />
             ))}
           </motion.div>

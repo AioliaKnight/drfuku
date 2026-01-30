@@ -26,7 +26,7 @@ export const structuredData: Record<string, StructuredData> = {
       url: SITE.url,
       logo: CLINIC.logo,
       telephone: CLINIC.telephone,
-      description: '專業的痔瘡診療中心，提供微創手術和完整的術後照護。',
+      description: '大腸直腸外科專科診療，提供痔瘡微創手術、大腸直腸與肛門疾病診治及完整術後照護。',
       address: {
         '@type': 'PostalAddress',
         streetAddress: CLINIC.address.street,
@@ -65,8 +65,8 @@ export const structuredData: Record<string, StructuredData> = {
     type: 'MedicalWebPage',
     data: {
       '@type': 'MedicalWebPage',
-      name: '痔瘡診療資訊',
-      description: '提供專業的痔瘡診療資訊、治療方案和預防建議。',
+      name: '大腸直腸外科診療資訊',
+      description: '提供大腸直腸外科專業診療資訊、痔瘡治療方案與預防建議。',
       about: {
         '@type': 'MedicalCondition',
         name: DISEASE.name,

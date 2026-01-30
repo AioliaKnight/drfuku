@@ -221,14 +221,14 @@ export default function Header() {
           >
             <Image
               src="/logo.png"
-              alt="徐彥勳大腸直腸專科"
+              alt="阿福醫師-大腸直腸外科徐彥勳"
               width={40}
               height={40}
               className="w-8 h-8 md:w-10 md:h-10"
               priority
             />
             <span className="text-base md:text-lg font-medium text-neutral-900 whitespace-nowrap">
-              徐彥勳大腸直腸專科
+              阿福醫師 大腸直腸外科
             </span>
           </Link>
 

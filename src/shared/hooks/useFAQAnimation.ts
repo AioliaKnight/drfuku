@@ -1,5 +1,6 @@
 import { useRef } from 'react'
-import { Variants, useInView } from 'framer-motion'
+import { Variants, useInView, type Transition } from 'framer-motion'
+import { baseTransition } from '@/shared/animation'
 
 // 定義動畫變體的類型
 export type FAQAnimationVariants = Readonly<{
@@ -8,10 +9,7 @@ export type FAQAnimationVariants = Readonly<{
 }>
 
 // 定義過渡效果的類型
-export type FAQTransition = Readonly<{
-  duration: number
-  ease: string
-}>
+export type FAQTransition = Transition
 
 // 定義返回值類型
 export type FAQAnimationReturn = Readonly<{
@@ -38,10 +36,7 @@ const defaultVariants: FAQAnimationVariants = {
 } as const
 
 // 定義默認過渡效果
-const defaultTransition: FAQTransition = {
-  duration: 0.4,
-  ease: 'easeOut'
-} as const
+const defaultTransition: FAQTransition = baseTransition
 
 export function useFAQAnimation({ once = true } = {}): FAQAnimationReturn {
   const ref = useRef(null)

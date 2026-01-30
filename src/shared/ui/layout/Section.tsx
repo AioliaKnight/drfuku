@@ -13,8 +13,8 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
 const paddingMap: Record<SectionPadding, string> = {
   none: '',
   compact: 'py-16 md:py-20',
-  default: 'py-24 sm:py-28 md:py-32',
-  comfortable: 'py-32 sm:py-36 md:py-40',
+  default: 'py-28 sm:py-32 md:py-36',
+  comfortable: 'py-36 sm:py-40 md:py-44',
 }
 
 const Section = forwardRef<HTMLElement, SectionProps>(function Section(

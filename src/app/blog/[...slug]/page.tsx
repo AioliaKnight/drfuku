@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { posts as allPosts } from '@/velite'
+import JsonLd from '@/shared/components/common/JsonLd'
+import { SITE, DOCTOR, CLINIC } from '@/config/constants'
 import {
   ArticleContent,
   BackToTop,
@@ -39,7 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {}
 
   const { title, summary, image } = post
-  const fullTitle = `${title} | 痔瘡醫生`
+  const fullTitle = `${title} | 阿福醫師 大腸直腸外科`
+  const ogImage = image || `${SITE.url}/og-image.jpg`
 
   return {
     metadataBase: new URL('https://drfuku.com'),
@@ -49,7 +52,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: fullTitle,
       description: summary,
       type: 'article',
-      images: [{ url: image, width: 1200, height: 630, alt: title }]
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: fullTitle,
+      description: summary,
+      images: [ogImage]
     },
     alternates: {
       canonical: `https://drfuku.com/blog/${slug}`
@@ -75,8 +84,43 @@ export default async function PostPage({ params }: Props) {
 
   if (!post) notFound()
 
+  const articleSchema = {
+    '@type': 'Article' as const,
+    name: post.title,
+    headline: post.title,
+    description: post.summary,
+    image: post.image ? [post.image] : [`${SITE.url}/og-image.jpg`],
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
+    author: {
+      '@type': 'Person' as const,
+      name: DOCTOR.name,
+      jobTitle: DOCTOR.title,
+      image: DOCTOR.image,
+      url: DOCTOR.url
+    },
+    publisher: {
+      '@type': 'MedicalClinic' as const,
+      name: CLINIC.name,
+      logo: CLINIC.logo,
+      telephone: CLINIC.telephone,
+      address: {
+        '@type': 'PostalAddress' as const,
+        streetAddress: CLINIC.address.street,
+        addressLocality: CLINIC.address.district,
+        addressRegion: CLINIC.address.city,
+        postalCode: CLINIC.address.postalCode,
+        addressCountry: CLINIC.address.country,
+        name: `${CLINIC.name}地址`
+      },
+      url: SITE.url
+    },
+    mainEntityOfPage: `${SITE.url}/blog/${post.slug}`
+  }
+
   return (
     <>
+      <JsonLd type="Article" data={articleSchema} />
       {/* 閱讀進度指示器 */}
       <ScrollProgress />
 

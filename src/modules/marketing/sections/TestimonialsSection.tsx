@@ -5,6 +5,7 @@ import { HiOutlineStar, HiStar, HiOutlineChatBubbleLeftRight } from 'react-icons
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useScrollAnimation, type AnimationVariants } from '@/shared/hooks/useAnimation'
+import { baseTransition, getTransition } from '@/shared/animation'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { testimonials } from '../data/testimonials'
@@ -36,7 +37,7 @@ const TestimonialCard = memo(({ testimonial, index, isInView, variants }: {
       variants={variants.fadeIn}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
+      transition={{ ...baseTransition, duration: 0.5, delay: index * 0.1 }}
       className="group h-full rounded-2xl bg-white p-6 md:p-8 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-1 hover:shadow-lg"
       role="article"
       aria-label={`${testimonial.author}的治療心得`}
@@ -98,7 +99,7 @@ const TestimonialCard = memo(({ testimonial, index, isInView, variants }: {
 TestimonialCard.displayName = 'TestimonialCard'
 
 export default function TestimonialsSection() {
-  const { ref, isInView, variants, transitions } = useScrollAnimation()
+  const { ref, isInView, variants } = useScrollAnimation()
 
   return (
     <Section
@@ -120,7 +121,7 @@ export default function TestimonialsSection() {
             variants={variants.scaleIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.default}
+            transition={baseTransition}
             className="mb-6 flex justify-center"
           >
             <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/20 to-brand-600/20">
@@ -131,7 +132,7 @@ export default function TestimonialsSection() {
             variants={variants.fadeIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            transition={transitions.withDelay(0.2)}
+            transition={getTransition(0.2)}
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
               病患心得分享

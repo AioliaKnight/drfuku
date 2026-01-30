@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { BlogPageContent } from '@/modules/blog'
+import { SITE } from '@/config/constants'
 
 // Server component for metadata
 export const metadata: Metadata = {
@@ -10,6 +11,20 @@ export const metadata: Metadata = {
     title: '醫療知識部落格 | 痔瘡治療與保健資訊',
     description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
     type: 'website',
+    images: [
+      {
+        url: `${SITE.url}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: SITE.name
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '醫療知識部落格 | 痔瘡治療與保健資訊',
+    description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
+    images: [`${SITE.url}/og-image.jpg`]
   },
   alternates: {
     canonical: '/blog',

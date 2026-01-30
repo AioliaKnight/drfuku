@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { Variants, useInView } from 'framer-motion'
+import { Variants, useInView, type Transition } from 'framer-motion'
 
 // 定義動畫變體的類型
 export type AnimationVariants = Readonly<{
@@ -15,11 +15,7 @@ export type AnimationVariants = Readonly<{
 }>
 
 // 定義基本過渡效果的類型
-export type AnimationTransition = Readonly<{
-  duration: number
-  ease: string
-  delay?: number
-}>
+export type AnimationTransition = Transition
 
 // 定義過渡效果方法的類型
 export type AnimationTransitions = Readonly<{
@@ -72,14 +68,16 @@ const defaultVariants: AnimationVariants = {
 } as const
 
 // 定義默認過渡效果
+const defaultEase: Transition['ease'] = [0.16, 1, 0.3, 1]
+
 const defaultTransitions: AnimationTransitions = {
   default: {
     duration: 0.4,
-    ease: 'easeOut'
+    ease: defaultEase
   },
   withDelay: (delay: number) => ({
     duration: 0.4,
-    ease: 'easeOut',
+    ease: defaultEase,
     delay
   })
 } as const
