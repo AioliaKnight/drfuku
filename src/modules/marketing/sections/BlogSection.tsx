@@ -13,6 +13,7 @@ import { buttonVariants } from '@/shared/ui/primitives'
 import { cn } from '@/shared/lib/cn'
 import { HiOutlineArrowRight } from 'react-icons/hi2'
 import PostCard from '@/modules/blog/components/PostCard'
+import LineButton from '@/shared/components/common/LineButton'
 
 // 加載中的骨架屏組件
 const BlogCardSkeleton = memo(function BlogCardSkeleton() {
@@ -100,7 +101,7 @@ export default function BlogSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-16 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center"
         >
           <Link
             href="/blog"
@@ -114,6 +115,10 @@ export default function BlogSection() {
             查看更多文章
             <HiOutlineArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
+          <LineButton
+            text="有疑問？立即諮詢"
+            analyticsData={{ text: 'blog_cta', location: 'blog', destination: 'line' }}
+          />
         </motion.div>
       </Container>
     </Section>

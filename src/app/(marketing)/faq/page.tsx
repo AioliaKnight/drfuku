@@ -3,12 +3,19 @@ import type { Metadata } from 'next'
 import { FAQSection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import { faqCategories } from '@/modules/marketing/data/faq'
-import { SITE, ASSETS } from '@/config/constants'
+import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 
 export const metadata: Metadata = {
   title: '常見問題 | 痔瘡治療、術後照護與預約資訊',
   description:
     '整理患者最常詢問的痔瘡治療、術後照護、費用與預約問題，提供清楚解答，讓就醫前的準備更安心。',
+  keywords: [
+    ...KEYWORDS.primary.slice(0, 6),
+    ...KEYWORDS.concerns.slice(0, 6),
+    '痔瘡常見問題',
+    '痔瘡就醫準備'
+  ],
+  authors: [{ name: DOCTOR.alternateName, url: DOCTOR.url }],
   alternates: {
     canonical: `${SITE.url}/faq`
   },
@@ -36,6 +43,11 @@ export const metadata: Metadata = {
 }
 
 export default function FAQPage() {
+  const breadcrumbItems = [
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
+    { '@type': 'ListItem' as const, position: 2, name: '常見問題', item: `${SITE.url}/faq` }
+  ]
+
   const faqs = faqCategories.flatMap((category) =>
     category.faqs.map((faq) => ({
       '@type': 'Question' as const,
@@ -50,6 +62,14 @@ export default function FAQPage() {
 
   return (
     <main className="bg-white">
+      <JsonLd
+        type="BreadcrumbList"
+        data={{
+          '@type': 'BreadcrumbList',
+          name: '常見問題',
+          itemListElement: breadcrumbItems
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

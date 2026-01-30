@@ -4,12 +4,19 @@ import Section from '@/shared/ui/layout/Section'
 import Container from '@/shared/ui/layout/Container'
 import LineButton from '@/shared/components/common/LineButton'
 import JsonLd from '@/shared/components/common/JsonLd'
-import { SITE, ASSETS } from '@/config/constants'
+import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 
 export const metadata: Metadata = {
   title: '痔瘡手術與就醫情境解析 | 阿福醫師大腸直腸外科',
   description:
     '以臨床觀點說明痔瘡常見情境、急性處置、自我檢查與就醫判斷，協助你理解治療選擇與下一步安排。',
+  keywords: [
+    ...KEYWORDS.treatments.slice(0, 6),
+    ...KEYWORDS.symptoms.slice(0, 6),
+    '痔瘡就醫情境',
+    '痔瘡手術流程'
+  ],
+  authors: [{ name: DOCTOR.alternateName, url: DOCTOR.url }],
   alternates: {
     canonical: `${SITE.url}/hemorrhoid-surgery`
   },
@@ -338,6 +345,11 @@ const medicationNotes = [
 ]
 
 export default function HemorrhoidSurgeryPage() {
+  const breadcrumbItems = [
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
+    { '@type': 'ListItem' as const, position: 2, name: '痔瘡手術', item: `${SITE.url}/hemorrhoid-surgery` }
+  ]
+
   const faqStructuredData = hemorrhoidFaqs.map((faq) => ({
     '@type': 'Question' as const,
     name: faq.question,
@@ -350,6 +362,14 @@ export default function HemorrhoidSurgeryPage() {
 
   return (
     <main className="bg-white">
+      <JsonLd
+        type="BreadcrumbList"
+        data={{
+          '@type': 'BreadcrumbList',
+          name: '痔瘡手術',
+          itemListElement: breadcrumbItems
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

@@ -43,16 +43,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title, summary, image } = post
   const fullTitle = `${title} | 阿福醫師 大腸直腸外科`
   const ogImage = image || new URL(ASSETS.ogImage, SITE.url).toString()
+  const publishedTime = new Date(post.publishedAt).toISOString()
+  const modifiedTime = new Date(post.updatedAt || post.publishedAt).toISOString()
 
   return {
     metadataBase: new URL(SITE.url),
     title: fullTitle,
     description: summary,
+    keywords: post.seo?.keywords || post.tags,
+    authors: [{ name: post.author || DOCTOR.alternateName, url: DOCTOR.url }],
     openGraph: {
       title: fullTitle,
       description: summary,
       type: 'article',
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }]
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      publishedTime,
+      modifiedTime,
+      authors: [DOCTOR.url],
+      section: post.category,
+      tags: post.tags
     },
     twitter: {
       card: 'summary_large_image',
@@ -94,6 +103,9 @@ export default async function PostPage({ params }: Props) {
     dateModified: post.updatedAt || post.publishedAt,
     articleSection: post.category,
     articleTag: post.tags,
+    url: `${SITE.url}/blog/${post.slug}`,
+    inLanguage: SITE.locale,
+    wordCount: post.wordCount,
     author: {
       '@type': 'Person' as const,
       name: DOCTOR.name,
@@ -111,8 +123,18 @@ export default async function PostPage({ params }: Props) {
     mainEntityOfPage: `${SITE.url}/blog/${post.slug}`
   }
 
+  const breadcrumbItems = [
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
+    { '@type': 'ListItem' as const, position: 2, name: '部落格', item: `${SITE.url}/blog` },
+    { '@type': 'ListItem' as const, position: 3, name: post.title, item: `${SITE.url}/blog/${post.slug}` }
+  ]
+
   return (
     <>
+      <JsonLd
+        type="BreadcrumbList"
+        data={{ '@type': 'BreadcrumbList', name: post.title, itemListElement: breadcrumbItems }}
+      />
       <JsonLd type="Article" data={articleSchema} />
       {/* 閱讀進度指示器 */}
       <ScrollProgress />

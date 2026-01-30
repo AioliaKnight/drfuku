@@ -1,12 +1,19 @@
 import { Metadata } from 'next'
 import { BlogPageContent } from '@/modules/blog'
-import { SITE, ASSETS } from '@/config/constants'
+import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
+import JsonLd from '@/shared/components/common/JsonLd'
 
 // Server component for metadata
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: '醫療知識部落格 | 痔瘡治療與保健資訊',
   description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
+  keywords: [
+    ...KEYWORDS.primary.slice(0, 4),
+    ...KEYWORDS.prevention.slice(0, 4),
+    ...KEYWORDS.treatments.slice(0, 4)
+  ],
+  authors: [{ name: DOCTOR.alternateName, url: DOCTOR.url }],
   openGraph: {
     title: '醫療知識部落格 | 痔瘡治療與保健資訊',
     description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
@@ -43,5 +50,22 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  return <BlogPageContent />
+  const breadcrumbItems = [
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
+    { '@type': 'ListItem' as const, position: 2, name: '部落格', item: `${SITE.url}/blog` }
+  ]
+
+  return (
+    <>
+      <JsonLd
+        type="BreadcrumbList"
+        data={{
+          '@type': 'BreadcrumbList',
+          name: '部落格',
+          itemListElement: breadcrumbItems
+        }}
+      />
+      <BlogPageContent />
+    </>
+  )
 }

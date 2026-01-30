@@ -72,11 +72,11 @@ export default function CTASection() {
             transition={getTransition(0.2)}
           >
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-              現在就開始，找回自在生活
+              別再忍，現在就開始改善
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-7 text-neutral-600 [text-wrap:balance] md:text-lg md:leading-8">
-              別讓隱疾成為生活的負擔。我們提供絕對保密的諮詢管道，
-              由專業團隊為您解答疑惑，協助您邁出治療的第一步。
+              透過私密諮詢先判斷嚴重度，再安排合適的治療方向。
+              不確定要不要看診，先問會更安心。
             </p>
           </motion.div>
         </div>
@@ -94,7 +94,7 @@ export default function CTASection() {
               <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
                 <div className={STYLES.contentWrapper}>
                   <h3 className="text-2xl font-bold text-neutral-900 md:text-3xl">
-                    線上預約・專業諮詢
+                    線上預約・專業評估
                   </h3>
                   <p className="text-lg text-neutral-600 leading-relaxed">
                     加入官方 LINE 帳號，即刻享有：
@@ -106,7 +106,7 @@ export default function CTASection() {
                     </li>
                     <li className="flex items-center gap-3 text-neutral-700">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#06C755]" />
-                        <span>專業術前評估與建議</span>
+                        <span>初步症狀評估與就醫建議</span>
                     </li>
                     <li className="flex items-center gap-3 text-neutral-700">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#06C755]" />

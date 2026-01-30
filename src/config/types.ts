@@ -5,6 +5,7 @@ export type JsonLdType =
   | 'Person'
   | 'MedicalWebPage'
   | 'Organization'
+  | 'BreadcrumbList'
   | 'FAQPage'
   | 'Article'
 
@@ -88,6 +89,17 @@ export type MedicalWebPage = Thing & {
   about?: MedicalCondition
 }
 
+export type ListItem = Thing & {
+  '@type': 'ListItem'
+  position: number
+  item: string
+}
+
+export type BreadcrumbList = Thing & {
+  '@type': 'BreadcrumbList'
+  itemListElement: ListItem[]
+}
+
 export type Organization = Thing & {
   '@type': 'Organization'
   logo?: string
@@ -121,6 +133,8 @@ export type Article = Thing & {
   dateModified?: string
   articleSection?: string
   articleTag?: string[]
+  inLanguage?: string
+  wordCount?: number
   author?: Person
   publisher?: MedicalClinic
   mainEntityOfPage?: string
@@ -133,6 +147,7 @@ export type StructuredDataTypeMap = {
   Person: Person
   MedicalWebPage: MedicalWebPage
   Organization: Organization
+  BreadcrumbList: BreadcrumbList
   FAQPage: FAQPage
   Article: Article
 }

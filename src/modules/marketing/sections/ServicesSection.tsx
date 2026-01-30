@@ -1,6 +1,10 @@
 'use client'
 
 import { motion, type Transition } from 'framer-motion'
+import LineButton from '@/shared/components/common/LineButton'
+import Link from 'next/link'
+import { buttonVariants } from '@/shared/ui/primitives'
+import { cn } from '@/shared/lib/cn'
 import {
   HiOutlineHeart
 } from 'react-icons/hi2'
@@ -180,6 +184,28 @@ export default function ServicesSection() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        <motion.div
+          variants={variants.slideInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          transition={getTransition(1.2)}
+          className="mt-10 flex flex-col items-center gap-4 md:mt-16 md:flex-row md:justify-center"
+        >
+          <LineButton
+            text="預約專業評估"
+            analyticsData={{ text: 'services_cta', location: 'services', destination: 'line' }}
+          />
+          <Link
+            href="/consultation"
+            className={cn(
+              buttonVariants({ variant: 'secondary', size: 'lg' }),
+              'rounded-full px-6'
+            )}
+          >
+            了解諮詢流程
+          </Link>
         </motion.div>
       </Container>
     </Section>

@@ -1,6 +1,10 @@
 'use client'
 
 import Image from 'next/image'
+import LineButton from '@/shared/components/common/LineButton'
+import Link from 'next/link'
+import { buttonVariants } from '@/shared/ui/primitives'
+import { cn } from '@/shared/lib/cn'
 import { motion, type Transition } from 'framer-motion'
 import { HiOutlineUserCircle, HiOutlineAcademicCap, HiOutlineBriefcase, HiOutlineClipboardDocument } from 'react-icons/hi2'
 import { useScrollAnimation, type AnimationVariants as AnimationVariantsType } from '@/shared/hooks/useAnimation'
@@ -219,6 +223,19 @@ export default function AboutSection() {
                 getTransition={getCardTransition}
               />
             ))}
+
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row">
+              <LineButton
+                text="預約醫師評估"
+                analyticsData={{ text: 'about_cta', location: 'about', destination: 'line' }}
+              />
+              <Link
+                href="/services"
+                className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'rounded-full px-6')}
+              >
+                了解診療服務
+              </Link>
+            </div>
           </motion.div>
         </div>
       </Container>
