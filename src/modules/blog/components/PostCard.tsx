@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { type Post } from '@/velite'
 import { motion } from 'framer-motion'
-import { baseTransition, getTransition } from '@/shared/animation'
+import { baseTransition } from '@/shared/animation'
 
 interface PostCardProps {
   post: Post
