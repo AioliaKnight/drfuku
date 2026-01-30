@@ -60,6 +60,7 @@ const clinics = [
 const quickLinks = [
   { name: '關於醫師', id: 'about', ariaLabel: '前往關於醫師區塊' },
   { name: '診療服務', id: 'services', ariaLabel: '前往診療服務區塊' },
+  { name: '痔瘡手術', href: '/hemorrhoid-surgery', ariaLabel: '前往痔瘡手術頁' },
   { name: '病患評價', id: 'testimonials', ariaLabel: '前往病患評價區塊' },
   { name: '常見問題', id: 'faq', ariaLabel: '前往常見問題區塊' }
 ]
@@ -122,10 +123,11 @@ const ClinicCard = memo(function ClinicCard({ clinic, index }: { clinic: typeof 
 
 const QuickLink = memo(function QuickLink({ link }: { link: typeof quickLinks[0] }) {
   const { trackEvent } = useEventTracking()
+  const href = 'href' in link ? link.href : `#${link.id}`
 
   return (
     <Link
-      href={`#${link.id}`}
+      href={href}
       aria-label={link.ariaLabel}
       onClick={() => trackEvent('quick_link_click', { name: link.name })}
       className="group flex items-center gap-2 text-neutral-600 transition-colors hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 rounded-lg p-2"

@@ -114,6 +114,7 @@ export default function Header() {
     { name: '首頁', href: '/' },
     { name: '關於醫師', href: '/#about' },
     { name: '諮詢服務', href: '/#services' },
+    { name: '痔瘡手術', href: '/hemorrhoid-surgery' },
     { name: '部落格', href: '/blog' },
     { name: '病患分享', href: '/#testimonials' },
     { name: '常見問題', href: '/#faq' }

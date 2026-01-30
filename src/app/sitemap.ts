@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '', priority: 1, changeFrequency: 'daily' },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/services', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/hemorrhoid-surgery', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/faq', priority: 0.6, changeFrequency: 'monthly' },
