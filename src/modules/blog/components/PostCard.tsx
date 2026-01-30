@@ -25,7 +25,7 @@ export default function PostCard({
 }: PostCardProps) {
   const [imageError, setImageError] = useState(false)
 
-  const hoverTransition = { duration: 0.2, ease: baseTransition.ease }
+  const hoverTransition = { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
   const cardVariants = {
     hidden: {
       opacity: 0,
