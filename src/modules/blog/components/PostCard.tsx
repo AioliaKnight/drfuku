@@ -7,7 +7,7 @@ import { HiOutlineClock, HiOutlineTag, HiOutlineArrowRight, HiOutlineBookmark } 
 import Image from 'next/image'
 import Link from 'next/link'
 import { type Post } from '@/velite'
-import { motion } from 'framer-motion'
+import { motion, easeOut, type Transition } from 'framer-motion'
 import { baseTransition } from '@/shared/animation'
 
 interface PostCardProps {
@@ -25,7 +25,7 @@ export default function PostCard({
 }: PostCardProps) {
   const [imageError, setImageError] = useState(false)
 
-  const hoverTransition = { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+  const hoverTransition: Transition = { duration: 0.2, ease: easeOut }
   const cardVariants = {
     hidden: {
       opacity: 0,
