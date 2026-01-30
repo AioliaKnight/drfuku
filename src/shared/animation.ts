@@ -23,5 +23,8 @@ export const expandAnimation = {
 } as const
 
 export const staggerAnimation: Variants = {
-  transition: { staggerChildren: 0.2 }
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.2 }
+  }
 }
