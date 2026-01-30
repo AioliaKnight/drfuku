@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { posts as allPosts } from '@/velite'
 import JsonLd from '@/shared/components/common/JsonLd'
-import { SITE, DOCTOR, CLINIC } from '@/config/constants'
+import { SITE, DOCTOR, CLINIC, ASSETS } from '@/config/constants'
 import {
   ArticleContent,
   BackToTop,
@@ -42,10 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { title, summary, image } = post
   const fullTitle = `${title} | 阿福醫師 大腸直腸外科`
-  const ogImage = image || `${SITE.url}/og-image.jpg`
+  const ogImage = image || new URL(ASSETS.ogImage, SITE.url).toString()
 
   return {
-    metadataBase: new URL('https://drfuku.com'),
+    metadataBase: new URL(SITE.url),
     title: fullTitle,
     description: summary,
     openGraph: {
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [ogImage]
     },
     alternates: {
-      canonical: `https://drfuku.com/blog/${slug}`
+      canonical: `${SITE.url}/blog/${slug}`
     },
     robots: {
       index: true,
@@ -89,9 +89,11 @@ export default async function PostPage({ params }: Props) {
     name: post.title,
     headline: post.title,
     description: post.summary,
-    image: post.image ? [post.image] : [`${SITE.url}/og-image.jpg`],
+    image: post.image ? [post.image] : [new URL(ASSETS.ogImage, SITE.url).toString()],
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
+    articleSection: post.category,
+    articleTag: post.tags,
     author: {
       '@type': 'Person' as const,
       name: DOCTOR.name,
@@ -104,15 +106,6 @@ export default async function PostPage({ params }: Props) {
       name: CLINIC.name,
       logo: CLINIC.logo,
       telephone: CLINIC.telephone,
-      address: {
-        '@type': 'PostalAddress' as const,
-        streetAddress: CLINIC.address.street,
-        addressLocality: CLINIC.address.district,
-        addressRegion: CLINIC.address.city,
-        postalCode: CLINIC.address.postalCode,
-        addressCountry: CLINIC.address.country,
-        name: `${CLINIC.name}地址`
-      },
       url: SITE.url
     },
     mainEntityOfPage: `${SITE.url}/blog/${post.slug}`

@@ -16,7 +16,7 @@ export const DOCTOR = {
   title: '大腸直腸外科醫師',
   alternateName: '阿福醫師（徐彥勳醫師）',
   description: '大腸直腸外科專科醫師，專精痔瘡微創手術與大腸直腸疾病診療。擁有豐富臨床經驗，致力於提供病患安心舒適的診療體驗。',
-  image: 'https://drfuku.com/doctor-photo.jpg',
+  image: 'https://drfuku.com/doctor-profile3.jpg',
   url: 'https://drfuku.com/about'
 } as const
 
@@ -26,13 +26,6 @@ export const CLINIC = {
   alternateName: ['阿福醫師', '徐彥勳醫師', '徐醫師', '痔瘡醫生'],
   logo: 'https://drfuku.com/logo.png',
   telephone: '+886-2-2712-0589',
-  address: {
-    street: '南京東路三段219號5樓',
-    district: '中山區',
-    city: '台北市',
-    postalCode: '104',
-    country: 'TW'
-  },
   areaServed: ['台北市', '新北市'],
   services: [
     {
@@ -99,7 +92,15 @@ export const KEYWORDS = {
     '新北痔瘡推薦',
     '台北大腸直腸外科',
     '中山區痔瘡',
-    '南京東路診所'
+    '痔瘡門診',
+    '肛門科',
+    '大腸直腸外科門診',
+    '台北痔瘡診所',
+    '台中痔瘡診所',
+    '大腸直腸外科推薦',
+    '肛門疾病門診',
+    '直腸外科',
+    '肛腸科'
   ],
 
   // 症狀相關
@@ -115,7 +116,18 @@ export const KEYWORDS = {
     '外痔',
     '混合痔',
     '痔瘡症狀',
-    '嚴重痔瘡'
+    '嚴重痔瘡',
+    '痔瘡出血原因',
+    '痔瘡分級',
+    '內痔外痔差別',
+    '肛門腫塊',
+    '肛門搔癢',
+    '排便疼痛',
+    '直腸出血',
+    '肛門不適',
+    '肛門脫垂',
+    '血栓痔瘡',
+    '急性痔瘡'
   ],
 
   // 治療方式
@@ -126,12 +138,21 @@ export const KEYWORDS = {
     '痔瘡雷射手術',
     '痔瘡結紮手術',
     '痔瘡藥物治療',
+    '痔瘡口服藥',
+    '痔瘡藥膏',
     '痔瘡術後照護',
     '痔瘡手術恢復',
     '痔瘡手術推薦',
     '痔瘡手術費用',
     '痔瘡治療方法',
-    '痔瘡治療推薦'
+    '痔瘡治療推薦',
+    '痔瘡開刀',
+    '痔瘡手術恢復期',
+    '痔瘡手術後護理',
+    '痔瘡結紮',
+    '橡皮圈結紮',
+    '雷射痔瘡',
+    '微創痔瘡手術費用'
   ],
 
   // 預防保健
@@ -143,7 +164,11 @@ export const KEYWORDS = {
     '痔瘡日常照護',
     '痔瘡生活習慣',
     '痔瘡飲食建議',
-    '痔瘡運動建議'
+    '痔瘡運動建議',
+    '久坐痔瘡',
+    '便祕痔瘡',
+    '排便習慣調整',
+    '痔瘡復發預防'
   ],
 
   // 診所特色
@@ -157,7 +182,12 @@ export const KEYWORDS = {
     '痔瘡醫生推薦',
     '痔瘡手術評價',
     '痔瘡醫療設備',
-    '大腸鏡檢查'
+    '大腸鏡檢查',
+    '痔瘡權威醫師',
+    '痔瘡專科醫師',
+    '大腸直腸外科專科',
+    '肛門直腸科',
+    '肛門疾病診療'
   ],
 
   // 病患關注
@@ -171,15 +201,24 @@ export const KEYWORDS = {
     '痔瘡就醫經驗',
     '痔瘡術後恢復',
     '痔瘡醫療品質',
-    '痔瘡治療經驗'
+    '痔瘡治療經驗',
+    '痔瘡健保',
+    '痔瘡自費',
+    '痔瘡要看哪一科',
+    '痔瘡手術風險',
+    '痔瘡手術疼痛',
+    '痔瘡恢復時間',
+    '痔瘡就醫流程',
+    '痔瘡諮詢'
   ]
 } as const
 
 // 資源路徑
 export const ASSETS = {
   logo: '/logo.png',
-  ogImage: '/og-image.jpg',
-  doctorPhoto: '/doctor-photo.jpg',
+  ogImage: '/opengraph-image',
+  twitterImage: '/twitter-image',
+  doctorPhoto: '/doctor-profile3.jpg',
   favicon: {
     ico: '/favicon.ico',
     png16: '/favicon-16x16.png',

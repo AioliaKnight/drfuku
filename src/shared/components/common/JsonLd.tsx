@@ -51,7 +51,7 @@ export default function JsonLd({ type, data }: JsonLdProps) {
           ...data
         })
       }}
-      strategy="afterInteractive"
+      strategy="beforeInteractive"
     />
   )
 }

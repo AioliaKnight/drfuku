@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SITE, DOCTOR, ENV, KEYWORDS } from './constants'
+import { SITE, DOCTOR, ENV, KEYWORDS, ASSETS } from './constants'
 
 // 網站元數據
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     images: [
       {
-        url: `${SITE.url}/og-image.jpg`,
+        url: new URL(ASSETS.ogImage, SITE.url).toString(),
         width: 1200,
         height: 630,
         alt: SITE.name
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${SITE.name} | 大腸直腸外科專業・安心就醫`,
     description: SITE.description,
-    images: [`${SITE.url}/og-image.jpg`]
+    images: [new URL(ASSETS.twitterImage, SITE.url).toString()]
   },
   robots: {
     index: true,

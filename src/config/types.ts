@@ -4,6 +4,7 @@ export type JsonLdType =
   | 'MedicalClinic'
   | 'Person'
   | 'MedicalWebPage'
+  | 'Organization'
   | 'FAQPage'
   | 'Article'
 
@@ -87,6 +88,13 @@ export type MedicalWebPage = Thing & {
   about?: MedicalCondition
 }
 
+export type Organization = Thing & {
+  '@type': 'Organization'
+  logo?: string
+  telephone?: string
+  address?: PostalAddress
+}
+
 // FAQPage 類型
 export type Answer = Thing & {
   '@type': 'Answer'
@@ -111,6 +119,8 @@ export type Article = Thing & {
   image?: string | string[]
   datePublished?: string
   dateModified?: string
+  articleSection?: string
+  articleTag?: string[]
   author?: Person
   publisher?: MedicalClinic
   mainEntityOfPage?: string
@@ -122,6 +132,7 @@ export type StructuredDataTypeMap = {
   MedicalClinic: MedicalClinic
   Person: Person
   MedicalWebPage: MedicalWebPage
+  Organization: Organization
   FAQPage: FAQPage
   Article: Article
 }
@@ -171,6 +182,7 @@ export type Treatment = {
 export type Assets = {
   logo: string
   ogImage: string
+  twitterImage: string
   doctorPhoto: string
   favicon: {
     ico: string
@@ -208,7 +220,7 @@ export type ClinicInfo = {
   alternateName: string[]
   logo: string
   telephone: string
-  address: Address
+  address?: Address
   areaServed: string[]
   services: Service[]
 }

@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 import { BlogPageContent } from '@/modules/blog'
-import { SITE } from '@/config/constants'
+import { SITE, ASSETS } from '@/config/constants'
 
 // Server component for metadata
 export const metadata: Metadata = {
-  metadataBase: new URL('https://drfuku.com'),
+  metadataBase: new URL(SITE.url),
   title: '醫療知識部落格 | 痔瘡治療與保健資訊',
   description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
   openGraph: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${SITE.url}/og-image.jpg`,
+        url: new URL(ASSETS.ogImage, SITE.url).toString(),
         width: 1200,
         height: 630,
         alt: SITE.name
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '醫療知識部落格 | 痔瘡治療與保健資訊',
     description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
-    images: [`${SITE.url}/og-image.jpg`]
+    images: [new URL(ASSETS.ogImage, SITE.url).toString()]
   },
   alternates: {
-    canonical: '/blog',
+    canonical: `${SITE.url}/blog`,
   },
   robots: {
     index: true,

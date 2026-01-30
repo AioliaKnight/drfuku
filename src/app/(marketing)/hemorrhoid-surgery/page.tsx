@@ -3,19 +3,36 @@ import type { Metadata } from 'next'
 import Section from '@/shared/ui/layout/Section'
 import Container from '@/shared/ui/layout/Container'
 import LineButton from '@/shared/components/common/LineButton'
+import JsonLd from '@/shared/components/common/JsonLd'
+import { SITE, ASSETS } from '@/config/constants'
 
 export const metadata: Metadata = {
   title: '痔瘡手術與就醫情境解析 | 阿福醫師大腸直腸外科',
   description:
     '以臨床觀點說明痔瘡常見情境、急性處置、自我檢查與就醫判斷，協助你理解治療選擇與下一步安排。',
   alternates: {
-    canonical: '/hemorrhoid-surgery'
+    canonical: `${SITE.url}/hemorrhoid-surgery`
   },
   openGraph: {
     title: '痔瘡手術與就醫情境解析 | 阿福醫師大腸直腸外科',
     description:
       '以臨床觀點說明痔瘡常見情境、急性處置、自我檢查與就醫判斷，協助你理解治療選擇與下一步安排。',
-    type: 'article'
+    type: 'article',
+    images: [
+      {
+        url: new URL(ASSETS.ogImage, SITE.url).toString(),
+        width: 1200,
+        height: 630,
+        alt: SITE.name
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '痔瘡手術與就醫情境解析 | 阿福醫師大腸直腸外科',
+    description:
+      '以臨床觀點說明痔瘡常見情境、急性處置、自我檢查與就醫判斷，協助你理解治療選擇與下一步安排。',
+    images: [new URL(ASSETS.twitterImage, SITE.url).toString()]
   }
 }
 
@@ -321,8 +338,26 @@ const medicationNotes = [
 ]
 
 export default function HemorrhoidSurgeryPage() {
+  const faqStructuredData = hemorrhoidFaqs.map((faq) => ({
+    '@type': 'Question' as const,
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer' as const,
+      name: faq.question,
+      text: faq.answer
+    }
+  }))
+
   return (
     <main className="bg-white">
+      <JsonLd
+        type="FAQPage"
+        data={{
+          '@type': 'FAQPage',
+          name: '痔瘡手術與就醫情境 FAQ',
+          mainEntity: faqStructuredData
+        }}
+      />
       <Section className="overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-neutral-50/80" padding="comfortable">
         <Container>
           <div className="mx-auto max-w-4xl text-center">

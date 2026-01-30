@@ -17,6 +17,16 @@ export const structuredData: Record<string, StructuredData> = {
       }
     }
   },
+  organization: {
+    type: 'Organization',
+    data: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+      logo: CLINIC.logo,
+      telephone: CLINIC.telephone
+    }
+  },
   clinic: {
     type: 'MedicalClinic',
     data: {
@@ -27,15 +37,6 @@ export const structuredData: Record<string, StructuredData> = {
       logo: CLINIC.logo,
       telephone: CLINIC.telephone,
       description: '大腸直腸外科專科診療，提供痔瘡微創手術、大腸直腸與肛門疾病診治及完整術後照護。',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: CLINIC.address.street,
-        addressLocality: CLINIC.address.district,
-        addressRegion: CLINIC.address.city,
-        postalCode: CLINIC.address.postalCode,
-        addressCountry: CLINIC.address.country,
-        name: `${CLINIC.name}地址`
-      },
       areaServed: CLINIC.areaServed.map(city => ({
         '@type': 'City',
         name: city

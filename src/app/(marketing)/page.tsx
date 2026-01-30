@@ -9,6 +9,7 @@ import {
   CTASection,
   TestimonialsSection
 } from '@/modules/marketing'
+import { SITE, ASSETS } from '@/config/constants'
 
 export const dynamic = 'force-static'
 export const revalidate = false
@@ -49,20 +50,29 @@ export const metadata: Metadata = {
     '痔瘡醫師諮詢'
   ].join(', '),
   alternates: {
-    canonical: 'https://drfuku.com/',
+    canonical: SITE.url,
   },
   openGraph: {
     title: '阿福醫師-大腸直腸外科徐彥勳 | 台北台中大腸直腸外科・痔瘡治療',
     description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）專精痔瘡微創手術、肛門與大腸直腸疾病診療，在台北、台中提供專業診療服務。採用先進微創技術，免開刀、恢復快、術後不復發。',
-    url: 'https://drfuku.com/',
-    siteName: '阿福醫師-大腸直腸外科徐彥勳',
-    locale: 'zh_TW',
+    url: SITE.url,
+    siteName: SITE.name,
+    locale: SITE.locale,
     type: 'website',
+    images: [
+      {
+        url: new URL(ASSETS.ogImage, SITE.url).toString(),
+        width: 1200,
+        height: 630,
+        alt: SITE.name
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
     title: '阿福醫師-大腸直腸外科徐彥勳 | 台北台中大腸直腸外科・痔瘡治療',
     description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）專精痔瘡微創手術與大腸直腸疾病診療，台北、台中地區專業診療服務。',
+    images: [new URL(ASSETS.twitterImage, SITE.url).toString()]
   },
   robots: {
     index: true,
