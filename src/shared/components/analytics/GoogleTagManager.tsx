@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { trackPageView } from '@/shared/lib/analytics'
@@ -9,17 +9,10 @@ import { config } from '@/config'
 const GTM_ID = config.gtm.id
 
 export default function GoogleTagManager() {
-  const [isMounted, setIsMounted] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!isMounted) return
-
     const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
     const title = document.title || pathname.split('/').pop() || '阿福醫師 大腸直腸外科'
     const description = document.querySelector('meta[name="description"]')?.getAttribute('content') || ''
@@ -29,9 +22,9 @@ export default function GoogleTagManager() {
       description,
       url
     })
-  }, [pathname, searchParams, isMounted])
+  }, [pathname, searchParams])
 
-  if (!isMounted || !GTM_ID) return null
+  if (!GTM_ID) return null
 
   return (
     <>
