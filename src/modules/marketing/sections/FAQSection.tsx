@@ -134,7 +134,7 @@ export default function FAQSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            {...staggerAnimation}
+            variants={staggerAnimation}
             className="mx-auto mt-16 max-w-5xl"
           >
             <div className="space-y-16">
