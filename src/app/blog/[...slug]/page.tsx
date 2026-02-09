@@ -11,7 +11,7 @@ import {
   PostCover,
   PostHeader,
   AuthorInfo,
-  RelatedPosts
+  RelatedPosts,
 } from '@/modules/blog'
 import { proseStyles } from '@/modules/blog/styles/prose'
 
@@ -61,16 +61,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime,
       authors: [DOCTOR.url],
       section: post.category,
-      tags: post.tags
+      tags: post.tags,
     },
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description: summary,
-      images: [ogImage]
+      images: [ogImage],
     },
     alternates: {
-      canonical: `${SITE.url}/blog/${slug}`
+      canonical: `${SITE.url}/blog/${slug}`,
     },
     robots: {
       index: true,
@@ -80,9 +80,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
-        'max-snippet': -1
-      }
-    }
+        'max-snippet': -1,
+      },
+    },
   }
 }
 
@@ -98,7 +98,9 @@ export default async function PostPage({ params }: Props) {
     name: post.title,
     headline: post.title,
     description: post.summary,
-    image: post.image ? [post.image] : [new URL(ASSETS.ogImage, SITE.url).toString()],
+    image: post.image
+      ? [post.image]
+      : [new URL(ASSETS.ogImage, SITE.url).toString()],
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
     articleSection: post.category,
@@ -111,35 +113,45 @@ export default async function PostPage({ params }: Props) {
       name: DOCTOR.name,
       jobTitle: DOCTOR.title,
       image: DOCTOR.image,
-      url: DOCTOR.url
+      url: DOCTOR.url,
     },
     publisher: {
       '@type': 'MedicalClinic' as const,
       name: CLINIC.name,
       logo: CLINIC.logo,
       telephone: CLINIC.telephone,
-      url: SITE.url
+      url: SITE.url,
     },
-    mainEntityOfPage: `${SITE.url}/blog/${post.slug}`
+    mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
   }
 
   const breadcrumbItems = [
     { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
     { '@type': 'ListItem' as const, position: 2, name: '部落格', item: `${SITE.url}/blog` },
-    { '@type': 'ListItem' as const, position: 3, name: post.title, item: `${SITE.url}/blog/${post.slug}` }
+    {
+      '@type': 'ListItem' as const,
+      position: 3,
+      name: post.title,
+      item: `${SITE.url}/blog/${post.slug}`,
+    },
   ]
 
   return (
     <>
       <JsonLd
         type="BreadcrumbList"
-        data={{ '@type': 'BreadcrumbList', name: post.title, itemListElement: breadcrumbItems }}
+        data={{
+          '@type': 'BreadcrumbList',
+          name: post.title,
+          itemListElement: breadcrumbItems,
+        }}
       />
       <JsonLd type="Article" data={articleSchema} />
+
       {/* 閱讀進度指示器 */}
       <ScrollProgress />
 
-      <main className="relative min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <main className="relative min-h-screen bg-white">
         {/* 封面區域 */}
         <PostCover image={post.image} title={post.title} />
 
@@ -153,25 +165,34 @@ export default async function PostPage({ params }: Props) {
           tags={post.tags}
         />
 
-        {/* 內容區域 */}
-        <div className="relative z-10 mt-16 pb-24 pt-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 文章內容區域 */}
+        <div className="relative z-10 mt-10 pb-24 sm:mt-12 md:mt-16">
+          <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             {/* 分享按鈕 */}
-            <div className="mb-8">
+            <div className="mb-10">
               <ShareButtons title={post.title} url={`/blog/${post.slug}`} />
             </div>
 
-            {/* 文章內容 */}
-            <article className="mx-auto max-w-4xl">
+            {/* 文章本文 */}
+            <article className="mx-auto">
               <div className={proseStyles}>
                 <ArticleContent content={post.body} />
               </div>
             </article>
 
-            {/* 作者資訊 */}
-            <AuthorInfo author={post.author} />
+            {/* 文章底部分享 */}
+            <div className="mt-12 border-t border-gray-100 pt-8">
+              <ShareButtons title={post.title} url={`/blog/${post.slug}`} />
+            </div>
+          </div>
 
-            {/* 相關文章 */}
+          {/* 作者資訊 */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <AuthorInfo author={post.author} />
+          </div>
+
+          {/* 相關文章 */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RelatedPosts currentPost={post} allPosts={allPosts} />
           </div>
         </div>
