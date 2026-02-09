@@ -378,7 +378,7 @@ export default function HemorrhoidSurgeryPage() {
           mainEntity: faqStructuredData
         }}
       />
-      <Section className="overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-neutral-50/80" padding="comfortable">
+      <Section className="overflow-hidden bg-linear-to-b from-brand-50/60 via-white to-neutral-50/80" padding="comfortable">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl md:text-6xl">
@@ -447,7 +447,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section id="types" className="bg-gradient-to-b from-white to-neutral-50/80">
+      <Section id="types" className="bg-linear-to-b from-white to-neutral-50/80">
         <Container>
           <div className="mx-auto max-w-5xl grid gap-6 md:grid-cols-3">
             {hemorrhoidTypes.map((item) => (
@@ -514,7 +514,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section id="grading" className="bg-gradient-to-b from-neutral-50/80 to-white">
+      <Section id="grading" className="bg-linear-to-b from-neutral-50/80 to-white">
         <Container>
           <div className="mx-auto max-w-5xl rounded-3xl bg-white/90 p-8 shadow-xl ring-1 ring-white/70 backdrop-blur">
             <h2 className="text-2xl font-semibold text-neutral-900">痔瘡分級（簡單版本）</h2>
@@ -573,7 +573,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section id="medication" className="bg-gradient-to-b from-white to-neutral-50/80">
+      <Section id="medication" className="bg-linear-to-b from-white to-neutral-50/80">
         <Container>
           <div className="mx-auto max-w-5xl rounded-3xl bg-white/90 p-8 shadow-xl ring-1 ring-white/70 backdrop-blur">
             <h2 className="text-2xl font-semibold text-neutral-900">痔瘡用藥的專業知識</h2>
@@ -603,7 +603,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section className="bg-gradient-to-b from-white to-neutral-50/80">
+      <Section className="bg-linear-to-b from-white to-neutral-50/80">
         <Container>
           <div className="mx-auto max-w-5xl rounded-3xl bg-white/90 p-8 shadow-xl ring-1 ring-white/70 backdrop-blur">
             <h2 className="text-2xl font-semibold text-neutral-900">評估與安排流程</h2>
@@ -666,7 +666,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section id="funnel" className="bg-gradient-to-b from-white to-neutral-50/80">
+      <Section id="funnel" className="bg-linear-to-b from-white to-neutral-50/80">
         <Container>
           <div className="mx-auto max-w-5xl rounded-3xl bg-white/90 p-8 shadow-xl ring-1 ring-white/70 backdrop-blur">
             <h2 className="text-2xl font-semibold text-neutral-900">就醫流程漏斗（建議路徑）</h2>
@@ -699,7 +699,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section className="bg-gradient-to-b from-white to-neutral-50/80">
+      <Section className="bg-linear-to-b from-white to-neutral-50/80">
         <Container>
           <div className="mx-auto max-w-5xl grid gap-8 lg:grid-cols-2">
             <div className="rounded-3xl bg-white/85 p-8 shadow-lg ring-1 ring-white/70 backdrop-blur">
@@ -753,7 +753,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section id="acute-hemorrhoid" className="bg-gradient-to-b from-neutral-50/80 to-white">
+      <Section id="acute-hemorrhoid" className="bg-linear-to-b from-neutral-50/80 to-white">
         <Container>
           <div className="mx-auto max-w-4xl rounded-3xl bg-white/90 p-8 shadow-xl ring-1 ring-white/70 backdrop-blur">
             <h2 className="text-2xl font-semibold text-neutral-900">急性痔瘡專區：先自我檢查</h2>
@@ -802,7 +802,7 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      <Section id="surgery-process" className="bg-gradient-to-b from-white to-neutral-50/80">
+      <Section id="surgery-process" className="bg-linear-to-b from-white to-neutral-50/80">
         <Container>
           <div className="mx-auto max-w-5xl grid gap-8 lg:grid-cols-2">
             <div className="rounded-3xl bg-white/85 p-8 shadow-lg ring-1 ring-white/70 backdrop-blur">

@@ -85,7 +85,7 @@ export default function ErrorMessage({
     >
       <div className={`rounded-md p-4 ${colors[type]}`}>
         <div className="flex">
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Icon className={`h-5 w-5 ${iconColors[type]}`} aria-hidden="true" />
           </div>
           <div className="ml-3">

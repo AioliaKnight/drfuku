@@ -78,7 +78,7 @@ const ServiceCard = memo(function ServiceCard({
       </ul>
 
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-50/50 to-transparent opacity-0"
+        className="absolute inset-0 rounded-2xl bg-linear-to-br from-brand-50/50 to-transparent opacity-0"
         initial={false}
         whileHover={{ opacity: service.highlight ? 0 : 1 }}
       />
@@ -95,7 +95,7 @@ export default function ServicesSection() {
       ref={ref}
       id="services"
       aria-label="診療服務"
-      className="overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-neutral-50/80"
+      className="overflow-hidden bg-linear-to-b from-white via-brand-50/30 to-neutral-50/80"
     >
       {/* 背景裝飾 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -113,7 +113,7 @@ export default function ServicesSection() {
             transition={baseTransition}
             className="mb-6 flex justify-center"
           >
-            <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/20 to-brand-600/20">
+            <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500/20 to-brand-600/20">
               <HiOutlineHeart className="h-6 w-6 md:h-8 md:w-8 text-brand-600" />
             </div>
           </motion.div>

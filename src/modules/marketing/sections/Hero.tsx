@@ -98,7 +98,7 @@ export default function Hero() {
       ref={containerRef}
       aria-label="首頁主視覺"
       padding="none"
-      className="min-h-[calc(100dvh-4rem)] overflow-hidden bg-gradient-to-b from-brand-50/50 via-white to-neutral-100/60"
+      className="min-h-[calc(100dvh-4rem)] overflow-hidden bg-linear-to-b from-brand-50/50 via-white to-neutral-100/60"
     >
       {/* 無障礙跳過導航 */}
       <a
@@ -111,7 +111,7 @@ export default function Hero() {
       {/* 動態背景 - 使用 CSS 漸層替代多層背景 */}
       <motion.div
         style={backgroundStyle}
-        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-50/30 via-transparent to-brand-100/30"
+        className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-50/30 via-transparent to-brand-100/30"
       />
 
       <Container id="main-content" className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 md:py-28">
@@ -132,7 +132,7 @@ export default function Hero() {
                 阿福醫師
                 <br className="hidden sm:inline" />
                 <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
+                  <span className="relative z-10 bg-linear-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
                     大腸直腸外科徐彥勳
                   </span>
                   <motion.span
@@ -183,7 +183,7 @@ export default function Hero() {
             >
               <span className="relative z-10">了解診療服務</span>
               <HiChevronRight className="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-700 to-brand-600 opacity-0 transition-all group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-linear-to-r from-brand-700 to-brand-600 opacity-0 transition-all group-hover:opacity-100" />
             </Link>
             <Link
               href="https://line.me/ti/p/~@772pable"

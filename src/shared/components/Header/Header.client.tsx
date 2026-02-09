@@ -137,7 +137,7 @@ export default function Header() {
       name: 'Instagram',
       href: 'https://www.instagram.com/drfuku',
       icon: FaInstagram,
-      bgClass: 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737]'
+      bgClass: 'bg-linear-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737]'
     }
   ]
 

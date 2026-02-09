@@ -113,7 +113,7 @@ const ClinicCard = memo(function ClinicCard({ clinic, index }: { clinic: typeof 
       </div>
       {clinic.address && (
         <div className="flex items-start gap-2 text-sm text-neutral-600">
-          <HiOutlineMapPin className="mt-1 h-4 w-4 flex-shrink-0" aria-hidden="true" />
+          <HiOutlineMapPin className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
           <span>{clinic.address}</span>
         </div>
       )}
@@ -153,7 +153,7 @@ export default function Footer() {
       {/* 主要內容 */}
       <div className="relative">
         {/* 上方區域 */}
-        <div className="border-b border-neutral-100 bg-gradient-to-b from-white to-neutral-50/80 py-16 md:py-20">
+        <div className="border-b border-neutral-100 bg-linear-to-b from-white to-neutral-50/80 py-16 md:py-20">
           <div className="container mx-auto px-4">
             <motion.div
               variants={variants.stagger}
@@ -174,7 +174,7 @@ export default function Footer() {
                   onClick={() => trackEvent('logo_click')}
                 >
                   <div className="relative">
-                    <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/20 to-brand-400/20 blur transition-all group-hover:inset-0 group-hover:blur-md" aria-hidden="true" />
+                    <div className="absolute -inset-2 rounded-full bg-linear-to-br from-brand-600/20 to-brand-400/20 blur transition-all group-hover:inset-0 group-hover:blur-md" aria-hidden="true" />
                     <Image
                       src="/logo.png"
                       alt="阿福醫師-大腸直腸外科徐彥勳"
@@ -242,7 +242,7 @@ export default function Footer() {
         </div>
 
         {/* 下方區域 */}
-          <div className="bg-gradient-to-b from-neutral-50/80 to-white py-10">
+          <div className="bg-linear-to-b from-neutral-50/80 to-white py-10">
           <div className="container mx-auto px-4">
             <motion.div
               variants={variants.slideInUp}

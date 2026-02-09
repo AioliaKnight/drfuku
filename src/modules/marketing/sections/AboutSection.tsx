@@ -117,7 +117,7 @@ export default function AboutSection() {
       ref={ref}
       id="about"
       aria-label="關於阿福醫師"
-      className="overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-neutral-50/80"
+      className="overflow-hidden bg-linear-to-b from-brand-50/60 via-white to-neutral-50/80"
     >
       {/* 背景裝飾 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -137,7 +137,7 @@ export default function AboutSection() {
             className="mb-6 flex justify-center"
             aria-hidden="true"
           >
-            <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/20 to-brand-600/20">
+            <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500/20 to-brand-600/20">
               <HiOutlineUserCircle className="h-6 w-6 md:h-8 md:w-8 text-brand-600" />
             </div>
           </motion.div>
@@ -167,8 +167,8 @@ export default function AboutSection() {
             className="w-full space-y-8 md:w-1/2 lg:w-2/5"
           >
             <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-3xl shadow-2xl transition-all hover:-translate-y-1 hover:shadow-xl">
-              <div className="absolute -right-6 -top-6 h-full w-full rounded-3xl bg-gradient-to-br from-neutral-100 to-white/80" aria-hidden="true" />
-              <div className="absolute -left-6 -bottom-6 h-full w-full rounded-3xl bg-gradient-to-br from-brand-600 to-brand-500/90" aria-hidden="true" />
+              <div className="absolute -right-6 -top-6 h-full w-full rounded-3xl bg-linear-to-br from-neutral-100 to-white/80" aria-hidden="true" />
+              <div className="absolute -left-6 -bottom-6 h-full w-full rounded-3xl bg-linear-to-br from-brand-600 to-brand-500/90" aria-hidden="true" />
               <div className="relative h-full w-full overflow-hidden rounded-3xl" style={{ position: 'relative', minHeight: '400px' }}>
                 <Image
                   src="/doctor-profile3.jpg"
@@ -178,11 +178,11 @@ export default function AboutSection() {
                   priority
                   className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/30 to-transparent" aria-hidden="true" />
+                <div className="absolute inset-0 bg-linear-to-t from-neutral-900/30 to-transparent" aria-hidden="true" />
               </div>
             </div>
             <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-neutral-100 transition-all hover:-translate-y-1 hover:shadow-xl">
-              <div className="absolute -right-4 -top-4 h-full w-full rounded-2xl bg-gradient-to-br from-neutral-50 to-white/80" aria-hidden="true" />
+              <div className="absolute -right-4 -top-4 h-full w-full rounded-2xl bg-linear-to-br from-neutral-50 to-white/80" aria-hidden="true" />
               <div className="relative h-full w-full overflow-hidden rounded-2xl">
                 <Image
                   src="/徐彥勳醫師-直外科學會醫師證書.webp"

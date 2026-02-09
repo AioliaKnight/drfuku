@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
       id="testimonials"
       role="region"
       aria-label="病患心得分享"
-      className="overflow-hidden bg-gradient-to-b from-white via-neutral-50/30 to-white"
+      className="overflow-hidden bg-linear-to-b from-white via-neutral-50/30 to-white"
     >
       {/* 裝飾背景 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -124,7 +124,7 @@ export default function TestimonialsSection() {
             transition={baseTransition}
             className="mb-6 flex justify-center"
           >
-            <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/20 to-brand-600/20">
+            <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500/20 to-brand-600/20">
               <HiOutlineChatBubbleLeftRight className="h-6 w-6 md:h-8 md:w-8 text-brand-600" aria-hidden="true" />
             </div>
           </motion.div>

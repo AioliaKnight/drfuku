@@ -12,9 +12,9 @@ import Section from '@/shared/ui/layout/Section'
 
 // 常量樣式定義
 const STYLES = {
-  section: 'relative overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-neutral-50',
-  iconWrapper: 'flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/20 to-brand-600/20',
-  qrCodeWrapper: 'relative h-48 w-48 flex-shrink-0',
+  section: 'relative overflow-hidden bg-linear-to-b from-neutral-50 via-white to-neutral-50',
+  iconWrapper: 'flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500/20 to-brand-600/20',
+  qrCodeWrapper: 'relative h-48 w-48 shrink-0',
   contentWrapper: 'space-y-4 text-center md:text-left',
   title: 'mb-3 text-xl font-semibold text-neutral-900 md:text-2xl md:tracking-tight',
   description: 'mb-6 text-base leading-7 text-neutral-600 md:text-lg md:leading-8',
@@ -89,7 +89,7 @@ export default function CTASection() {
           transition={getTransition(0.4)}
           className="mt-14 md:mt-20"
         >
-          <div className="mx-auto max-w-3xl rounded-3xl bg-gradient-to-br from-brand-500 to-brand-600 p-[2px] shadow-2xl">
+          <div className="mx-auto max-w-3xl rounded-3xl bg-linear-to-br from-brand-500 to-brand-600 p-[2px] shadow-2xl">
             <div className="rounded-[1.4rem] bg-white p-8 md:p-12">
               <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
                 <div className={STYLES.contentWrapper}>
@@ -115,7 +115,7 @@ export default function CTASection() {
                   </ul>
                   <LineButton />
                 </div>
-                <div className="relative flex-shrink-0">
+                <div className="relative shrink-0">
                     <div className="absolute inset-0 bg-brand-100 rounded-full blur-2xl opacity-50 transform scale-90 translate-y-4"></div>
                     <QRCode />
                 </div>

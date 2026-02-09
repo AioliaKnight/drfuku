@@ -75,7 +75,7 @@ export default function PostCard({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-brand-50 to-brand-100/60">
+              <div className="flex h-full w-full flex-col items-center justify-center bg-linear-to-br from-brand-50 to-brand-100/60">
                 <HiOutlineDocumentText className="mb-2 h-10 w-10 text-brand-300" />
                 <p className="text-xs font-medium text-brand-400">
                   醫療文章
@@ -159,7 +159,7 @@ export default function PostCard({
       <Link href={`/blog/${post.slug}`} className="block">
         <div className="flex gap-5 p-5">
           {/* 縮圖 */}
-          <div className="relative h-24 w-32 flex-shrink-0 overflow-hidden rounded-lg bg-gray-50">
+          <div className="relative h-24 w-32 shrink-0 overflow-hidden rounded-lg bg-gray-50">
             {!imageError && post.image ? (
               <Image
                 src={post.image}
@@ -170,7 +170,7 @@ export default function PostCard({
                 sizes="128px"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-50 to-brand-100/60">
+              <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-brand-50 to-brand-100/60">
                 <HiOutlineDocumentText className="h-6 w-6 text-brand-300" />
               </div>
             )}

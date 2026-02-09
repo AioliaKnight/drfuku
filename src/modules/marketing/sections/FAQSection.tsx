@@ -107,11 +107,11 @@ export default function FAQSection() {
     <Section
       id="faq"
       aria-label="常見問題區塊"
-      className="overflow-hidden bg-gradient-to-b from-white via-brand-50/20 to-neutral-50/80"
+      className="overflow-hidden bg-linear-to-b from-white via-brand-50/20 to-neutral-50/80"
     >
       {/* 背景裝飾 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute left-1/2 top-0 h-[1000px] w-[1000px] -translate-x-1/2 rounded-full bg-gradient-to-b from-brand-50/40 to-transparent blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[1000px] w-[1000px] -translate-x-1/2 rounded-full bg-linear-to-b from-brand-50/40 to-transparent blur-3xl" />
       </div>
 
       <div className="relative">

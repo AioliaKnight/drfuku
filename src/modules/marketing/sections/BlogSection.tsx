@@ -56,7 +56,7 @@ export default function BlogSection() {
   }
 
   return (
-    <Section id="blog" aria-label="部落格文章區塊" className="bg-gradient-to-b from-white via-brand-50/20 to-neutral-50/70">
+    <Section id="blog" aria-label="部落格文章區塊" className="bg-linear-to-b from-white via-brand-50/20 to-neutral-50/70">
       <Container>
         <motion.div
           variants={variants.slideInUp}

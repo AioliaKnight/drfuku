@@ -97,37 +97,37 @@ export default function Home() {
   return (
     <main className="relative bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-b from-brand-100 via-brand-50 to-white">
+      <div className="relative bg-linear-to-b from-brand-100 via-brand-50 to-white">
         <Hero />
       </div>
 
       {/* About Section */}
-      <div className="relative bg-gradient-to-b from-white via-neutral-50 to-neutral-100">
+      <div className="relative bg-linear-to-b from-white via-neutral-50 to-neutral-100">
         <AboutSection />
       </div>
 
       {/* Services Section */}
-      <div className="relative bg-gradient-to-b from-neutral-100 via-brand-50 to-brand-100">
+      <div className="relative bg-linear-to-b from-neutral-100 via-brand-50 to-brand-100">
         <ServicesSection />
       </div>
 
       {/* Blog Section */}
-      <div className="relative bg-gradient-to-b from-brand-100 via-neutral-50 to-white">
+      <div className="relative bg-linear-to-b from-brand-100 via-neutral-50 to-white">
         <BlogSection />
       </div>
 
       {/* Testimonials Section */}
-      <div className="relative bg-gradient-to-b from-white via-neutral-50 to-neutral-100">
+      <div className="relative bg-linear-to-b from-white via-neutral-50 to-neutral-100">
         <TestimonialsSection />
       </div>
 
       {/* FAQ Section */}
-      <div className="relative bg-gradient-to-b from-neutral-100 via-brand-50 to-brand-100">
+      <div className="relative bg-linear-to-b from-neutral-100 via-brand-50 to-brand-100">
         <FAQSection />
       </div>
 
       {/* CTA Section */}
-      <div className="relative bg-gradient-to-b from-brand-100 via-brand-50 to-white">
+      <div className="relative bg-linear-to-b from-brand-100 via-brand-50 to-white">
         <CTASection />
       </div>
     </main>

@@ -13,11 +13,11 @@ export default function AuthorInfo({ author }: AuthorInfoProps) {
       aria-label="作者資訊"
       className="mx-auto mt-16 max-w-4xl"
     >
-      <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-50/60 to-white border border-brand-100/60 shadow-lg">
+      <div className="overflow-hidden rounded-2xl bg-linear-to-br from-brand-50/60 to-white border border-brand-100/60 shadow-lg">
         <div className="p-6 sm:p-8 md:p-10">
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-8">
             {/* 醫師照片 */}
-            <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-full bg-white shadow-md ring-4 ring-brand-100 sm:h-32 sm:w-32">
+            <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full bg-white shadow-md ring-4 ring-brand-100 sm:h-32 sm:w-32">
               <Image
                 src={ASSETS.doctorPhoto}
                 alt={author}

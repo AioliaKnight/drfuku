@@ -101,7 +101,7 @@ export default function BlogPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       <section className="container mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         {/* ===== 頁頭 ===== */}
         <motion.div
