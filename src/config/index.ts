@@ -1,4 +1,5 @@
-export * from './fonts'
+// fonts.ts 不透過 barrel re-export（Next.js font loader 限制）
+// 字體直接在 layout.tsx 中定義使用
 export * from './metadata'
 export * from './structured-data'
 export * from './constants'

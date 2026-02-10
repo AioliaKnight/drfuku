@@ -80,12 +80,12 @@ const ExperienceCard = memo<ExperienceCardProps>(({ category, index, isInView, v
     transition={getTransition(index * 0.1)}
     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
     whileTap={{ scale: 0.98 }}
-    className="group rounded-2xl bg-white/85 backdrop-blur-sm p-6 shadow-md ring-1 ring-white/70 transition-all hover:-translate-y-1 hover:shadow-xl"
+    className="group rounded-2xl bg-white/85 backdrop-blur-xs p-6 shadow-md ring-1 ring-white/70 transition-all hover:-translate-y-1 hover:shadow-xl"
     role="article"
     aria-labelledby={`category-${index}`}
   >
     <div className="mb-4 flex items-center gap-3">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50/80 backdrop-blur-sm" aria-hidden="true">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50/80 backdrop-blur-xs" aria-hidden="true">
         {category.icon}
       </div>
       <h3 id={`category-${index}`} className="text-xl font-bold text-neutral-900">

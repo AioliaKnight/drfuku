@@ -76,7 +76,7 @@ const SocialLink = memo(function SocialLink({ link }: { link: typeof socialLinks
       rel="noopener noreferrer"
       aria-label={link.ariaLabel}
       onClick={() => trackEvent('social_link_click', { name: link.name })}
-      className={`inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-medium text-neutral-600 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 ${link.hoverColor}`}
+      className={`inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-medium text-neutral-600 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 ${link.hoverColor}`}
     >
       {link.icon}
       <span>{link.name}</span>
@@ -130,7 +130,7 @@ const QuickLink = memo(function QuickLink({ link }: { link: typeof quickLinks[0]
       href={href}
       aria-label={link.ariaLabel}
       onClick={() => trackEvent('quick_link_click', { name: link.name })}
-      className="group flex items-center gap-2 text-neutral-600 transition-colors hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 rounded-lg p-2"
+      className="group flex items-center gap-2 text-neutral-600 transition-colors hover:text-brand-600 focus:outline-hidden focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 rounded-lg p-2"
     >
       <div className="h-1.5 w-1.5 rounded-full bg-brand-600 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
       <span>{link.name}</span>
@@ -169,7 +169,7 @@ export default function Footer() {
               >
                 <Link
                   href="/"
-                  className="group relative mb-6 inline-flex items-center gap-3 rounded-2xl bg-white/85 p-2 shadow-md ring-1 ring-white/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
+                  className="group relative mb-6 inline-flex items-center gap-3 rounded-2xl bg-white/85 p-2 shadow-md ring-1 ring-white/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-lg focus:outline-hidden focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
                   aria-label="回到首頁"
                   onClick={() => trackEvent('logo_click')}
                 >
@@ -205,7 +205,7 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       aria-label="透過LINE諮詢預約"
                       onClick={() => trackEvent('line_click')}
-                      className="group relative inline-flex items-center gap-2 rounded-xl bg-[#06C755] px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#06C755] focus:ring-offset-2"
+                      className="group relative inline-flex items-center gap-2 rounded-xl bg-[#06C755] px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-[#06C755] focus:ring-offset-2"
                     >
                       <HiOutlineChatBubbleOvalLeft className="h-5 w-5" aria-hidden="true" />
                       <span>LINE 諮詢預約</span>

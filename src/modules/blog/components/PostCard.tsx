@@ -84,7 +84,7 @@ export default function PostCard({
             )}
             {/* 分類 badge */}
             <div className="absolute bottom-3 left-3">
-              <span className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-brand-700 shadow-sm ring-1 ring-white/60 backdrop-blur-sm">
+              <span className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-brand-700 shadow-sm ring-1 ring-white/60 backdrop-blur-xs">
                 {post.category}
               </span>
             </div>
@@ -108,7 +108,7 @@ export default function PostCard({
                 {post.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 rounded-md bg-gray-50 px-2 py-0.5 text-xs text-gray-500 ring-1 ring-inset ring-gray-100"
+                    className="inline-flex items-center gap-1 rounded-md bg-gray-50 px-2 py-0.5 text-xs text-gray-500 inset-ring inset-ring-gray-100"
                   >
                     <HiOutlineTag className="h-3 w-3" />
                     {tag}

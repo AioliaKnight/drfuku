@@ -105,7 +105,7 @@ export default function ErrorMessage({
                     setIsVisible(false)
                     onClose()
                   }}
-                  className={`inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ${colors[type]} ${iconColors[type]}`}
+                  className={`inline-flex rounded-md p-1.5 focus:outline-hidden focus:ring-2 focus:ring-offset-2 ${colors[type]} ${iconColors[type]}`}
                 >
                   <span className="sr-only">關閉</span>
                   <HiXMark className="h-5 w-5" aria-hidden="true" />

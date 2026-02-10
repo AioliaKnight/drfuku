@@ -230,22 +230,12 @@ h4:hover .heading-anchor {
   line-height: 1.5;
 }
 
-/* Blockquote 增強 - callout 風格 */
-.prose blockquote {
-  position: relative;
-  background: linear-gradient(135deg, rgba(240, 249, 255, 0.5) 0%, rgba(224, 242, 254, 0.3) 100%);
-  border-left: 4px solid var(--color-brand-400);
-  border-radius: 0 0.75rem 0.75rem 0;
-  padding: 1.25rem 1.5rem;
-  margin: 1.5rem 0;
-  font-style: normal;
-}
-
+/* Blockquote - 只處理 prose.ts 無法覆蓋的部分 */
 .prose blockquote p:last-child {
   margin-bottom: 0;
 }
 
-/* H3 前綴裝飾 */
+/* H3 前綴裝飾 - pseudo-element 無法用 Tailwind utility 表達 */
 .prose h3::before {
   content: "▸";
   margin-right: 0.5rem;
@@ -257,11 +247,6 @@ h4:hover .heading-anchor {
 .prose ol > li::marker {
   color: var(--color-brand-600);
   font-weight: 600;
-}
-
-/* 無序列表標記 */
-.prose ul > li::marker {
-  color: var(--color-brand-400);
 }
 
 /* 參考資料區塊 - 最後一個 H2 */
@@ -300,12 +285,11 @@ h4:hover .heading-anchor {
   color: var(--color-brand-800);
 }
 
-/* 分隔線增強 */
+/* 分隔線增強 - 漸層效果（間距由 prose.ts prose-hr:my-12 控制） */
 .prose hr {
   border: none;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--color-neutral-300), transparent);
-  margin: 3rem 0;
 }
 
 /* 移動端表格提示 */

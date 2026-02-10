@@ -17,7 +17,6 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     optimizePackageImports: [
-      '@mdx-js/react',
       '@headlessui/react',
       'framer-motion',
       'react-icons'
@@ -59,6 +58,7 @@ const nextConfig = {
 
     return config;
   },
+  turbopack: {},
   compress: true,
   productionBrowserSourceMaps: false,
   trailingSlash: true,

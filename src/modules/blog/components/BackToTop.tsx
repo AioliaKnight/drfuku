@@ -37,7 +37,7 @@ export default function BackToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 inline-flex items-center justify-center w-12 h-12 bg-brand-600 text-white rounded-full shadow-lg hover:bg-brand-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+          className="fixed bottom-8 right-8 z-50 inline-flex items-center justify-center w-12 h-12 bg-brand-600 text-white rounded-full shadow-lg hover:bg-brand-700 transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
           aria-label="回到頂部"
         >
           <HiOutlineArrowUp className="h-6 w-6" />

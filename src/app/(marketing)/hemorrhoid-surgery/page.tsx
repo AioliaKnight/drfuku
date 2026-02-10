@@ -859,7 +859,7 @@ export default function HemorrhoidSurgeryPage() {
                   key={item.question}
                   className="group rounded-2xl bg-neutral-50/70 shadow-sm ring-1 ring-white/70 transition hover:shadow-md"
                 >
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-6 py-5 text-left focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 [&::-webkit-details-marker]:hidden">
                     <span className="text-base font-semibold text-neutral-900">{item.question}</span>
                     <span className="mt-1 text-xs text-neutral-400 transition group-open:rotate-180">⌄</span>
                   </summary>

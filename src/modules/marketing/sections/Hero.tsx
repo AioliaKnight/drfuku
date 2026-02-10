@@ -189,7 +189,7 @@ export default function Hero() {
               href="https://line.me/ti/p/~@772pable"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-medium text-brand-600 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 active:translate-y-0.5 md:text-lg"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-medium text-brand-600 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 active:translate-y-0.5 md:text-lg"
             >
               <span>立即諮詢・隱私保密</span>
               <HiOutlineArrowTopRightOnSquare className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

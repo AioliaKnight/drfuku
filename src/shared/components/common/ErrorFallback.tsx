@@ -15,7 +15,7 @@ export default function ErrorFallback({ error }: FallbackProps) {
       </p>
       {process.env.NODE_ENV === 'development' && (
         <pre className="mt-4 max-w-full overflow-auto rounded bg-gray-100 p-4 text-sm">
-          {error.message}
+          {error instanceof Error ? error.message : String(error)}
         </pre>
       )}
     </div>

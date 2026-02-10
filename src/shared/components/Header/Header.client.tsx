@@ -56,7 +56,7 @@ const SocialLink = memo(function SocialLink({
     <Link
       href={href}
       onClick={onClick}
-      className={`flex h-8 w-8 items-center justify-center rounded-full ${bgClass} text-white transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500`}
+      className={`flex h-8 w-8 items-center justify-center rounded-full ${bgClass} text-white transition-transform hover:scale-110 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-brand-500`}
       aria-label={name}
       rel="noopener noreferrer"
       target="_blank"
@@ -216,7 +216,7 @@ export default function Header() {
         <div className="flex h-16 md:h-20 items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-2 transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80 focus:outline-hidden focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg"
             onClick={(e) => handleNavigation(e, '/')}
             aria-label="回到首頁"
           >
@@ -268,7 +268,7 @@ export default function Header() {
                 location: 'header'
               })
             }}
-            className="md:hidden p-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+            className="md:hidden p-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
             aria-label={isMenuOpen ? '關閉選單' : '開啟選單'}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -291,7 +291,7 @@ export default function Header() {
               animate="visible"
               exit="hidden"
               transition={transitions.default}
-              className="md:hidden py-4 border-t border-neutral-100 bg-white/95 backdrop-blur-sm"
+              className="md:hidden py-4 border-t border-neutral-100 bg-white/95 backdrop-blur-xs"
               role="menu"
             >
               <div className="flex flex-col gap-2" role="none">

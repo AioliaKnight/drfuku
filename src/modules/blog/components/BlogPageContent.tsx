@@ -170,7 +170,7 @@ export default function BlogPageContent() {
                   placeholder="搜尋文章、症狀、治療方法..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+                  className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 text-sm text-gray-900 outline-hidden transition-all placeholder:text-gray-400 focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
                 />
               </div>
               {/* 檢視模式 */}
@@ -210,7 +210,7 @@ export default function BlogPageContent() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+                className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-hidden focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               >
                 <option value="all">所有分類</option>
                 {stats.categories.map((c) => (
@@ -223,7 +223,7 @@ export default function BlogPageContent() {
               <select
                 value={selectedTag}
                 onChange={(e) => setSelectedTag(e.target.value)}
-                className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+                className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-hidden focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               >
                 <option value="all">所有標籤</option>
                 {stats.allTags.slice(0, 20).map((t) => (
@@ -238,7 +238,7 @@ export default function BlogPageContent() {
                 onChange={(e) =>
                   setSortBy(e.target.value as 'date' | 'title' | 'reading')
                 }
-                className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+                className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-hidden focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               >
                 <option value="date">依發布日期</option>
                 <option value="title">依文章標題</option>

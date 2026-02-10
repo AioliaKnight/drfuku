@@ -1,6 +1,10 @@
 /**
  * Blog 文章內文 Tailwind Typography prose 樣式
- * 整合 @tailwindcss/typography 並加入自訂增強
+ *
+ * 這是文章結構樣式的唯一控制層（Single Source of Truth）。
+ * - tailwind.config.ts → 只定義色彩 CSS 變數
+ * - globals.css → 只處理 pseudo-elements 和複雜選擇器
+ * - 此檔案 → 控制所有結構性樣式（間距、字級、色彩覆蓋）
  */
 
 export const proseStyles = [
@@ -18,7 +22,7 @@ export const proseStyles = [
   'prose-p:tracking-wide',
   'prose-p:mb-6',
 
-  // --- 標題 ---
+  // --- 標題通用 ---
   'prose-headings:scroll-mt-24',
   'prose-headings:font-bold',
   'prose-headings:tracking-tight',

@@ -98,7 +98,7 @@ export default function PostHeader({
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-200 transition-colors hover:bg-brand-50 hover:text-brand-700 hover:ring-brand-200"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 inset-ring inset-ring-gray-200 transition-colors hover:bg-brand-50 hover:text-brand-700 hover:inset-ring-brand-200"
                   >
                     <HiOutlineTag className="h-3 w-3" />
                     {tag}

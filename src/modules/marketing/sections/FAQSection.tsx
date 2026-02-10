@@ -22,7 +22,7 @@ const FAQItem = memo(({ faq, isOpen, onToggle }: {
     >
       <button
         onClick={onToggle}
-        className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-neutral-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+        className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-neutral-50/80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${faq.question}`}
       >
