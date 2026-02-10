@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { posts as allPosts } from '@/velite'
 import { compareDesc } from 'date-fns'
 import PostCard from './PostCard'
@@ -19,14 +20,65 @@ import {
 import { motion, AnimatePresence } from 'framer-motion'
 
 const POSTS_PER_PAGE = 9
+const DEBOUNCE_MS = 300
+
+/**
+ * 自訂 debounce hook
+ */
+function useDebouncedValue<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+
+  return debouncedValue
+}
 
 export default function BlogPageContent() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [selectedTag, setSelectedTag] = useState<string>('all')
-  const [sortBy, setSortBy] = useState<'date' | 'title' | 'reading'>('date')
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  // 從 URL searchParams 初始化狀態
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '')
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    searchParams.get('category') || 'all'
+  )
+  const [selectedTag, setSelectedTag] = useState<string>(
+    searchParams.get('tag') || 'all'
+  )
+  const [sortBy, setSortBy] = useState<'date' | 'title' | 'reading'>(
+    (searchParams.get('sort') as 'date' | 'title' | 'reading') || 'date'
+  )
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get('page')) || 1
+  )
+
+  // Debounce 搜尋輸入
+  const debouncedSearch = useDebouncedValue(searchTerm, DEBOUNCE_MS)
+
+  // 同步篩選狀態到 URL searchParams
+  const isInitialMount = useRef(true)
+  useEffect(() => {
+    // 跳過首次渲染，避免初始化時更新 URL
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+
+    const params = new URLSearchParams()
+    if (debouncedSearch) params.set('q', debouncedSearch)
+    if (selectedCategory !== 'all') params.set('category', selectedCategory)
+    if (selectedTag !== 'all') params.set('tag', selectedTag)
+    if (sortBy !== 'date') params.set('sort', sortBy)
+    if (currentPage > 1) params.set('page', String(currentPage))
+
+    const queryString = params.toString()
+    const newUrl = queryString ? `?${queryString}` : '/blog/'
+    router.replace(newUrl, { scroll: false })
+  }, [debouncedSearch, selectedCategory, selectedTag, sortBy, currentPage, router])
 
   const publishedPosts = allPosts.filter((post) => !post.draft)
 
@@ -57,10 +109,10 @@ export default function BlogPageContent() {
     })
   }, [publishedPosts, sortBy])
 
-  // 篩選
+  // 篩選（使用 debounced 搜尋值）
   const filteredPosts = useMemo(() => {
     return sortedPosts.filter((post) => {
-      const q = searchTerm.toLowerCase()
+      const q = debouncedSearch.toLowerCase()
       const matchesSearch =
         !q ||
         post.title.toLowerCase().includes(q) ||
@@ -72,7 +124,7 @@ export default function BlogPageContent() {
         selectedTag === 'all' || post.tags.includes(selectedTag)
       return matchesSearch && matchesCategory && matchesTag
     })
-  }, [sortedPosts, searchTerm, selectedCategory, selectedTag])
+  }, [sortedPosts, debouncedSearch, selectedCategory, selectedTag])
 
   // 分頁
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
@@ -84,14 +136,14 @@ export default function BlogPageContent() {
   // 條件改變時重置分頁
   useEffect(() => {
     setCurrentPage(1)
-  }, [searchTerm, selectedCategory, selectedTag])
+  }, [debouncedSearch, selectedCategory, selectedTag])
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     setSearchTerm('')
     setSelectedCategory('all')
     setSelectedTag('all')
     setCurrentPage(1)
-  }
+  }, [])
 
   const hasActiveFilters =
     searchTerm || selectedCategory !== 'all' || selectedTag !== 'all'
@@ -166,15 +218,16 @@ export default function BlogPageContent() {
               <div className="relative flex-1">
                 <HiMagnifyingGlass className="absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
-                  type="text"
+                  type="search"
                   placeholder="搜尋文章、症狀、治療方法..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  aria-label="搜尋文章"
                   className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 text-sm text-gray-900 outline-hidden transition-all placeholder:text-gray-400 focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
                 />
               </div>
               {/* 檢視模式 */}
-              <div className="flex items-center gap-1 rounded-xl border border-gray-200 p-1">
+              <div className="flex items-center gap-1 rounded-xl border border-gray-200 p-1" role="group" aria-label="檢視模式">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`rounded-lg p-2.5 transition-all ${
@@ -183,6 +236,7 @@ export default function BlogPageContent() {
                       : 'text-gray-500 hover:bg-gray-50'
                   }`}
                   aria-label="Grid 模式"
+                  aria-pressed={viewMode === 'grid'}
                 >
                   <HiViewColumns className="h-4 w-4" />
                 </button>
@@ -194,6 +248,7 @@ export default function BlogPageContent() {
                       : 'text-gray-500 hover:bg-gray-50'
                   }`}
                   aria-label="List 模式"
+                  aria-pressed={viewMode === 'list'}
                 >
                   <HiListBullet className="h-4 w-4" />
                 </button>
@@ -210,6 +265,7 @@ export default function BlogPageContent() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
+                aria-label="篩選分類"
                 className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-hidden focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               >
                 <option value="all">所有分類</option>
@@ -223,6 +279,7 @@ export default function BlogPageContent() {
               <select
                 value={selectedTag}
                 onChange={(e) => setSelectedTag(e.target.value)}
+                aria-label="篩選標籤"
                 className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-hidden focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               >
                 <option value="all">所有標籤</option>
@@ -238,6 +295,7 @@ export default function BlogPageContent() {
                 onChange={(e) =>
                   setSortBy(e.target.value as 'date' | 'title' | 'reading')
                 }
+                aria-label="排序方式"
                 className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-hidden focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               >
                 <option value="date">依發布日期</option>
@@ -359,6 +417,7 @@ export default function BlogPageContent() {
                       )}
                       <button
                         onClick={() => setCurrentPage(page)}
+                        aria-current={currentPage === page ? 'page' : undefined}
                         className={`rounded-lg border px-3.5 py-2 text-sm font-medium transition-all ${
                           currentPage === page
                             ? 'border-brand-600 bg-brand-600 text-white shadow-sm'

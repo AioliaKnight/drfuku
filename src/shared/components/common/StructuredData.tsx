@@ -1,5 +1,3 @@
-'use client'
-
 import JsonLd from './JsonLd'
 import { structuredData } from '@/config'
 

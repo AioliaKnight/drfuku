@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { HiOutlineShare, HiOutlineLink, HiOutlineCheck } from 'react-icons/hi2'
 import { motion, AnimatePresence } from 'framer-motion'
+import { SITE } from '@/config/constants'
 
 interface ShareButtonsProps {
   title: string
@@ -13,7 +14,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
-  const fullUrl = `https://drfuku.com${url}`
+  const fullUrl = `${SITE.url}${url}`
 
   const shareData = [
     {
@@ -63,6 +64,9 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
       <div className="relative">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-haspopup="true"
+          aria-label="分享文章"
           className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 hover:border-gray-300 transition-all duration-200"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -78,9 +82,11 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.2 }}
+              role="menu"
+              aria-label="分享選項"
               className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 p-4 z-50"
             >
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3" role="group">
                 {shareData.map((item) => (
                   <motion.a
                     key={item.name}

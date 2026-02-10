@@ -215,10 +215,10 @@ function getPerformanceMetrics() {
 
 // 通用事件追蹤
 interface EventData {
-  category?: string
-  label?: string
-  value?: number
-  [key: string]: string | number | boolean | undefined
+  category?: string | undefined
+  label?: string | undefined
+  value?: number | undefined
+  [key: string]: string | number | boolean | readonly string[] | undefined
 }
 
 export function trackEvent(
@@ -228,7 +228,7 @@ export function trackEvent(
     label,
     value,
     ...customData
-  }: EventData
+  }: EventData = {}
 ): void {
   pushEvent({
     event: 'custom_event',
@@ -240,6 +240,9 @@ export function trackEvent(
   })
 }
 
+/**
+ * @deprecated 請使用 trackEvent(action, data) 取代
+ */
 export const trackCustomEvent = ({
   eventAction,
   eventCategory = '',
@@ -253,12 +256,10 @@ export const trackCustomEvent = ({
   eventValue?: number
   [key: string]: string | number | boolean | readonly string[] | undefined
 }) => {
-  pushEvent({
-    event: 'custom_event',
-    eventAction,
-    eventCategory,
-    eventLabel,
-    eventValue,
+  trackEvent(eventAction, {
+    category: eventCategory,
+    label: eventLabel,
+    value: eventValue,
     ...customData
   })
 }

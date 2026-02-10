@@ -17,7 +17,11 @@ export const DOCTOR = {
   alternateName: '阿福醫師（徐彥勳醫師）',
   description: '大腸直腸外科專科醫師，專精痔瘡微創手術與大腸直腸疾病診療。擁有豐富臨床經驗，致力於提供病患安心舒適的診療體驗。',
   image: 'https://drfuku.com/doctor-profile3.jpg',
-  url: 'https://drfuku.com/about'
+  url: 'https://drfuku.com/about',
+  sameAs: [
+    'https://drfuku.com',
+    'https://line.me/ti/p/~@772pable',
+  ],
 } as const
 
 // 診所信息
@@ -26,7 +30,15 @@ export const CLINIC = {
   alternateName: ['阿福醫師', '徐彥勳醫師', '徐醫師', '痔瘡醫生'],
   logo: 'https://drfuku.com/logo.png',
   telephone: '+886-2-2712-0589',
+  address: {
+    streetAddress: '中山北路二段',
+    addressLocality: '台北市',
+    addressRegion: '中山區',
+    postalCode: '104',
+    addressCountry: 'TW',
+  },
   areaServed: ['台北市', '新北市'],
+  lineUrl: 'https://line.me/ti/p/~@772pable',
   services: [
     {
       name: '痔瘡微創手術',
@@ -56,13 +68,22 @@ export const DISEASE = {
   ]
 } as const
 
+// 環境變數驗證（僅在 client-side runtime 警告，避免 build 時大量輸出）
+function getEnvVar(key: string, fallback: string = ''): string {
+  const value = process.env[key]
+  if (!value && !fallback && typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+    console.warn(`[ENV] 缺少環境變數: ${key}`)
+  }
+  return value || fallback
+}
+
 // 環境變量
 export const ENV = {
-  gtmId: process.env.NEXT_PUBLIC_GTM_ID || '',
-  environment: process.env.NODE_ENV || 'development',
-  version: process.env.NEXT_PUBLIC_VERSION || '1.0.0',
-  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
-  fbDomainVerification: process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION || '',
+  gtmId: getEnvVar('NEXT_PUBLIC_GTM_ID'),
+  environment: getEnvVar('NODE_ENV', 'development'),
+  version: getEnvVar('NEXT_PUBLIC_VERSION', '1.0.0'),
+  googleSiteVerification: getEnvVar('NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION'),
+  fbDomainVerification: getEnvVar('NEXT_PUBLIC_FB_DOMAIN_VERIFICATION'),
   isDevelopment: process.env.NODE_ENV === 'development',
   isProduction: process.env.NODE_ENV === 'production'
 } as const

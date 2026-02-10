@@ -4,6 +4,7 @@ import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { trackCtaClick } from '@/shared/lib/analytics'
+import { CLINIC } from '@/config/constants'
 
 // 型別定義
 interface LineButtonProps {
@@ -54,7 +55,7 @@ const LineButton = memo(function LineButton({
 
   return (
     <Link
-      href="https://line.me/ti/p/~@772pable"
+      href={CLINIC.lineUrl}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}

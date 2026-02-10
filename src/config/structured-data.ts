@@ -24,7 +24,16 @@ export const structuredData: Record<string, StructuredData> = {
       name: SITE.name,
       url: SITE.url,
       logo: CLINIC.logo,
-      telephone: CLINIC.telephone
+      telephone: CLINIC.telephone,
+      address: {
+        '@type': 'PostalAddress',
+        name: `${CLINIC.address.addressLocality}${CLINIC.address.addressRegion}${CLINIC.address.streetAddress}`,
+        streetAddress: CLINIC.address.streetAddress,
+        addressLocality: CLINIC.address.addressLocality,
+        addressRegion: CLINIC.address.addressRegion,
+        postalCode: CLINIC.address.postalCode,
+        addressCountry: CLINIC.address.addressCountry,
+      }
     }
   },
   clinic: {
@@ -37,6 +46,15 @@ export const structuredData: Record<string, StructuredData> = {
       logo: CLINIC.logo,
       telephone: CLINIC.telephone,
       description: '大腸直腸外科專科診療，提供痔瘡微創手術、大腸直腸與肛門疾病診治及完整術後照護。',
+      address: {
+        '@type': 'PostalAddress',
+        name: `${CLINIC.address.addressLocality}${CLINIC.address.addressRegion}${CLINIC.address.streetAddress}`,
+        streetAddress: CLINIC.address.streetAddress,
+        addressLocality: CLINIC.address.addressLocality,
+        addressRegion: CLINIC.address.addressRegion,
+        postalCode: CLINIC.address.postalCode,
+        addressCountry: CLINIC.address.addressCountry,
+      },
       areaServed: CLINIC.areaServed.map(city => ({
         '@type': 'City',
         name: city
@@ -59,7 +77,8 @@ export const structuredData: Record<string, StructuredData> = {
       jobTitle: DOCTOR.title,
       description: DOCTOR.description,
       image: DOCTOR.image,
-      url: DOCTOR.url
+      url: DOCTOR.url,
+      sameAs: DOCTOR.sameAs
     }
   },
   medicalPage: {

@@ -17,74 +17,74 @@ const sendMetric = (metric: PerformanceMetric) => {
   }
 }
 
-// 監控頁面加載性能
+// 監控頁面加載性能（Navigation Timing L2）
 export const measurePageLoad = () => {
   if (typeof window === 'undefined') return
 
   window.addEventListener('load', () => {
-    if (window.performance && window.performance.timing) {
-      // 使用 requestIdleCallback 在瀏覽器空閒時執行
-      const scheduleMetrics = (callback: () => void) => {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(callback)
-        } else {
-          setTimeout(callback, 0)
-        }
+    // 使用 requestIdleCallback 在瀏覽器空閒時執行
+    const scheduleMetrics = (callback: () => void) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback)
+      } else {
+        setTimeout(callback, 0)
       }
-
-      scheduleMetrics(() => {
-        const timing = window.performance.timing
-        const navigationStart = timing.navigationStart
-
-        // 頁面加載時間
-        sendMetric({
-          name: 'page_load',
-          value: timing.loadEventEnd - navigationStart,
-          category: 'Performance',
-          label: 'Total Load Time'
-        })
-
-        // DOM 內容加載時間
-        sendMetric({
-          name: 'dom_content_loaded',
-          value: timing.domContentLoadedEventEnd - navigationStart,
-          category: 'Performance',
-          label: 'DOM Content Loaded'
-        })
-
-        // 首次渲染時間
-        sendMetric({
-          name: 'first_paint',
-          value: timing.domInteractive - navigationStart,
-          category: 'Performance',
-          label: 'First Paint'
-        })
-
-        // DNS 解析時間
-        sendMetric({
-          name: 'dns',
-          value: timing.domainLookupEnd - timing.domainLookupStart,
-          category: 'Performance',
-          label: 'DNS Lookup'
-        })
-
-        // TCP 連接時間
-        sendMetric({
-          name: 'tcp',
-          value: timing.connectEnd - timing.connectStart,
-          category: 'Performance',
-          label: 'TCP Connection'
-        })
-
-        // 伺服器響應時間
-        sendMetric({
-          name: 'ttfb',
-          value: timing.responseStart - timing.requestStart,
-          category: 'Performance',
-          label: 'Time to First Byte'
-        })
-      })
     }
+
+    scheduleMetrics(() => {
+      const entries = performance.getEntriesByType('navigation')
+      if (!entries.length) return
+
+      const nav = entries[0] as PerformanceNavigationTiming
+
+      // 頁面加載時間
+      sendMetric({
+        name: 'page_load',
+        value: nav.loadEventEnd - nav.startTime,
+        category: 'Performance',
+        label: 'Total Load Time'
+      })
+
+      // DOM 內容加載時間
+      sendMetric({
+        name: 'dom_content_loaded',
+        value: nav.domContentLoadedEventEnd - nav.startTime,
+        category: 'Performance',
+        label: 'DOM Content Loaded'
+      })
+
+      // DOM Interactive 時間
+      sendMetric({
+        name: 'dom_interactive',
+        value: nav.domInteractive - nav.startTime,
+        category: 'Performance',
+        label: 'DOM Interactive'
+      })
+
+      // DNS 解析時間
+      sendMetric({
+        name: 'dns',
+        value: nav.domainLookupEnd - nav.domainLookupStart,
+        category: 'Performance',
+        label: 'DNS Lookup'
+      })
+
+      // TCP 連接時間
+      sendMetric({
+        name: 'tcp',
+        value: nav.connectEnd - nav.connectStart,
+        category: 'Performance',
+        label: 'TCP Connection'
+      })
+
+      // 伺服器響應時間（TTFB）
+      sendMetric({
+        name: 'ttfb',
+        value: nav.responseStart - nav.requestStart,
+        category: 'Performance',
+        label: 'Time to First Byte'
+      })
+    })
   })
 }
 
@@ -96,7 +96,6 @@ export const measurePaintTiming = () => {
     try {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          // 確保我們只處理一次每種類型的指標
           const metric = {
             name: entry.name,
             value: entry.startTime,
@@ -172,43 +171,44 @@ export const initPerformanceMonitoring = () => {
   measureResourceTiming()
 }
 
-// 獲取性能監控腳本
+// 獲取性能監控腳本（Navigation Timing L2）
 export const getPerformanceMonitoringScript = () => `
-  // 監控頁面加載性能
+  // 監控頁面加載性能（Navigation Timing L2）
   window.addEventListener('load', function() {
-    if (window.performance && window.performance.timing) {
-      setTimeout(function() {
-        const timing = window.performance.timing;
-        const navigationStart = timing.navigationStart;
-        const loadTime = timing.loadEventEnd - navigationStart;
-        const domContentLoaded = timing.domContentLoadedEventEnd - navigationStart;
+    setTimeout(function() {
+      var entries = performance.getEntriesByType('navigation');
+      if (!entries.length) return;
+      var nav = entries[0];
 
-        // 發送性能數據到分析工具
-        if (window.gtag) {
-          gtag('event', 'timing_complete', {
-            name: 'load',
-            value: loadTime,
-            event_category: 'Performance'
-          });
-          gtag('event', 'timing_complete', {
-            name: 'dom_content_loaded',
-            value: domContentLoaded,
-            event_category: 'Performance'
-          });
-        }
-      }, 0);
-    }
+      if (window.gtag) {
+        gtag('event', 'timing_complete', {
+          name: 'load',
+          value: Math.round(nav.loadEventEnd - nav.startTime),
+          event_category: 'Performance'
+        });
+        gtag('event', 'timing_complete', {
+          name: 'dom_content_loaded',
+          value: Math.round(nav.domContentLoadedEventEnd - nav.startTime),
+          event_category: 'Performance'
+        });
+        gtag('event', 'timing_complete', {
+          name: 'ttfb',
+          value: Math.round(nav.responseStart - nav.requestStart),
+          event_category: 'Performance'
+        });
+      }
+    }, 0);
   });
 
   // 監控首次內容繪製(FCP)
   if ('PerformanceObserver' in window) {
-    const observer = new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
+    var observer = new PerformanceObserver(function(list) {
+      for (var entry of list.getEntries()) {
         if (entry.name === 'first-contentful-paint') {
           if (window.gtag) {
             gtag('event', 'timing_complete', {
               name: 'fcp',
-              value: entry.startTime,
+              value: Math.round(entry.startTime),
               event_category: 'Performance'
             });
           }

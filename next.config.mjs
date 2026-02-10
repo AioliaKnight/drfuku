@@ -15,14 +15,12 @@ const nextConfig = {
     ],
   },
   experimental: {
-    scrollRestoration: true,
     optimizePackageImports: [
       '@headlessui/react',
       'framer-motion',
       'react-icons'
     ],
     optimizeCss: true,
-    esmExternals: true,
   },
   serverExternalPackages: ['sharp'],
   webpack: (config, { dev, isServer }) => {

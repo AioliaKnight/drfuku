@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import { BlogPageContent } from '@/modules/blog'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 import JsonLd from '@/shared/components/common/JsonLd'
@@ -65,7 +66,9 @@ export default function BlogPage() {
           itemListElement: breadcrumbItems
         }}
       />
-      <BlogPageContent />
+      <Suspense fallback={<div className="min-h-screen bg-linear-to-b from-gray-50 to-white" />}>
+        <BlogPageContent />
+      </Suspense>
     </>
   )
 }

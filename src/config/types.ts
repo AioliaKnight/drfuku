@@ -81,6 +81,7 @@ export type Person = Thing & {
   alternateName?: string
   jobTitle?: string
   image?: string
+  sameAs?: readonly string[]
 }
 
 // 醫療網頁類型

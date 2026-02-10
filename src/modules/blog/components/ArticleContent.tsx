@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { SITE } from '@/config/constants'
 
 interface ArticleContentProps {
   content: string
@@ -12,6 +13,13 @@ export default function ArticleContent({ content }: ArticleContentProps) {
   useEffect(() => {
     if (!contentRef.current) return
     const root = contentRef.current
+
+    // AbortController 用於統一清理所有 event listeners
+    const controller = new AbortController()
+    const { signal } = controller
+
+    // 從 SITE.url 取得域名（移除 protocol）
+    const siteDomain = new URL(SITE.url).hostname
 
     // 1. 自動包裝表格（響應式水平捲動）
     const tables = root.querySelectorAll('table')
@@ -37,7 +45,7 @@ export default function ArticleContent({ content }: ArticleContentProps) {
       const href = link.getAttribute('href')
       if (!href) return
 
-      if (href.startsWith('http') && !href.includes('drfuku.com')) {
+      if (href.startsWith('http') && !href.includes(siteDomain)) {
         link.setAttribute('target', '_blank')
         link.setAttribute('rel', 'noopener noreferrer')
         if (!link.querySelector('.external-icon')) {
@@ -54,7 +62,7 @@ export default function ArticleContent({ content }: ArticleContentProps) {
           e.preventDefault()
           const target = document.getElementById(href.slice(1))
           target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        })
+        }, { signal })
       }
     })
 
@@ -91,7 +99,12 @@ export default function ArticleContent({ content }: ArticleContentProps) {
     })
 
     // 5. FAQ Q&A 區塊增強
-    enhanceFAQSection(root)
+    enhanceFAQSection(root, signal)
+
+    // Cleanup：移除所有透過 signal 註冊的 event listeners
+    return () => {
+      controller.abort()
+    }
   }, [content])
 
   return (
@@ -104,13 +117,8 @@ export default function ArticleContent({ content }: ArticleContentProps) {
 
 /**
  * 偵測並增強 FAQ 區塊的 Q&A 呈現
- * HTML 結構：
- *   <h2>常見問題 FAQ</h2>
- *   <p><strong>Q：...？</strong><br>**A：**...</p>
- *   <p><strong>Q：...？</strong><br>**A：**...</p>
  */
-function enhanceFAQSection(root: HTMLDivElement) {
-  // 找到 FAQ 標題
+function enhanceFAQSection(root: HTMLDivElement, signal: AbortSignal) {
   const allH2 = root.querySelectorAll('h2')
   let faqHeading: HTMLElement | null = null
 
@@ -124,50 +132,40 @@ function enhanceFAQSection(root: HTMLDivElement) {
 
   if (!faqHeading) return
 
-  // 收集 FAQ 標題之後的所有 Q&A <p> 元素（直到下一個 h2）
   const qaParagraphs: HTMLParagraphElement[] = []
   let sibling = faqHeading.nextElementSibling
 
   while (sibling) {
-    // 遇到下一個 h2 就停止
     if (sibling.tagName === 'H2') break
-
     if (sibling.tagName === 'P') {
       const text = sibling.textContent || ''
-      // 偵測是否包含 Q&A 模式
       if (text.includes('Q：') || text.includes('Q:')) {
         qaParagraphs.push(sibling as HTMLParagraphElement)
       }
     }
-
     sibling = sibling.nextElementSibling
   }
 
   const firstQA = qaParagraphs[0]
   if (!firstQA) return
 
-  // 建立 FAQ 容器
   const faqContainer = document.createElement('div')
   faqContainer.className = 'faq-container'
   faqContainer.setAttribute('role', 'list')
   faqContainer.setAttribute('aria-label', '常見問題')
 
-  // 在第一個 Q&A 段落前插入容器
   firstQA.parentNode?.insertBefore(faqContainer, firstQA)
 
   qaParagraphs.forEach((p, index) => {
     const html = p.innerHTML
-    // 解析 Q 和 A
     const { question, answer } = parseQA(html)
 
     if (!question) return
 
-    // 建立 Q&A 卡片
     const card = document.createElement('div')
     card.className = 'faq-item'
     card.setAttribute('role', 'listitem')
 
-    // 問題按鈕
     const questionBtn = document.createElement('button')
     questionBtn.className = 'faq-question'
     questionBtn.setAttribute('type', 'button')
@@ -185,7 +183,6 @@ function enhanceFAQSection(root: HTMLDivElement) {
       </span>
     `
 
-    // 答案區塊
     const answerDiv = document.createElement('div')
     answerDiv.className = 'faq-answer'
     answerDiv.setAttribute('id', answerId)
@@ -203,61 +200,50 @@ function enhanceFAQSection(root: HTMLDivElement) {
       : ''
     answerDiv.appendChild(answerInner)
 
-    // 點擊事件 - accordion 效果
+    // 使用 signal 註冊事件，確保 cleanup 時自動移除
     questionBtn.addEventListener('click', () => {
       const isOpen = questionBtn.getAttribute('aria-expanded') === 'true'
       questionBtn.setAttribute('aria-expanded', String(!isOpen))
       answerDiv.classList.toggle('faq-answer--open')
-    })
+    }, { signal })
 
     card.appendChild(questionBtn)
     card.appendChild(answerDiv)
     faqContainer.appendChild(card)
 
-    // 移除原始段落
     p.remove()
   })
 }
 
 /**
  * 解析 Q&A 的 HTML 內容
- *
- * 支援三種格式：
- * 1. <strong>Q：問題？</strong><br>**A：**回答。       (有 <br>，A 為 literal markdown)
- * 2. <strong>Q：問題？</strong><br><strong>A：</strong>回答。 (有 <br>，A 為正確 HTML)
- * 3. <strong>Q：問題？</strong>\n**A：**回答。          (無 <br>，Q 和 A 以換行分隔)
  */
 function parseQA(html: string): { question: string; answer: string } {
   let question = ''
   let answer = ''
 
-  // 提取問題 - <strong>Q：...？</strong>
   const qMatch = html.match(/<strong>Q[：:]\s*(.*?)<\/strong>/s)
   if (qMatch?.[1]) {
     question = qMatch[1].trim()
   }
 
-  // 提取答案 - 優先用 <br> 切分，其次用 </strong> 後的內容
   const brSplit = html.split(/<br\s*\/?>/)
   let answerHtml = ''
 
   if (brSplit.length > 1) {
-    // Format 1 & 2：有 <br> 分隔
     answerHtml = brSplit.slice(1).join('<br>')
   } else {
-    // Format 3：無 <br>，取 </strong> 後的所有內容
     const strongEnd = html.indexOf('</strong>')
     if (strongEnd > -1) {
       answerHtml = html.substring(strongEnd + '</strong>'.length)
     }
   }
 
-  // 清理 **A：** 的各種渲染形式
   answer = answerHtml
-    .replace(/^\s*\*\*A[：:]\*\*\s*/s, '')         // 原始 markdown 文字 **A：**
-    .replace(/<strong>A[：:]\s*<\/strong>\s*/s, '')  // 正確渲染的 HTML <strong>A：</strong>
-    .replace(/^\s*A[：:]\s*/s, '')                   // 純文字 A：
-    .replace(/^\s*\n\s*/s, '')                       // 清理開頭換行
+    .replace(/^\s*\*\*A[：:]\*\*\s*/s, '')
+    .replace(/<strong>A[：:]\s*<\/strong>\s*/s, '')
+    .replace(/^\s*A[：:]\s*/s, '')
+    .replace(/^\s*\n\s*/s, '')
     .trim()
 
   return { question, answer }

@@ -7,7 +7,8 @@ interface RelatedPostsProps {
 }
 
 export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProps) {
-  // 改善相關文章算法：依照關聯度排序
+  // 改善相關文章算法：依照關聯度排序（使用 Set 做 O(1) 標籤查詢）
+  const currentTagSet = new Set(currentPost.tags)
   const scoredPosts = allPosts
     .filter((post) => !post.draft && post.slug !== currentPost.slug)
     .map((post) => {
@@ -15,10 +16,10 @@ export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProp
       // 同分類 +3
       if (post.category === currentPost.category) score += 3
       // 共同標籤每個 +2
-      const commonTags = post.tags.filter((tag) =>
-        currentPost.tags.includes(tag)
-      )
-      score += commonTags.length * 2
+      const commonTagCount = post.tags.filter((tag) =>
+        currentTagSet.has(tag)
+      ).length
+      score += commonTagCount * 2
       // 精選文章 +1
       if (post.featured) score += 1
       return { post, score }
