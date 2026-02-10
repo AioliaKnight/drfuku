@@ -230,6 +230,11 @@ h4:hover .heading-anchor {
   line-height: 1.5;
 }
 
+/* 文章本文 H1 由 PostHeader 顯示，隱藏 Markdown 產生的 H1 避免 SEO 雙 H1 */
+article .prose h1 {
+  display: none;
+}
+
 /* Blockquote - 只處理 prose.ts 無法覆蓋的部分 */
 .prose blockquote p:last-child {
   margin-bottom: 0;
@@ -247,6 +252,33 @@ h4:hover .heading-anchor {
 .prose ol > li::marker {
   color: var(--color-brand-600);
   font-weight: 600;
+}
+
+/* 無序列表 bullet 樣式 */
+.prose ul > li::marker {
+  color: var(--color-brand-400);
+}
+
+/* Code block（<pre>）捲軸樣式 */
+.prose pre {
+  border-radius: 0.75rem;
+}
+
+.prose pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
 }
 
 /* 參考資料區塊 - 最後一個 H2 */
@@ -344,6 +376,12 @@ h4:hover .heading-anchor {
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.04);
 }
 
+/* 含焦點的項目也高亮 */
+.faq-item:has(.faq-question:focus-visible) {
+  border-color: var(--color-brand-300);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
 /* 問題按鈕 */
 .faq-question {
   all: unset;
@@ -360,6 +398,14 @@ h4:hover .heading-anchor {
   line-height: 1.6;
   color: var(--color-neutral-800);
   transition: background-color 0.15s ease, color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 鍵盤焦點指示器（all: unset 移除了預設 focus ring） */
+.faq-question:focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: -2px;
+  border-radius: 0.75rem;
 }
 
 .faq-question:hover {
@@ -405,7 +451,7 @@ h4:hover .heading-anchor {
   color: var(--color-brand-600);
 }
 
-/* 答案區塊 */
+/* 答案區塊 — grid 0fr/1fr 動畫 */
 .faq-answer {
   display: grid;
   grid-template-rows: 0fr;
@@ -418,8 +464,10 @@ h4:hover .heading-anchor {
 
 .faq-answer-inner {
   overflow: hidden;
+  min-height: 0; /* 確保 grid 0fr 完全收合 */
 }
 
+/* 答案內容 — 含 opacity 過渡使展開更流暢 */
 .faq-answer-inner > p {
   padding: 0 1.25rem 1.25rem;
   margin: 0;
@@ -428,6 +476,14 @@ h4:hover .heading-anchor {
   color: var(--color-neutral-600);
   border-top: 1px solid var(--color-neutral-100);
   padding-top: 1rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease 0.1s, transform 0.25s ease 0.1s;
+}
+
+.faq-answer--open .faq-answer-inner > p {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .faq-answer-inner > p::before {

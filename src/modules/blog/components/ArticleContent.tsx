@@ -189,8 +189,12 @@ function enhanceFAQSection(root: HTMLDivElement, signal: AbortSignal) {
     answerDiv.setAttribute('role', 'region')
     answerDiv.setAttribute('aria-labelledby', questionId)
 
+    // 第一個 FAQ 預設展開，其餘收合
     if (index === 0) {
       answerDiv.classList.add('faq-answer--open')
+      answerDiv.setAttribute('aria-hidden', 'false')
+    } else {
+      answerDiv.setAttribute('aria-hidden', 'true')
     }
 
     const answerInner = document.createElement('div')
@@ -203,8 +207,10 @@ function enhanceFAQSection(root: HTMLDivElement, signal: AbortSignal) {
     // 使用 signal 註冊事件，確保 cleanup 時自動移除
     questionBtn.addEventListener('click', () => {
       const isOpen = questionBtn.getAttribute('aria-expanded') === 'true'
-      questionBtn.setAttribute('aria-expanded', String(!isOpen))
+      const willOpen = !isOpen
+      questionBtn.setAttribute('aria-expanded', String(willOpen))
       answerDiv.classList.toggle('faq-answer--open')
+      answerDiv.setAttribute('aria-hidden', String(!willOpen))
     }, { signal })
 
     card.appendChild(questionBtn)
