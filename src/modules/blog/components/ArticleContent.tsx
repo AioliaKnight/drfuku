@@ -1,14 +1,42 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import { SITE } from '@/config/constants'
 
 interface ArticleContentProps {
   content: string
 }
 
+/**
+ * 預處理 HTML 內容
+ *
+ * remark Markdown 處理器在處理 CJK（中日韓）文本時，
+ * 部分 **bold** 語法無法正確轉換為 <strong>，例如：
+ * - FAQ 區塊的 **A：** 前綴（位於 <br> 之後）
+ * - 全形括號包裹的粗體文字 **痔墊（Anal Cushions）**
+ * - 句首粗體緊接後續文字 **粗體句。**後續文字
+ *
+ * 此函式在渲染前修復這些殘留的原始 Markdown 語法。
+ */
+function preprocessContent(html: string): string {
+  // 將殘留的 **text** 轉換為 <strong>text</strong>
+  // 排除 <pre>/<code> 區塊內的內容（不應轉換程式碼中的 ** ）
+  return html.replace(
+    /(<pre[\s\S]*?<\/pre>)|(<code[\s\S]*?<\/code>)|\*\*([^*\n]+)\*\*/g,
+    (match, pre, code, boldText) => {
+      // 保留 <pre> 和 <code> 區塊原樣
+      if (pre || code) return match
+      // 轉換 **text** → <strong>text</strong>
+      return `<strong>${boldText}</strong>`
+    }
+  )
+}
+
 export default function ArticleContent({ content }: ArticleContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
+
+  // 預處理 HTML — 修復 remark 未正確轉換的 Markdown 粗體語法
+  const processedContent = useMemo(() => preprocessContent(content), [content])
 
   useEffect(() => {
     if (!contentRef.current) return
@@ -66,11 +94,20 @@ export default function ArticleContent({ content }: ArticleContentProps) {
       }
     })
 
-    // 3. 為 heading 添加 hover anchor link
+    // 3. 為 heading 添加 hover anchor link + emoji 偵測
+    const emojiRegex = /^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1FA00}-\u{1FAFF}]/u
     const headings = root.querySelectorAll('h2[id], h3[id], h4[id]')
     headings.forEach((heading) => {
       const id = heading.getAttribute('id')
       if (!id || heading.querySelector('.heading-anchor')) return
+
+      // 若 H3 標題以 emoji 開頭，添加 class 以抑制 CSS ::before 的 ▸ 裝飾
+      if (heading.tagName === 'H3') {
+        const text = (heading.textContent || '').trim()
+        if (emojiRegex.test(text)) {
+          heading.classList.add('has-emoji')
+        }
+      }
 
       const anchor = document.createElement('a')
       anchor.className = 'heading-anchor'
@@ -98,21 +135,53 @@ export default function ArticleContent({ content }: ArticleContentProps) {
       }
     })
 
-    // 5. FAQ Q&A 區塊增強
+    // 5. 標記延伸閱讀與參考資料區塊
+    enhanceEndSections(root)
+
+    // 6. FAQ Q&A 區塊增強
     enhanceFAQSection(root, signal)
 
     // Cleanup：移除所有透過 signal 註冊的 event listeners
     return () => {
       controller.abort()
     }
-  }, [content])
+  }, [processedContent])
 
   return (
     <div
       ref={contentRef}
-      dangerouslySetInnerHTML={{ __html: content }}
+      dangerouslySetInnerHTML={{ __html: processedContent }}
     />
   )
+}
+
+/**
+ * 標記延伸閱讀與參考資料區塊，增加語意化 class
+ */
+function enhanceEndSections(root: HTMLDivElement) {
+  const allH2 = root.querySelectorAll('h2')
+
+  for (const h2 of allH2) {
+    const text = h2.textContent || ''
+
+    // 延伸閱讀區塊
+    if (text.includes('延伸閱讀')) {
+      h2.classList.add('section-further-reading')
+      const nextEl = h2.nextElementSibling
+      if (nextEl && nextEl.tagName === 'UL') {
+        nextEl.classList.add('further-reading-list')
+      }
+    }
+
+    // 參考資料區塊
+    if (text.includes('參考資料')) {
+      h2.classList.add('section-references')
+      const nextEl = h2.nextElementSibling
+      if (nextEl && (nextEl.tagName === 'OL' || nextEl.tagName === 'UL')) {
+        nextEl.classList.add('references-list')
+      }
+    }
+  }
 }
 
 /**
@@ -132,6 +201,7 @@ function enhanceFAQSection(root: HTMLDivElement, signal: AbortSignal) {
 
   if (!faqHeading) return
 
+  // 收集 FAQ 區塊的所有 Q&A 段落（支援 Q&A 在同一段落或分開段落）
   const qaParagraphs: HTMLParagraphElement[] = []
   let sibling = faqHeading.nextElementSibling
 
@@ -223,32 +293,40 @@ function enhanceFAQSection(root: HTMLDivElement, signal: AbortSignal) {
 
 /**
  * 解析 Q&A 的 HTML 內容
+ *
+ * 處理兩種格式：
+ * 1. <strong>Q：question</strong><br><strong>A：</strong>answer（完全 HTML 格式）
+ * 2. <strong>Q：question</strong><br><strong>A：</strong>answer（preprocessContent 修正後）
  */
 function parseQA(html: string): { question: string; answer: string } {
   let question = ''
   let answer = ''
 
+  // 提取問題文字
   const qMatch = html.match(/<strong>Q[：:]\s*(.*?)<\/strong>/s)
   if (qMatch?.[1]) {
     question = qMatch[1].trim()
   }
 
+  // 以 <br> 分割 Q 和 A
   const brSplit = html.split(/<br\s*\/?>/)
   let answerHtml = ''
 
   if (brSplit.length > 1) {
     answerHtml = brSplit.slice(1).join('<br>')
   } else {
+    // 備援：若無 <br>，從第一個 </strong> 之後擷取
     const strongEnd = html.indexOf('</strong>')
     if (strongEnd > -1) {
       answerHtml = html.substring(strongEnd + '</strong>'.length)
     }
   }
 
+  // 清除 A 前綴（支援多種格式）
   answer = answerHtml
-    .replace(/^\s*\*\*A[：:]\*\*\s*/s, '')
-    .replace(/<strong>A[：:]\s*<\/strong>\s*/s, '')
-    .replace(/^\s*A[：:]\s*/s, '')
+    .replace(/^\s*\*\*A[：:]\*\*\s*/s, '')        // 原始 Markdown: **A：**
+    .replace(/<strong>A[：:]\s*<\/strong>\s*/s, '') // HTML: <strong>A：</strong>
+    .replace(/^\s*A[：:]\s*/s, '')                  // 純文字: A：
     .replace(/^\s*\n\s*/s, '')
     .trim()
 

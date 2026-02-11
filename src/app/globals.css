@@ -241,11 +241,16 @@ article .prose h1 {
 }
 
 /* H3 前綴裝飾 - pseudo-element 無法用 Tailwind utility 表達 */
+/* 若標題已有 emoji 開頭（.has-emoji），則不顯示 ▸ 避免雙重裝飾 */
 .prose h3::before {
   content: "▸";
   margin-right: 0.5rem;
   color: var(--color-brand-400);
   font-size: 0.9em;
+}
+
+.prose h3.has-emoji::before {
+  content: none;
 }
 
 /* 有序列表數字樣式 */
@@ -281,21 +286,83 @@ article .prose h1 {
   background: rgba(255, 255, 255, 0.35);
 }
 
-/* 參考資料區塊 - 最後一個 H2 */
-.prose h2:last-of-type + ol,
-.prose h2:last-of-type + ul {
-  font-size: 0.9em;
-  color: var(--color-neutral-600);
+/* =============================================
+   延伸閱讀區塊
+   ============================================= */
+
+.prose .section-further-reading {
+  font-size: 1.25rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid var(--color-brand-300);
+  padding-left: 1rem;
 }
 
-.prose h2:last-of-type + ol a,
-.prose h2:last-of-type + ul a {
-  word-break: break-all;
+.prose .further-reading-list {
+  background: var(--color-brand-50);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* 延伸閱讀連結列表 */
-.prose ul:last-of-type a {
+.prose .further-reading-list li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose .further-reading-list a {
   font-weight: 500;
+  color: var(--color-brand-600);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.prose .further-reading-list a:hover {
+  color: var(--color-brand-700);
+  border-bottom-color: var(--color-brand-400);
+}
+
+/* =============================================
+   參考資料區塊
+   ============================================= */
+
+.prose .section-references {
+  font-size: 1.1rem;
+  color: var(--color-neutral-500);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose .references-list {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--color-neutral-500);
+  padding-left: 1.5rem;
+}
+
+.prose .references-list li {
+  margin-top: 0.375rem;
+  margin-bottom: 0.375rem;
+  padding-left: 0.25rem;
+}
+
+.prose .references-list a {
+  color: var(--color-brand-500);
+  word-break: break-all;
+  font-weight: 400;
+  border-bottom: none;
+}
+
+.prose .references-list a:hover {
+  color: var(--color-brand-700);
+  text-decoration: underline;
+}
+
+.prose .references-list em {
+  font-style: italic;
+  color: var(--color-neutral-600);
 }
 
 /* 表格 hover 效果 */
@@ -350,6 +417,21 @@ article .prose h1 {
     padding: 0.625rem 0.75rem;
     white-space: nowrap;
   }
+}
+
+/* =============================================
+   文章末尾「專業提醒」區塊（最後一個 blockquote）
+   ============================================= */
+
+.prose > blockquote:last-child,
+.prose > blockquote:last-of-type {
+  background: linear-gradient(135deg, var(--color-brand-50) 0%, rgba(240, 249, 255, 0.3) 100%);
+  border-left-color: var(--color-brand-400);
+  border-left-width: 4px;
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.9375rem;
 }
 
 /* =============================================
