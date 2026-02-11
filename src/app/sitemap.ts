@@ -13,11 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '', priority: 1, changeFrequency: 'daily' },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/services', priority: 0.7, changeFrequency: 'monthly' },
-    { path: '/hemorrhoid-surgery', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/hemorrhoid-surgery', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/faq', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/consultation', priority: 0.6, changeFrequency: 'monthly' }
+    { path: '/faq', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/consultation', priority: 0.7, changeFrequency: 'monthly' }
   ]
 
   const routes = staticRoutes.map(({ path, priority, changeFrequency }) => ({
@@ -27,11 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }))
 
+  // 部落格文章：優先使用 updatedAt，SEO 優先級提升至 0.8
   const blogPosts = allPosts.filter(post => !post.draft).map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt).toISOString(),
+    url: post.seo?.canonical || `${siteUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt || post.publishedAt).toISOString(),
     changeFrequency: 'weekly' as const,
-    priority: 0.6,
+    priority: 0.8,
   }))
 
   return [...routes, ...blogPosts]

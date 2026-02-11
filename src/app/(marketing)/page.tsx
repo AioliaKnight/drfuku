@@ -9,13 +9,15 @@ import {
   CTASection,
   TestimonialsSection
 } from '@/modules/marketing'
-import { SITE, ASSETS } from '@/config/constants'
+import JsonLd from '@/shared/components/common/JsonLd'
+import { SITE, ASSETS, DOCTOR } from '@/config/constants'
+import { faqCategories } from '@/modules/marketing/data/faq'
 
 export const dynamic = 'force-static'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://drfuku.com'),
+  metadataBase: new URL(SITE.url),
   title: '阿福醫師-大腸直腸外科徐彥勳 | 台北台中大腸直腸外科・痔瘡治療',
   description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）專精痔瘡微創手術、肛門與大腸直腸疾病診療，在台北、台中提供專業診療服務。採用先進微創技術，免開刀、恢復快、術後不復發。重視隱私、專業保密。',
   keywords: [
@@ -49,6 +51,7 @@ export const metadata: Metadata = {
     '痔瘡保險給付',
     '痔瘡醫師諮詢'
   ].join(', '),
+  authors: [{ name: DOCTOR.alternateName, url: DOCTOR.url }],
   alternates: {
     canonical: SITE.url,
   },
@@ -94,8 +97,45 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+  // 首頁 BreadcrumbList（Google 建議首頁也有）
+  const breadcrumbItems = [
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
+  ]
+
+  // 首頁 FAQ 結構化資料（與首頁 FAQ 區塊對應）
+  const faqs = faqCategories.flatMap((category) =>
+    category.faqs.map((faq) => ({
+      '@type': 'Question' as const,
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer' as const,
+        name: faq.question,
+        text: faq.answer,
+      },
+    }))
+  )
+
   return (
     <main className="relative bg-white">
+      <JsonLd
+        type="BreadcrumbList"
+        data={{
+          '@type': 'BreadcrumbList',
+          name: '首頁',
+          itemListElement: breadcrumbItems,
+        }}
+      />
+      {faqs.length > 0 && (
+        <JsonLd
+          type="FAQPage"
+          data={{
+            '@type': 'FAQPage',
+            name: '痔瘡與肛門疾病常見問題',
+            mainEntity: faqs,
+          }}
+        />
+      )}
+
       {/* Hero Section */}
       <div className="relative bg-linear-to-b from-brand-100 via-brand-50 to-white">
         <Hero />

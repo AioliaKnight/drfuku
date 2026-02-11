@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
+import { posts as allPosts } from '@/velite'
 import { BlogPageContent } from '@/modules/blog'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 import JsonLd from '@/shared/components/common/JsonLd'
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     title: '醫療知識部落格 | 痔瘡治療與保健資訊',
     description: '探索痔瘡治療、術後照護及預防保健的最新資訊與專業見解。專業醫師分享實用的醫療知識，幫助您維護健康。',
     type: 'website',
+    locale: SITE.locale,
     images: [
       {
         url: new URL(ASSETS.ogImage, SITE.url).toString(),
@@ -56,6 +58,18 @@ export default function BlogPage() {
     { '@type': 'ListItem' as const, position: 2, name: '部落格', item: `${SITE.url}/blog` }
   ]
 
+  // ItemList 結構化資料：讓 Google 以 Carousel 呈現文章列表
+  const publishedPosts = allPosts
+    .filter(post => !post.draft)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+
+  const itemListElements = publishedPosts.map((post, index) => ({
+    '@type': 'ListItem' as const,
+    position: index + 1,
+    name: post.title,
+    url: `${SITE.url}/blog/${post.slug}`,
+  }))
+
   return (
     <>
       <JsonLd
@@ -66,6 +80,21 @@ export default function BlogPage() {
           itemListElement: breadcrumbItems
         }}
       />
+      {itemListElements.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              name: '醫療知識部落格',
+              description: '阿福醫師的專業醫療衛教文章',
+              numberOfItems: itemListElements.length,
+              itemListElement: itemListElements,
+            })
+          }}
+        />
+      )}
       <Suspense fallback={<div className="min-h-screen bg-linear-to-b from-gray-50 to-white" />}>
         <BlogPageContent />
       </Suspense>

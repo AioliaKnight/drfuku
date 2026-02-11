@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { posts as allPosts } from '@/velite'
 import JsonLd from '@/shared/components/common/JsonLd'
-import { SITE, DOCTOR, CLINIC, ASSETS } from '@/config/constants'
+import { SITE, DOCTOR, ASSETS } from '@/config/constants'
+import { articlePublisher, articleAuthor } from '@/config/structured-data'
 import {
   ArticleContent,
   BackToTop,
@@ -45,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = image || new URL(ASSETS.ogImage, SITE.url).toString()
   const publishedTime = new Date(post.publishedAt).toISOString()
   const modifiedTime = new Date(post.updatedAt || post.publishedAt).toISOString()
+  const canonical = post.seo?.canonical || `${SITE.url}/blog/${slug}`
 
   return {
     metadataBase: new URL(SITE.url),
@@ -56,6 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: fullTitle,
       description: summary,
       type: 'article',
+      locale: SITE.locale,
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
       publishedTime,
       modifiedTime,
@@ -70,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [ogImage],
     },
     alternates: {
-      canonical: `${SITE.url}/blog/${slug}`,
+      canonical,
     },
     robots: {
       index: true,
@@ -86,12 +89,63 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+/**
+ * 從 HTML 內容中擷取 FAQ 結構化資料
+ * 解析 **Q：question** / **A：**answer 格式
+ */
+function extractFAQs(html: string): Array<{ question: string; answer: string }> {
+  const faqs: Array<{ question: string; answer: string }> = []
+
+  // 找到 FAQ 區塊（以 "常見問題" 或 "FAQ" 為標題的 H2 之後）
+  const faqSectionMatch = html.match(/<h2[^>]*>.*?(?:常見問題|FAQ).*?<\/h2>([\s\S]*?)(?=<h2[^>]|$)/i)
+  if (!faqSectionMatch?.[1]) return faqs
+
+  const faqSection = faqSectionMatch[1]
+
+  // 解析每個 Q&A 段落
+  const paragraphs = faqSection.match(/<p>([\s\S]*?)<\/p>/g) || []
+
+  for (const p of paragraphs) {
+    const content = p.replace(/<\/?p>/g, '')
+
+    // 擷取問題：支援 <strong>Q：question</strong> 和 **Q：question**
+    const qMatch = content.match(/(?:<strong>)?Q[：:]\s*(.*?)(?:<\/strong>|\*\*)/s)
+    if (!qMatch?.[1]) continue
+
+    const question = qMatch[1].replace(/<[^>]*>/g, '').trim()
+
+    // 擷取答案：從 A： 之後的內容
+    const brSplit = content.split(/<br\s*\/?>/)
+    let answer = ''
+
+    if (brSplit.length > 1) {
+      answer = brSplit.slice(1).join(' ')
+    }
+
+    // 清除 A 前綴和 HTML 標籤
+    answer = answer
+      .replace(/<strong>A[：:]\s*<\/strong>/g, '')
+      .replace(/\*\*A[：:]\*\*/g, '')
+      .replace(/^\s*A[：:]\s*/s, '')
+      .replace(/<[^>]*>/g, '')
+      .trim()
+
+    if (question && answer) {
+      faqs.push({ question, answer })
+    }
+  }
+
+  return faqs
+}
+
 export default async function PostPage({ params }: Props) {
   const resolvedParams = await params
   const slug = resolvedParams.slug.join('/')
   const post = allPosts.find((post) => post.slug === slug && !post.draft)
 
   if (!post) notFound()
+
+  const canonicalUrl = post.seo?.canonical || `${SITE.url}/blog/${post.slug}`
 
   const articleSchema = {
     '@type': 'Article' as const,
@@ -105,24 +159,20 @@ export default async function PostPage({ params }: Props) {
     dateModified: post.updatedAt || post.publishedAt,
     articleSection: post.category,
     articleTag: post.tags,
-    url: `${SITE.url}/blog/${post.slug}`,
-    inLanguage: SITE.locale,
+    url: canonicalUrl,
+    inLanguage: 'zh-TW',
     wordCount: post.wordCount,
-    author: {
-      '@type': 'Person' as const,
-      name: DOCTOR.name,
-      jobTitle: DOCTOR.title,
-      image: DOCTOR.image,
-      url: DOCTOR.url,
+    author: articleAuthor,
+    publisher: articlePublisher,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
     },
-    publisher: {
-      '@type': 'MedicalClinic' as const,
-      name: CLINIC.name,
-      logo: CLINIC.logo,
-      telephone: CLINIC.telephone,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE.name,
       url: SITE.url,
     },
-    mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
   }
 
   const breadcrumbItems = [
@@ -132,9 +182,12 @@ export default async function PostPage({ params }: Props) {
       '@type': 'ListItem' as const,
       position: 3,
       name: post.title,
-      item: `${SITE.url}/blog/${post.slug}`,
+      item: canonicalUrl,
     },
   ]
+
+  // 從文章 HTML 擷取 FAQ 結構化資料
+  const faqs = extractFAQs(post.body)
 
   return (
     <>
@@ -147,6 +200,24 @@ export default async function PostPage({ params }: Props) {
         }}
       />
       <JsonLd type="Article" data={articleSchema} />
+      {faqs.length > 0 && (
+        <JsonLd
+          type="FAQPage"
+          data={{
+            '@type': 'FAQPage',
+            name: `${post.title} - 常見問題`,
+            mainEntity: faqs.map((faq) => ({
+              '@type': 'Question' as const,
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer' as const,
+                name: faq.question,
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
 
       {/* 閱讀進度指示器 */}
       <ScrollProgress />

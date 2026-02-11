@@ -3,11 +3,13 @@ export type JsonLdType =
   | 'WebSite'
   | 'MedicalClinic'
   | 'Person'
+  | 'Physician'
   | 'MedicalWebPage'
   | 'Organization'
   | 'BreadcrumbList'
   | 'FAQPage'
   | 'Article'
+  | 'ItemList'
 
 // Schema.org 通用類型
 export type Thing = {
@@ -60,34 +62,86 @@ export type MedicalCondition = Thing & {
 export type WebSite = Thing & {
   '@type': 'WebSite'
   potentialAction?: SearchAction
+  inLanguage?: string
+  publisher?: {
+    '@type': string
+    name: string
+    url: string
+  }
+}
+
+// 圖片物件類型（Google 要求 publisher.logo 使用）
+export type ImageObject = {
+  '@type': 'ImageObject'
+  url: string
+  width?: number
+  height?: number
+}
+
+// 聯絡點類型
+export type ContactPoint = {
+  '@type': 'ContactPoint'
+  telephone: string
+  contactType: string
+  availableLanguage?: string[]
+}
+
+// 地理座標類型
+export type GeoCoordinates = {
+  '@type': 'GeoCoordinates'
+  latitude: number
+  longitude: number
 }
 
 // 醫療診所類型
 export type MedicalClinic = Thing & {
   '@type': 'MedicalClinic'
   alternateName?: readonly string[]
-  logo?: string
+  logo?: string | ImageObject
   telephone?: string
   address?: PostalAddress
+  geo?: GeoCoordinates
   areaServed?: City[]
   availableService?: MedicalProcedure[]
+  medicalSpecialty?: string
+  priceRange?: string
+  currenciesAccepted?: string
+  paymentAccepted?: string
+  isAcceptingNewPatients?: boolean
+  contactPoint?: ContactPoint
 }
 
 // 人物類型
 export type Person = Thing & {
-  '@type': 'Person'
+  '@type': 'Person' | 'Physician'
   givenName?: string
   familyName?: string
   alternateName?: string
   jobTitle?: string
   image?: string
   sameAs?: readonly string[]
+  medicalSpecialty?: string
+  hasCredential?: Array<{
+    '@type': 'EducationalOccupationalCredential'
+    credentialCategory: string
+    name: string
+  }>
+  worksFor?: {
+    '@type': string
+    name: string
+    url: string
+  }
 }
 
 // 醫療網頁類型
 export type MedicalWebPage = Thing & {
   '@type': 'MedicalWebPage'
   about?: MedicalCondition
+  lastReviewed?: string
+  medicalAudience?: {
+    '@type': 'MedicalAudience'
+    audienceType: string
+  }
 }
 
 export type ListItem = Thing & {
@@ -103,9 +157,10 @@ export type BreadcrumbList = Thing & {
 
 export type Organization = Thing & {
   '@type': 'Organization'
-  logo?: string
+  logo?: string | ImageObject
   telephone?: string
   address?: PostalAddress
+  contactPoint?: ContactPoint
 }
 
 // FAQPage 類型
@@ -136,9 +191,22 @@ export type Article = Thing & {
   articleTag?: string[]
   inLanguage?: string
   wordCount?: number
-  author?: Person
-  publisher?: MedicalClinic
-  mainEntityOfPage?: string
+  author?: Person | { '@type': string; name: string; jobTitle?: string; image?: string; url?: string; medicalSpecialty?: string }
+  publisher?: MedicalClinic | { '@type': string; name: string; logo?: ImageObject; telephone?: string; url?: string }
+  mainEntityOfPage?: string | { '@type': string; '@id': string }
+  isPartOf?: { '@type': string; name: string; url: string }
+}
+
+// ItemList 類型
+export type ItemList = Thing & {
+  '@type': 'ItemList'
+  numberOfItems?: number
+  itemListElement: Array<{
+    '@type': 'ListItem'
+    position: number
+    name: string
+    url: string
+  }>
 }
 
 // 結構化數據類型映射
@@ -146,11 +214,13 @@ export type StructuredDataTypeMap = {
   WebSite: WebSite
   MedicalClinic: MedicalClinic
   Person: Person
+  Physician: Person
   MedicalWebPage: MedicalWebPage
   Organization: Organization
   BreadcrumbList: BreadcrumbList
   FAQPage: FAQPage
   Article: Article
+  ItemList: ItemList
 }
 
 // 結構化數據類型

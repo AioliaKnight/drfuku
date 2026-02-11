@@ -13,7 +13,13 @@ export default {
     '/robots.txt',
     '/sitemap*.xml',
     '/icon.png',
-    '/*.webmanifest'
+    '/*.webmanifest',
+    '/apple-icon',
+    '/apple-icon/*',
+    '/opengraph-image',
+    '/opengraph-image/*',
+    '/twitter-image',
+    '/twitter-image/*',
   ],
   robotsTxtOptions: {
     policies: [
