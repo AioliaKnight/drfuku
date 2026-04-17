@@ -9,6 +9,7 @@ import { FaLine, FaFacebook, FaInstagram } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollAnimation } from '@/shared/hooks/useAnimation'
 import { trackEvent } from '@/shared/lib/analytics'
+import { CLINIC } from '@/config/constants'
 
 // 導航連結組件
 const NavLink = memo(function NavLink({
@@ -123,7 +124,7 @@ export default function Header() {
   const socialLinks = [
     {
       name: 'LINE諮詢',
-      href: 'https://line.me/ti/p/~@736usrpi',
+      href: CLINIC.lineUrl,
       icon: FaLine,
       bgClass: 'bg-[#06C755] hover:bg-[#05b34c]'
     },

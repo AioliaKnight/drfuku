@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import { useScrollAnimation } from '@/shared/hooks/useAnimation'
 import { getTransition } from '@/shared/animation'
 import { useEventTracking } from '@/shared/hooks/useEventTracking'
+import { CLINIC } from '@/config/constants'
 
 // 將靜態數據移到組件外部
 const socialLinks = [
@@ -200,7 +201,7 @@ export default function Footer() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link
-                      href="https://line.me/ti/p/~@772pable"
+                      href={CLINIC.lineUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="透過LINE諮詢預約"

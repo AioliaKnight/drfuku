@@ -14,6 +14,7 @@ import { cn } from '@/shared/lib/cn'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { features, locations } from '../data/hero'
+import { CLINIC } from '@/config/constants'
 
 // 動畫變體
 const animationVariants = {
@@ -186,7 +187,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-linear-to-r from-brand-700 to-brand-600 opacity-0 transition-all group-hover:opacity-100" />
             </Link>
             <Link
-              href="https://line.me/ti/p/~@772pable"
+              href={CLINIC.lineUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-medium text-brand-600 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 active:translate-y-0.5 md:text-lg"
