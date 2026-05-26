@@ -1,42 +1,31 @@
 'use client'
 
-import { useRef, memo, useMemo, useCallback } from 'react'
+import { useRef, memo, useCallback } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   HiChevronRight,
   HiOutlineArrowTopRightOnSquare,
   HiOutlineMapPin,
-  HiOutlineChatBubbleOvalLeft
+  HiOutlineChatBubbleOvalLeft,
+  HiOutlinePhone
 } from 'react-icons/hi2'
-import { baseTransition, getTransition } from '@/shared/animation'
+import { 
+  getTransition, 
+  springBounceAnimation, 
+  springScaleInAnimation, 
+  springSlideInUpAnimation, 
+  staggerContainer 
+} from '@/shared/animation'
 import { buttonVariants } from '@/shared/ui/primitives'
 import { cn } from '@/shared/lib/cn'
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { DOCTOR_COPY, toTelHref } from '@/config/site-content'
-import { CLINIC } from '@/config/constants'
+import { CLINIC, ASSETS } from '@/config/constants'
 import { sectionTones } from '@/shared/ui/layout/section-tones'
 import { features, locations } from '../data/hero'
-
-// 動畫變體
-const animationVariants = {
-  bounce: {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200, damping: 25 } }
-  },
-  scaleIn: {
-    hidden: { scale: 0.95, opacity: 0 },
-    visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 25 } }
-  },
-  slideInUp: {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 25 } }
-  },
-  stagger: {
-    visible: { transition: { staggerChildren: 0.08 } }
-  }
-} as const
 
 // 常量樣式定義
 const STYLES = {
@@ -50,10 +39,8 @@ const STYLES = {
 const Feature = memo(function Feature({ icon, text }: typeof features[number]) {
   return (
     <motion.div
-      variants={animationVariants.bounce}
-      className="flex items-center gap-3 bg-white/50 backdrop-blur-xs px-4 py-2.5 rounded-2xl ring-1 ring-neutral-200/50 shadow-xs"
-      whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
-      whileTap={{ scale: 0.98 }}
+      variants={springBounceAnimation}
+      className="flex items-center gap-3 bg-white/60 backdrop-blur-xs px-4 py-2.5 rounded-2xl ring-1 ring-neutral-200/50 shadow-xs transition-colors hover:bg-white/80"
     >
       <div className={STYLES.featureIcon}>
         {icon}
@@ -128,7 +115,7 @@ const Location = memo(function Location({
     return (
       <motion.div
         className={cardClassName}
-        variants={animationVariants.bounce}
+        variants={springBounceAnimation}
         whileHover={{ y: -3 }}
         whileTap={{ scale: 0.99 }}
         role="group"
@@ -145,7 +132,7 @@ const Location = memo(function Location({
       target="_blank"
       rel="noopener noreferrer"
       className={cardClassName}
-      variants={animationVariants.bounce}
+      variants={springBounceAnimation}
       whileHover={{ y: -3 }}
       whileTap={{ scale: 0.99 }}
     >
@@ -154,25 +141,14 @@ const Location = memo(function Location({
   )
 })
 
-function HiOutlinePhone(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-    </svg>
-  )
-}
-
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
-  const { scrollY } = useScroll()
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
-  const backgroundStyle = useMemo(() => ({ opacity }), [opacity])
 
   const handleServicesClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
     const element = document.querySelector('#services')
     if (element) {
-      const headerHeight = 64 // h-16
+      const headerHeight = 64
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight
 
@@ -188,106 +164,143 @@ export default function Hero() {
       ref={containerRef}
       aria-label="首頁主視覺"
       padding="none"
-      className={`min-h-[calc(100dvh-4rem)] overflow-hidden ${sectionTones.hero}`}
+      className={`relative min-h-[calc(100dvh-4rem)] overflow-hidden ${sectionTones.hero}`}
     >
-      {/* 動態背景 */}
-      <motion.div
-        style={backgroundStyle}
-        className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-50/50 via-white to-brand-100/30"
-      />
+      {/* 裝飾背景元件 */}
+      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="absolute -top-[10%] -left-[5%] h-[60%] w-[60%] rounded-full bg-brand-50/40 blur-3xl" />
+        <div className="absolute top-[20%] -right-[10%] h-[70%] w-[70%] rounded-full bg-brand-100/30 blur-3xl" />
+      </div>
 
-      <Container id="main-content" className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-12 md:py-24">
-        <div className="surface-card mx-auto w-full max-w-5xl space-y-8 p-6 text-center shadow-xl ring-1 ring-neutral-200/50 backdrop-blur-md md:space-y-10 md:p-16">
-          {/* 主標題區塊 */}
-          <div className="relative">
+      <Container id="main-content" className="relative z-10">
+        <div className="flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-between gap-12 pt-12 pb-20 md:flex-row md:pt-0 md:pb-0">
+          
+          {/* 左側：文字內容 */}
+          <div className="flex w-full flex-col items-center text-center md:w-3/5 md:items-start md:text-left">
             <motion.div
-              variants={animationVariants.slideInUp}
+              variants={springSlideInUpAnimation}
               initial="hidden"
               animate="visible"
-              transition={{ ...baseTransition, duration: 0.6 }}
-              className="relative"
+              className="space-y-6 md:space-y-8"
             >
-              <span className="mb-6 inline-block rounded-full bg-brand-600/10 px-4 py-1.5 text-xs font-bold tracking-widest text-brand-700 uppercase ring-1 ring-brand-600/20 md:text-sm">
-                Colorectal Specialist
-              </span>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 [text-wrap:balance] sm:text-5xl md:text-6xl lg:text-7xl">
-                {DOCTOR_COPY.heroTitle}
-                <br className="hidden sm:inline" />
-                <span className="relative inline-block mt-2 sm:mt-0">
-                  <span className="relative z-10 bg-linear-to-r from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent">
+              <div>
+                <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-600/10 px-4 py-1.5 text-xs font-bold tracking-widest text-brand-700 uppercase ring-1 ring-brand-600/20 md:text-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-brand-600 animate-pulse" />
+                  Colorectal Surgery Specialist
+                </span>
+                <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 sm:text-6xl lg:text-7xl xl:text-8xl">
+                  {DOCTOR_COPY.heroTitle}
+                  <br />
+                  <span className="bg-linear-to-r from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent">
                     {DOCTOR_COPY.heroHighlight}
                   </span>
-                  <motion.span
-                    variants={animationVariants.scaleIn}
-                    initial="hidden"
-                    animate="visible"
-                    transition={getTransition(0.3)}
-                    className="absolute -inset-x-2 -inset-y-1 -z-10 block rounded-xl bg-brand-50 sm:-inset-x-4"
-                  />
-                </span>
-                <br className="hidden sm:inline" />
-                <span className="block mt-2 sm:inline sm:mt-0">{DOCTOR_COPY.heroSubtitle}</span>
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:mt-8 md:text-xl md:leading-8">
-                大腸直腸外科專科醫師徐彥勳（阿福醫師）提供
-                <span className="font-bold text-neutral-900"> LHP 雷射痔瘡消融</span>與 
-                <span className="font-bold text-neutral-900"> LigaSure 微創手術</span>。
-                致力於極致止痛與快速恢復，助您找回自在生活。
+                </h1>
+                <h2 className="mt-4 text-xl font-bold text-neutral-800 sm:text-2xl lg:text-3xl">
+                  {DOCTOR_COPY.heroSubtitle}
+                </h2>
+              </div>
+
+              <p className="max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg lg:text-xl lg:leading-9">
+                大腸直腸外科專科醫師徐彥勳（阿福醫師）運用 2025 先進微創技術，提供
+                <span className="mx-1 font-bold text-neutral-900 underline decoration-brand-200 underline-offset-4">LHP 雷射</span>與 
+                <span className="mx-1 font-bold text-neutral-900 underline decoration-brand-200 underline-offset-4">LigaSure</span>
+                精準治療。致力於低疼痛管理與快速恢復，助您重拾舒適生活。
               </p>
+
+              {/* 特色列表 */}
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-wrap justify-center gap-3 md:justify-start lg:gap-4"
+              >
+                {features.map((feature, index) => (
+                  <Feature key={index} {...feature} />
+                ))}
+              </motion.div>
+
+              {/* 行動按鈕 */}
+              <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row md:justify-start">
+                <Link
+                  href="#services"
+                  className={cn(
+                    buttonVariants({ variant: 'primaryGradient', size: 'lg' }),
+                    'group w-full sm:w-auto min-w-[180px] gap-2 rounded-2xl shadow-xl shadow-brand-600/20 hover:-translate-y-1 active:scale-[0.98]'
+                  )}
+                  onClick={handleServicesClick}
+                >
+                  <span className="font-bold">了解診療服務</span>
+                  <HiChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href={CLINIC.lineUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex w-full sm:w-auto min-w-[180px] items-center justify-center gap-2.5 rounded-2xl bg-white px-8 py-4 text-base font-bold text-[#06C755] shadow-lg ring-1 ring-neutral-200 transition-all hover:-translate-y-1 hover:ring-[#06C755]/30 active:scale-[0.98]"
+                >
+                  <HiOutlineChatBubbleOvalLeft className="h-6 w-6" />
+                  <span>立即 LINE 諮詢</span>
+                </Link>
+              </div>
             </motion.div>
           </div>
 
-          {/* 特色列表 */}
-          <motion.div
-            variants={animationVariants.stagger}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-wrap justify-center gap-3 md:gap-6"
-          >
-            {features.map((feature, index) => (
-              <Feature key={index} {...feature} />
-            ))}
-          </motion.div>
+          {/* 右側：醫師形象照 */}
+          <div className="relative w-full md:w-2/5 lg:w-[450px]">
+            <motion.div
+              variants={springScaleInAnimation}
+              initial="hidden"
+              animate="visible"
+              className="relative aspect-[4/5] w-full md:aspect-[3/4]"
+            >
+              {/* 背景裝飾形狀 */}
+              <div className="absolute inset-0 -z-10 transform-gpu overflow-hidden">
+                <div className="absolute -bottom-10 left-1/2 h-[120%] w-[120%] -translate-x-1/2 rounded-[3rem] bg-linear-to-br from-brand-600 to-brand-400 rotate-6 opacity-10 blur-xl" />
+                <div className="absolute -bottom-6 left-1/2 h-[110%] w-[110%] -translate-x-1/2 rounded-[2.5rem] bg-brand-50 rotate-3 ring-1 ring-brand-100/50" />
+              </div>
+              
+              <div className="relative h-full w-full overflow-hidden rounded-[2rem] shadow-2xl">
+                <Image
+                  src={ASSETS.doctorPhoto}
+                  alt={`${DOCTOR_COPY.displayName} - 大腸直腸外科專科醫師`}
+                  fill
+                  priority
+                  className="object-cover object-center transition-transform duration-500 hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 450px"
+                />
+                {/* 漸層遮罩 */}
+                <div className="absolute inset-0 bg-linear-to-t from-neutral-900/20 via-transparent to-transparent" />
+              </div>
 
-          {/* 行動按鈕 */}
-          <motion.div
-            variants={animationVariants.slideInUp}
-            initial="hidden"
-            animate="visible"
-            transition={getTransition(0.8)}
-            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
-            <Link
-              href="#services"
-              className={cn(
-                buttonVariants({ variant: 'primaryGradient', size: 'lg' }),
-                'group w-full sm:w-auto gap-2 overflow-hidden rounded-2xl shadow-lg shadow-brand-600/20 hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.98] transition-all'
-              )}
-              onClick={handleServicesClick}
-            >
-              <span className="relative z-10 font-bold">了解診療服務</span>
-              <HiChevronRight className="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href={CLINIC.lineUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-2xl bg-white px-8 py-4 text-base font-bold text-[#06C755] shadow-sm ring-1 ring-neutral-200 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-[#06C755]/30 active:scale-[0.98]"
-            >
-              <HiOutlineChatBubbleOvalLeft className="h-6 w-6" />
-              <span>立即 LINE 諮詢</span>
-            </Link>
-          </motion.div>
+              {/* 漂浮卡片：經驗值 */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={getTransition(1.2)}
+                className="absolute -right-4 top-[20%] hidden rounded-2xl bg-white/90 p-4 shadow-xl ring-1 ring-neutral-100 backdrop-blur-md lg:block"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                    <span className="text-lg font-bold">10+</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Experience</p>
+                    <p className="text-sm font-bold text-neutral-900">十年以上臨床經驗</p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* 診所位置 */}
+        {/* 底部：門診據點導覽 */}
         <motion.div
-          variants={animationVariants.slideInUp}
+          variants={springSlideInUpAnimation}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={getTransition(1.2)}
-          className="mt-12 md:mt-20"
+          transition={getTransition(1.4)}
+          className="mt-12 md:mt-20 lg:mt-32"
         >
           <div className="mx-auto max-w-4xl">
             <div className="mb-6 flex items-center justify-between px-2">
@@ -295,9 +308,9 @@ export default function Hero() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
                   <HiOutlineMapPin className="h-5 w-5" />
                 </div>
-                <h2 className="text-xl font-bold tracking-tight">門診據點</h2>
+                <h2 className="text-xl font-bold tracking-tight">全台多點服務據點</h2>
               </div>
-              <span className="text-xs font-medium text-neutral-400">目前提供北中兩地服務</span>
+              <span className="text-xs font-medium text-neutral-400">台北 · 台中 · 南投 · 草屯</span>
             </div>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               {locations.map((location, index) => (

@@ -57,13 +57,43 @@ export const expandAnimation = {
   }
 } as const
 
-export const staggerAnimation: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
+export const springTransition = {
+  type: 'spring' as const,
+  stiffness: 200,
+  damping: 25
+}
+
+export const springBounceAnimation: Variants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: springTransition 
+  }
+}
+
+export const springScaleInAnimation: Variants = {
+  hidden: { scale: 0.95, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1, 
+    transition: springTransition 
+  }
+}
+
+export const springSlideInUpAnimation: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1, 
+    transition: springTransition 
+  }
+}
+
+export const staggerContainer: Variants = {
+  visible: { 
     transition: { 
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
+      staggerChildren: 0.08 
+    } 
   }
 }

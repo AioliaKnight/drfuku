@@ -33,7 +33,7 @@ export default function AboutPage() {
       />
       <PageHeader
         title="專業大腸直腸外科診療"
-        description="中西醫雙專業背景，結合微創手術技術，致力於提供每一位患者高品質、高隱私且極致止痛的溫暖照護。"
+        description="中西醫雙專業背景，結合微創手術技術，致力於提供每一位患者高品質、高隱私且低疼痛管理的溫暖照護。"
         badge="About Physician"
         tone="warm"
       />

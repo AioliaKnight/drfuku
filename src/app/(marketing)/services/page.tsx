@@ -59,7 +59,7 @@ export default function ServicesPage() {
       />
       <PageHeader
         title="全方位大腸直腸健康方案"
-        description="從極致止痛的痔瘡微創手術到精準的大腸鏡檢查，我們結合尖端技術與人性化照護，為您的腸道健康保駕護航。"
+        description="從低疼痛的痔瘡微創手術到精準的大腸鏡檢查，我們結合尖端技術與人性化照護，為您的腸道健康保駕護航。"
         badge="Our Services"
         tone="brand"
       />

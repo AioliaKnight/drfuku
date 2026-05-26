@@ -10,7 +10,7 @@ import SectionBackdrop from '@/shared/ui/layout/SectionBackdrop'
 import SectionHeader from '@/shared/ui/layout/SectionHeader'
 import { sectionTones } from '@/shared/ui/layout/section-tones'
 import { faqCategories } from '../data/faq'
-import { fadeInUpAnimation, expandAnimation, staggerAnimation } from '@/shared/animation'
+import { fadeInUpAnimation, expandAnimation, staggerContainer } from '@/shared/animation'
 
 // FAQ項目組件
 const FAQItem = memo(({ faq, isOpen, onToggle }: {
@@ -128,7 +128,7 @@ export default function FAQSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerAnimation}
+            variants={staggerContainer}
             className="mx-auto mt-16 max-w-5xl"
           >
             <div className="space-y-16">
