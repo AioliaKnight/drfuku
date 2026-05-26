@@ -239,14 +239,15 @@ export default function Header() {
         transition={{ ...transitions.default, duration: 0.4 }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out",
+          "h-[var(--header-height)] md:h-[var(--header-height-md)]",
           (isScrolled || pathname !== '/' || isMenuOpen)
             ? 'border-b border-neutral-200/50 bg-white/95 shadow-sm backdrop-blur-md'
             : 'bg-transparent'
         )}
         role="banner"
       >
-        <nav className="container-app" role="navigation" aria-label="主導航">
-          <div className="flex h-16 items-center justify-between md:h-20">
+        <nav className="container-app h-full" role="navigation" aria-label="主導航">
+          <div className="flex h-full items-center justify-between">
             <Link
               href="/"
               className="group flex items-center gap-2.5 transition-all hover:opacity-90 focus:outline-hidden focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-xl p-1"

@@ -16,6 +16,19 @@
   --color-brand-900: #0c4a6e;
   --color-brand-950: #082f49;
 
+  /* 新增：溫暖輔助色 - 琥珀色（Trust & Warmth） */
+  --color-warm-50: #fff9ed;
+  --color-warm-100: #ffefd1;
+  --color-warm-200: #ffdaa3;
+  --color-warm-500: #f59e0b;
+  --color-warm-600: #d97706;
+  
+  /* 新增：溫暖輔助色 - 柔和紅/粉（Care & Empathy） */
+  --color-care-50: #fff1f2;
+  --color-care-100: #ffe4e6;
+  --color-care-500: #f43f5e;
+  --color-care-600: #e11d48;
+
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
   --color-neutral-200: #e5e5e5;
@@ -38,35 +51,17 @@
     --font-noto-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     --font-noto-serif: 'Noto Serif TC', 'Times New Roman', serif;
 
-    /* 佈局 */
-    --container-padding: max(1rem, calc((100% - 1280px) / 2));
-    --header-height: 4rem;
-    --header-height-md: 5rem;
-    --footer-height: 12rem;
+    /* 佈局 - 修正抖動：確保 header 高度穩定 */
+    --header-height: 64px;
+    --header-height-md: 80px;
+    --container-max-width: 1280px;
 
     /* 間距 */
     --section-spacing: 6rem;
     --section-spacing-sm: 4rem;
-    --content-spacing: 2rem;
 
-    /* 圓角 */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-
-    /* 陰影 */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-    /* 動畫 */
-    --transition-fast: 150ms;
-    --transition-normal: 250ms;
-    --transition-slow: 350ms;
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    /* 動畫優化 */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   html {
@@ -74,8 +69,6 @@
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "liga" 1, "palt" 1, "kern" 1;
     scroll-padding-top: var(--header-height);
   }
 
@@ -86,536 +79,87 @@
   }
 
   body {
-    @apply text-neutral-700 antialiased bg-neutral-50;
+    @apply text-neutral-800 antialiased bg-white;
     font-family: var(--font-noto-sans);
-    letter-spacing: 0.015em;
-    line-height: 1.8;
+    letter-spacing: 0.01em;
+    line-height: 1.75;
+    /* 解決滾動條導致的抖動 */
+    overflow-y: scroll;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-noto-serif);
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     color: var(--color-neutral-900);
+    /* 強化標題斷行穩定性 */
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
-  h1 {
-    line-height: 1.15;
-  }
-
-  h2 {
-    line-height: 1.2;
-  }
-
-  /* 滾動條樣式 */
-  ::-webkit-scrollbar {
-    @apply w-2;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-neutral-100;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-neutral-300 rounded-full hover:bg-neutral-400 transition-colors;
-  }
-
-  /* 選取文字樣式 */
-  ::selection {
-    @apply bg-brand-100 text-brand-900;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  /* 平滑所有過渡效果 */
+  * {
+    @apply transition-colors duration-200;
   }
 }
 
 /* 通用工具類 */
 @layer utilities {
-  /* 與 Container 對齊的全站寬度 */
   .container-app {
-    @apply mx-auto w-full max-w-7xl px-6 md:px-8;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* 卡片表面（全站統一） */
+  /* 更有溫度的卡片設計 */
   .surface-card {
-    @apply rounded-2xl bg-white/90 shadow-sm ring-1 ring-neutral-200/60 backdrop-blur-sm;
+    @apply rounded-3xl bg-white shadow-sm ring-1 ring-neutral-200/50 transition-all duration-300;
+  }
+
+  .surface-card-warm {
+    @apply rounded-3xl bg-warm-50/50 shadow-sm ring-1 ring-warm-100/50 transition-all duration-300;
   }
 
   .surface-card-interactive {
-    @apply rounded-2xl bg-white/90 shadow-sm ring-1 ring-neutral-200/60 backdrop-blur-sm transition-all duration-200 ease-out;
+    @apply rounded-3xl bg-white shadow-sm ring-1 ring-neutral-200/50 transition-all duration-500 ease-[var(--ease-out-expo)];
   }
 
   .surface-card-interactive:hover {
-    @apply -translate-y-0.5 shadow-md ring-brand-100/50;
+    @apply -translate-y-1.5 shadow-xl shadow-brand-900/5 ring-brand-100;
   }
 
-  .container-padding {
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
+  /* 漸層背景 - 增加輔色讓色彩更豐富 */
+  .bg-warm-gradient {
+    background: linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-warm-50) 100%);
   }
 
-  .section-spacing {
-    margin-top: var(--section-spacing-sm);
-    margin-bottom: var(--section-spacing-sm);
-  }
-
-  @media (min-width: 768px) {
-    .section-spacing {
-      margin-top: var(--section-spacing);
-      margin-bottom: var(--section-spacing);
-    }
-  }
-
-  .content-spacing {
-    margin-top: var(--content-spacing);
-    margin-bottom: var(--content-spacing);
+  .bg-care-gradient {
+    background: linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-care-50) 100%);
   }
 }
 
-/* =============================================
-   Blog 文章內文增強樣式
-   ============================================= */
-
-/* Table Wrapper Styles */
-.table-wrapper {
-  overflow-x: auto;
-  margin: 2rem 0;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-neutral-200);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.06);
-  background: white;
+/* 文章內文優化 */
+.prose {
+    --tw-prose-body: var(--color-neutral-700);
+    --tw-prose-headings: var(--color-neutral-900);
+    --tw-prose-links: var(--color-brand-600);
+    --tw-prose-bold: var(--color-neutral-900);
+    max-width: 75ch;
 }
 
-.table-wrapper table {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.table-wrapper::-webkit-scrollbar {
-  height: 8px;
-}
-
-.table-wrapper::-webkit-scrollbar-track {
-  background: var(--color-neutral-50);
-  border-radius: 4px;
-}
-
-.table-wrapper::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-300);
-  border-radius: 4px;
-}
-
-.table-wrapper::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-400);
-}
-
-/* Heading Anchor Links */
-.heading-anchor {
-  opacity: 0;
-  margin-left: 0.5rem;
-  color: var(--color-brand-300);
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 0.85em;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-h2:hover .heading-anchor,
-h3:hover .heading-anchor,
-h4:hover .heading-anchor {
-  opacity: 1;
-}
-
-.heading-anchor:hover {
-  color: var(--color-brand-600);
-}
-
-/* Image Figure & Caption */
-.image-figure {
-  margin: 2rem 0;
-  text-align: center;
-}
-
-.image-figure img {
-  margin: 0 auto;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.image-caption {
-  margin-top: 0.75rem;
-  font-size: 0.875rem;
-  color: var(--color-neutral-500);
-  font-style: italic;
-  line-height: 1.5;
-}
-
-/* 文章本文 H1 由 PostHeader 顯示，隱藏 Markdown 產生的 H1 避免 SEO 雙 H1 */
-article .prose h1 {
-  display: none;
-}
-
-/* Blockquote - 只處理 prose.ts 無法覆蓋的部分 */
-.prose blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-/* H3 前綴裝飾 - pseudo-element 無法用 Tailwind utility 表達 */
-/* 若標題已有 emoji 開頭（.has-emoji），則不顯示 ▸ 避免雙重裝飾 */
-.prose h3::before {
-  content: "▸";
-  margin-right: 0.5rem;
-  color: var(--color-brand-400);
-  font-size: 0.9em;
-}
-
-.prose h3.has-emoji::before {
-  content: none;
-}
-
-/* 有序列表數字樣式 */
-.prose ol > li::marker {
-  color: var(--color-brand-600);
-  font-weight: 600;
-}
-
-/* 無序列表 bullet 樣式 */
-.prose ul > li::marker {
-  color: var(--color-brand-400);
-}
-
-/* Code block（<pre>）捲軸樣式 */
-.prose pre {
-  border-radius: 0.75rem;
-}
-
-.prose pre::-webkit-scrollbar {
-  height: 6px;
-}
-
-.prose pre::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.prose pre::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
-}
-
-.prose pre::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-/* =============================================
-   延伸閱讀區塊
-   ============================================= */
-
-.prose .section-further-reading {
-  font-size: 1.25rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-left: 4px solid var(--color-brand-300);
-  padding-left: 1rem;
-}
-
-.prose .further-reading-list {
-  background: var(--color-brand-50);
-  border-radius: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.prose .further-reading-list li {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.prose .further-reading-list a {
-  font-weight: 500;
-  color: var(--color-brand-600);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.prose .further-reading-list a:hover {
-  color: var(--color-brand-700);
-  border-bottom-color: var(--color-brand-400);
-}
-
-/* =============================================
-   參考資料區塊
-   ============================================= */
-
-.prose .section-references {
-  font-size: 1.1rem;
-  color: var(--color-neutral-500);
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-.prose .references-list {
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: var(--color-neutral-500);
-  padding-left: 1.5rem;
-}
-
-.prose .references-list li {
-  margin-top: 0.375rem;
-  margin-bottom: 0.375rem;
-  padding-left: 0.25rem;
-}
-
-.prose .references-list a {
-  color: var(--color-brand-500);
-  word-break: break-all;
-  font-weight: 400;
-  border-bottom: none;
-}
-
-.prose .references-list a:hover {
-  color: var(--color-brand-700);
-  text-decoration: underline;
-}
-
-.prose .references-list em {
-  font-style: italic;
-  color: var(--color-neutral-600);
-}
-
-/* 表格 hover 效果 */
-.prose table tbody tr {
-  transition: background-color 0.15s ease;
-}
-
-.prose table tbody tr:hover {
-  background-color: rgba(240, 249, 255, 0.6);
-}
-
-/* 行內 emoji callout 強調 */
-.prose blockquote p:first-child {
-  font-weight: 500;
-}
-
-/* 列表中的粗體項目 */
-.prose li strong {
-  color: var(--color-brand-800);
-}
-
-/* 分隔線增強 - 漸層效果（間距由 prose.ts prose-hr:my-12 控制） */
-.prose hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--color-neutral-300), transparent);
-}
-
-/* 移動端表格提示 */
-@media (max-width: 640px) {
-  .table-wrapper {
-    position: relative;
-  }
-
-  .table-wrapper::after {
-    content: "← 左右滑動查看完整表格 →";
-    display: block;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--color-neutral-400);
-    padding: 0.5rem;
-    background: var(--color-neutral-50);
-    border-top: 1px solid var(--color-neutral-100);
-  }
-
-  .prose table {
-    font-size: 0.875rem;
-  }
-
-  .prose table th,
-  .prose table td {
-    padding: 0.625rem 0.75rem;
-    white-space: nowrap;
-  }
-}
-
-/* =============================================
-   文章末尾「專業提醒」區塊（最後一個 blockquote）
-   ============================================= */
-
-.prose > blockquote:last-child,
-.prose > blockquote:last-of-type {
-  background: linear-gradient(135deg, var(--color-brand-50) 0%, rgba(240, 249, 255, 0.3) 100%);
-  border-left-color: var(--color-brand-400);
-  border-left-width: 4px;
-  border-radius: 0 0.75rem 0.75rem 0;
-  padding: 1.25rem 1.5rem;
-  margin-top: 2rem;
-  font-size: 0.9375rem;
-}
-
-/* =============================================
-   FAQ Q&A 手風琴區塊樣式
-   ============================================= */
-
-.faq-container {
-  margin: 2rem 0 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.faq-item {
-  border-radius: 0.875rem;
-  border: 1px solid var(--color-neutral-200);
-  background: white;
-  overflow: hidden;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.faq-item:hover {
-  border-color: var(--color-brand-200);
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.04);
-}
-
-/* 含焦點的項目也高亮 */
-.faq-item:has(.faq-question:focus-visible) {
-  border-color: var(--color-brand-300);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
-}
-
-/* 問題按鈕 */
-.faq-question {
-  all: unset;
-  box-sizing: border-box;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-  padding: 1.125rem 1.25rem;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-neutral-800);
-  transition: background-color 0.15s ease, color 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* 鍵盤焦點指示器（all: unset 移除了預設 focus ring） */
-.faq-question:focus-visible {
-  outline: 2px solid var(--color-brand-400);
-  outline-offset: -2px;
-  border-radius: 0.75rem;
-}
-
-.faq-question:hover {
-  background-color: rgba(240, 249, 255, 0.5);
-}
-
-.faq-question[aria-expanded="true"] {
-  color: var(--color-brand-700);
-  background-color: rgba(240, 249, 255, 0.4);
-}
-
-.faq-question-text {
-  flex: 1;
-}
-
-.faq-question-text::before {
-  content: "Q. ";
-  color: var(--color-brand-500);
-  font-weight: 700;
-  margin-right: 0.25rem;
-}
-
-/* Chevron 箭頭 */
-.faq-chevron {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-top: 0.125rem;
-  border-radius: 9999px;
-  background-color: var(--color-neutral-100);
-  color: var(--color-neutral-500);
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.15s ease,
-              color 0.15s ease;
-}
-
-.faq-question[aria-expanded="true"] .faq-chevron {
-  transform: rotate(180deg);
-  background-color: var(--color-brand-100);
-  color: var(--color-brand-600);
-}
-
-/* 答案區塊 — grid 0fr/1fr 動畫 */
+/* FAQ 修正：解決展開時的閃爍 */
 .faq-answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s var(--ease-out-expo);
 }
 
 .faq-answer--open {
-  grid-template-rows: 1fr;
+    grid-template-rows: 1fr;
 }
 
 .faq-answer-inner {
-  overflow: hidden;
-  min-height: 0; /* 確保 grid 0fr 完全收合 */
+    overflow: hidden;
 }
 
-/* 答案內容 — 含 opacity 過渡使展開更流暢 */
-.faq-answer-inner > p {
-  padding: 0 1.25rem 1.25rem;
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.85;
-  color: var(--color-neutral-600);
-  border-top: 1px solid var(--color-neutral-100);
-  padding-top: 1rem;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 0.25s ease 0.1s, transform 0.25s ease 0.1s;
-}
-
-.faq-answer--open .faq-answer-inner > p {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.faq-answer-inner > p::before {
-  content: "A. ";
-  font-weight: 700;
-  color: var(--color-brand-400);
-  margin-right: 0.125rem;
-}
-
-/* 響應式微調 */
-@media (max-width: 640px) {
-  .faq-question {
-    padding: 1rem;
-    font-size: 0.9375rem;
-  }
-
-  .faq-answer-inner > p {
-    padding: 0 1rem 1rem;
-    font-size: 0.875rem;
-  }
+/* 解決 Framer Motion 初始閃爍問題的全局修正 */
+[data-framer-appear] {
+    opacity: 0;
 }
