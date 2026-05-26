@@ -64,7 +64,9 @@ export default function RootLayout({
             <Monitoring />
           </Suspense>
           <Header />
-          <main id="main-content">{children}</main>
+          <main id="main-content" className="pt-[var(--header-height)] md:pt-[var(--header-height-md)]">
+            {children}
+          </main>
           <Footer />
           <StructuredData />
         </ErrorBoundary>

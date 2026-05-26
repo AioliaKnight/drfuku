@@ -164,7 +164,7 @@ export default function Hero() {
       ref={containerRef}
       aria-label="首頁主視覺"
       padding="none"
-      className={`relative min-h-[calc(100dvh-4rem)] overflow-hidden ${sectionTones.hero}`}
+      className={`relative min-h-[calc(100dvh-var(--header-height))] md:min-h-[calc(100dvh-var(--header-height-md))] overflow-hidden ${sectionTones.hero}`}
     >
       {/* 裝飾背景元件 - 更柔和且富有溫度的光暈 */}
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -174,7 +174,7 @@ export default function Hero() {
       </div>
 
       <Container id="main-content" className="relative z-10">
-        <div className="flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-between gap-12 pt-16 pb-20 md:flex-row md:pt-0 md:pb-0">
+        <div className="flex min-h-[calc(100dvh-var(--header-height))] md:min-h-[calc(100dvh-var(--header-height-md))] flex-col items-center justify-between gap-12 pt-8 pb-20 md:flex-row md:pt-0 md:pb-0">
           
           {/* 左側：文字內容 - 強化溫度與同理心 */}
           <div className="flex w-full flex-col items-center text-center md:w-3/5 md:items-start md:text-left">
