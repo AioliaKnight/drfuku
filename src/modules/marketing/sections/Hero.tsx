@@ -1,0 +1,274 @@
+'use client'
+
+import { useRef, memo, useMemo, useCallback } from 'react'
+import Link from 'next/link'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import {
+  HiChevronRight,
+  HiOutlineArrowTopRightOnSquare,
+  HiOutlineMapPin
+} from 'react-icons/hi2'
+import { baseTransition, getTransition } from '@/shared/animation'
+import { buttonVariants } from '@/shared/ui/primitives'
+import { cn } from '@/shared/lib/cn'
+import Container from '@/shared/ui/layout/Container'
+import Section from '@/shared/ui/layout/Section'
+import { DOCTOR_COPY, toTelHref } from '@/config/site-content'
+import { CLINIC } from '@/config/constants'
+import { sectionTones } from '@/shared/ui/layout/section-tones'
+import { features, locations } from '../data/hero'
+
+// 動畫變體
+const animationVariants = {
+  bounce: {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200, damping: 25 } }
+  },
+  scaleIn: {
+    hidden: { scale: 0.95, opacity: 0 },
+    visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 25 } }
+  },
+  slideInUp: {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 25 } }
+  },
+  stagger: {
+    visible: { transition: { staggerChildren: 0.05 } }
+  }
+} as const
+
+// 使用 memo 優化靜態內容
+// features, achievements, locations 已經移至 data/hero.tsx
+
+// 常量樣式定義
+const STYLES = {
+  featureIcon:
+    'flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100/60 md:h-12 md:w-12',
+  locationCard:
+    'surface-card-interactive group flex items-center justify-between gap-4 p-4 md:p-5',
+} as const
+
+// 使用 memo 優化重複渲染的組件
+const Feature = memo(function Feature({ icon, text }: typeof features[number]) {
+  return (
+    <motion.div
+      variants={animationVariants.bounce}
+      className="flex items-center gap-2"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <div className={STYLES.featureIcon}>
+        {icon}
+      </div>
+      <span className="text-sm font-medium md:text-base">{text}</span>
+    </motion.div>
+  )
+})
+
+const Location = memo(function Location({
+  name,
+  address,
+  telephone,
+  serviceAreaNote,
+  link,
+}: typeof locations[number]) {
+  const isExternalLink = Boolean(link)
+  const content = (
+    <>
+      <div className="min-w-0 flex-1 space-y-1">
+        <h3 className="font-medium text-neutral-900 group-hover:text-brand-600">
+          {name}
+        </h3>
+        {address ? (
+          <p className="text-sm text-neutral-600">{address}</p>
+        ) : (
+          <p className="text-sm text-neutral-600">門診資訊請洽 LINE 諮詢</p>
+        )}
+        {telephone ? (
+          <a
+            href={toTelHref(telephone)}
+            className="inline-block text-sm font-medium text-brand-600 hover:underline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {telephone}
+          </a>
+        ) : null}
+        {serviceAreaNote ? (
+          <p className="text-xs leading-relaxed text-neutral-500">{serviceAreaNote}</p>
+        ) : null}
+      </div>
+      {isExternalLink && (
+        <HiOutlineArrowTopRightOnSquare className="h-5 w-5 text-neutral-400 transition-colors group-hover:text-brand-600" />
+      )}
+    </>
+  )
+
+  if (!isExternalLink) {
+    return (
+      <motion.div
+        className={STYLES.locationCard}
+        variants={animationVariants.bounce}
+        whileHover={{ y: -2, transition: { type: 'spring', stiffness: 300 } }}
+        whileTap={{ scale: 0.98 }}
+        role="group"
+        aria-label={name}
+      >
+        {content}
+      </motion.div>
+    )
+  }
+
+  return (
+    <motion.a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={STYLES.locationCard}
+      variants={animationVariants.bounce}
+      whileHover={{ y: -2, transition: { type: 'spring', stiffness: 300 } }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {content}
+    </motion.a>
+  )
+})
+
+export default function Hero() {
+  const containerRef = useRef<HTMLElement>(null)
+  const { scrollY } = useScroll()
+  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const backgroundStyle = useMemo(() => ({ opacity }), [opacity])
+
+  const handleServicesClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  return (
+    <Section
+      ref={containerRef}
+      aria-label="首頁主視覺"
+      padding="none"
+      className={`min-h-[calc(100dvh-4rem)] overflow-hidden ${sectionTones.hero}`}
+    >
+      {/* 無障礙跳過導航 */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-brand-600 focus:rounded-md focus:shadow-lg"
+      >
+        跳到主要內容
+      </a>
+
+      {/* 動態背景 - 使用 CSS 漸層替代多層背景 */}
+      <motion.div
+        style={backgroundStyle}
+        className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-50/30 via-transparent to-brand-100/30"
+      />
+
+      <Container id="main-content" className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 md:py-28">
+        <div className="surface-card mx-auto max-w-5xl space-y-10 p-8 text-center shadow-lg md:p-12">
+          {/* 主標題區塊 */}
+          <div className="relative mb-8">
+            <motion.div
+              variants={animationVariants.slideInUp}
+              initial="hidden"
+              animate="visible"
+              transition={baseTransition}
+              className="relative"
+            >
+              <span className="mb-4 inline-block rounded-full bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-600 ring-1 ring-brand-100 md:text-base">
+                大腸直腸外科專科
+              </span>
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-neutral-900 [text-wrap:balance] sm:text-5xl md:text-6xl md:font-bold">
+                {DOCTOR_COPY.heroTitle}
+                <br className="hidden sm:inline" />
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-linear-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
+                    {DOCTOR_COPY.heroHighlight}
+                  </span>
+                  <motion.span
+                    variants={animationVariants.scaleIn}
+                    initial="hidden"
+                    animate="visible"
+                    transition={getTransition(0.2)}
+                    className="absolute -inset-1 -z-10 block rounded-lg bg-brand-50"
+                  />
+                </span>
+                <br className="hidden sm:inline" />
+                {DOCTOR_COPY.heroSubtitle}
+              </h1>
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-neutral-600 md:text-xl md:leading-8">
+                大腸直腸外科專科醫師徐彥勳（阿福醫師）擁有中西醫雙專業與
+                {DOCTOR_COPY.yearsOfExperience} 年以上臨床經驗，以微創技術與貼心照護協助您在最短時間內找回自在生活。
+              </p>
+            </motion.div>
+          </div>
+
+          {/* 特色列表 */}
+          <motion.div
+            variants={animationVariants.stagger}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-wrap justify-center gap-6 text-neutral-700"
+          >
+            {features.map((feature, index) => (
+              <Feature key={index} {...feature} />
+            ))}
+          </motion.div>
+
+          {/* 行動按鈕 */}
+          <motion.div
+            variants={animationVariants.slideInUp}
+            initial="hidden"
+            animate="visible"
+            transition={getTransition(0.8)}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <Link
+              href="#services"
+              className={cn(
+                buttonVariants({ variant: 'primaryGradient', size: 'md' }),
+                'group gap-2 overflow-hidden rounded-full shadow-lg hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0.5'
+              )}
+              onClick={handleServicesClick}
+            >
+              <span className="relative z-10">了解診療服務</span>
+              <HiChevronRight className="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <div className="absolute inset-0 bg-linear-to-r from-brand-700 to-brand-600 opacity-0 transition-all group-hover:opacity-100" />
+            </Link>
+            <Link
+              href={CLINIC.lineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-medium text-brand-600 shadow-sm ring-1 ring-neutral-100 transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 active:translate-y-0.5 md:text-lg"
+            >
+              <span>立即諮詢・隱私保密</span>
+              <HiOutlineArrowTopRightOnSquare className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* 診所位置 */}
+        <motion.div
+          variants={animationVariants.slideInUp}
+          initial="hidden"
+          animate="visible"
+          transition={getTransition(1.2)}
+          className="mt-12 md:mt-16"
+        >
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-6 flex items-center gap-2 text-neutral-900">
+              <HiOutlineMapPin className="h-6 w-6" />
+              <h2 className="text-xl font-bold">診所位置</h2>
+            </div>
+            <div className="grid gap-4">
+              {locations.map((location, index) => (
+                <Location key={index} {...location} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </Container>
+    </Section>
+  )
+}
