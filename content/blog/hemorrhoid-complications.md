@@ -98,8 +98,6 @@ expertise:
 ---
 
 **延伸閱讀：**
-- [痔瘡治療方式有哪些？藥物、微創、手術優缺點比較](/blog/hemorrhoid-treatment)
-- [痔瘡在家怎麼顧？阿福醫師的清潔、用藥、坐浴居家照護全指南](/blog/hemorrhoid-home-care)
-- [痔瘡手術後多久會好？阿福醫師的術後照護、排便與恢復時間表](/blog/hemorrhoid-postop-care)
-- [痔瘡吃什麼好得快？阿福醫師的飲食原則、高纖清單與三餐建議](/blog/diet-tips) 
-t-tips) 
+- [痔瘡與大腸癌怎麼分？三招自我檢測關鍵點](/blog/hemorrhoid-types)
+- [大腸鏡檢查全攻略：流程、清腸準備與無痛檢查詳解](/blog/colonoscopy-guide)
+- [血便怎麼辦？大腸直腸外科醫師深度解析](/blog/blood-in-stool-guide)

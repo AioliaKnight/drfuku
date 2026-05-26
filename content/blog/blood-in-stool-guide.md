@@ -105,8 +105,8 @@ expertise:
 ## 延伸閱讀
 
 *   [大腸鏡檢查全攻略：流程、清腸準備與無痛檢查詳解](/blog/colonoscopy-guide)
-*   [痔瘡與大腸癌怎麼分？三招自我檢測關鍵點](/blog/hemorrhoids-vs-cancer)
-*   [糞便潛血檢查陽性怎麼辦？下一步檢查流程圖](/blog/ifobt-positive-guide)
+*   [痔瘡與大腸癌怎麼分？三招自我檢測關鍵點](/blog/hemorrhoid-types)
+*   [糞便潛血檢查陽性怎麼辦？下一步檢查流程](/blog/blood-in-stool-guide)
 
 ---
 

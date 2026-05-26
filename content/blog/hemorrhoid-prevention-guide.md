@@ -107,8 +107,8 @@ expertise:
 ## 延伸閱讀
 
 *   [痔瘡吃什麼？高纖飲食清單與三餐範例](/blog/diet-tips)
-*   [上班族必備！辦公室防痔 5 分鐘伸展操圖解](/blog/office-stretches)
-*   [孕期便秘與痔瘡：安全緩解方法與用藥守則](/blog/pregnancy-hemorrhoids)
+*   [上班族、久坐族必看：日常防痔伸展建議](/blog/hemorrhoid-prevention-guide)
+*   [孕婦、運動員痔瘡怎麼辦？特殊族群照護全指南](/blog/hemorrhoid-special-groups)
 
 ---
 

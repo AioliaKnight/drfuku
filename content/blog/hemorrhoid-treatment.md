@@ -134,7 +134,7 @@ expertise:
 
 *   [痔瘡手術後多久會好？術後照護、排便與恢復時間表](/blog/hemorrhoid-postop-care)
 *   [內痔、外痔、混合痔差在哪？解剖結構與症狀判別](/blog/hemorrhoid-types)
-*   [雷射痔瘡消融術 (LHP) 詳解：原理、優缺點與適合對象](/blog/lhp-guide)
+*   [痔瘡治療方式有哪些？微創與先進手術深度解析](/blog/hemorrhoid-treatment)
 
 ---
 
