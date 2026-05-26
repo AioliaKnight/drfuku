@@ -109,39 +109,39 @@ export default function AboutSection() {
           <SectionHeader
             title={DOCTOR_COPY.headline}
             description={DOCTOR_COPY.summary}
-            icon={<HiOutlineUserCircle className="h-7 w-7" />}
-            badge="專科醫師介紹"
+            icon={<HiOutlineUserCircle className="h-7 w-7 text-brand-600" />}
+            badge="專業醫師介紹"
+            className="mb-20"
           />
         </motion.div>
 
-        <div className="mt-16 flex flex-col items-center gap-12 md:mt-20 md:flex-row md:items-start md:gap-16 lg:gap-20">
+        <div className="mt-16 flex flex-col items-center gap-16 md:mt-24 md:flex-row md:items-start lg:gap-24">
           <motion.div
             variants={variants.slideInLeft}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             transition={baseTransition}
-            className="w-full space-y-8 md:w-1/2 lg:w-2/5"
+            className="w-full space-y-12 md:w-1/2 lg:w-2/5"
           >
-            <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-3xl shadow-2xl transition-all hover:-translate-y-1 hover:shadow-xl">
+            <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-[3rem] shadow-warm-xl transition-all hover:-translate-y-1">
               <div
-                className="absolute -right-6 -top-6 h-full w-full rounded-3xl bg-linear-to-br from-neutral-100 to-white/80"
+                className="absolute -right-6 -top-6 h-full w-full rounded-[3rem] bg-care-50/50"
                 aria-hidden="true"
               />
               <div
-                className="absolute -bottom-6 -left-6 h-full w-full rounded-3xl bg-linear-to-br from-brand-600 to-brand-500/90"
+                className="absolute -bottom-6 -left-6 h-full w-full rounded-[3rem] bg-linear-to-br from-brand-100/40 to-care-100/30"
                 aria-hidden="true"
               />
-              <div className="relative min-h-[400px] h-full w-full overflow-hidden rounded-3xl">
+              <div className="relative min-h-[400px] h-full w-full overflow-hidden rounded-[3rem] ring-1 ring-neutral-200/20">
                 <Image
                   src={ASSETS.doctorPhoto}
                   alt={`${DOCTOR_COPY.displayName} - 大腸直腸外科專科醫師`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 40vw, 500px"
-                  priority
-                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
                 <div
-                  className="absolute inset-0 bg-linear-to-t from-neutral-900/30 to-transparent"
+                  className="absolute inset-0 bg-linear-to-t from-neutral-900/10 via-transparent to-transparent"
                   aria-hidden="true"
                 />
               </div>

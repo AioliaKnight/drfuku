@@ -15,13 +15,14 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const baseClasses =
   'inline-flex items-center justify-center rounded-full font-semibold transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60'
 
-const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-brand-600 text-white hover:bg-brand-700 focus-visible:ring-brand-600',
+const variantClasses: Record<ButtonVariant | 'care', string> = {
+  primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-warm-md hover:shadow-warm-lg',
   primaryGradient:
-    'relative overflow-hidden bg-linear-to-r from-brand-600 to-brand-500 text-white hover:from-brand-700 hover:to-brand-600 focus-visible:ring-brand-600',
+    'relative overflow-hidden bg-linear-to-r from-brand-600 to-brand-500 text-white hover:opacity-90 shadow-warm-lg hover:shadow-warm-xl',
   secondary:
-    'border border-brand-600 text-brand-600 hover:bg-brand-50 focus-visible:ring-brand-600 focus-visible:ring-offset-2',
-  muted: 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 focus-visible:ring-neutral-400'
+    'border border-brand-200 bg-white/80 text-brand-700 hover:bg-brand-50 shadow-warm-sm hover:shadow-warm-md',
+  muted: 'bg-warm-100 text-neutral-600 hover:bg-warm-200 shadow-warm-sm',
+  care: 'bg-care-100 text-care-600 hover:bg-care-200 shadow-warm-md hover:shadow-warm-lg'
 }
 
 const sizeClasses: Record<ButtonSize, string> = {

@@ -166,16 +166,17 @@ export default function Hero() {
       padding="none"
       className={`relative min-h-[calc(100dvh-4rem)] overflow-hidden ${sectionTones.hero}`}
     >
-      {/* 裝飾背景元件 - 更柔和的光暈 */}
+      {/* 裝飾背景元件 - 更柔和且富有溫度的光暈 */}
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-[5%] -left-[5%] h-[50%] w-[50%] rounded-full bg-brand-50/30 blur-3xl opacity-60" />
-        <div className="absolute top-[15%] -right-[5%] h-[60%] w-[60%] rounded-full bg-brand-100/20 blur-3xl opacity-40" />
+        <div className="absolute -top-[10%] -left-[5%] h-[60%] w-[60%] rounded-full bg-brand-100/20 blur-[120px] opacity-70" />
+        <div className="absolute top-[20%] -right-[10%] h-[70%] w-[70%] rounded-full bg-care-100/30 blur-[100px] opacity-50" />
+        <div className="absolute bottom-[0%] left-[20%] h-[40%] w-[40%] rounded-full bg-warm-100/40 blur-[80px] opacity-40" />
       </div>
 
       <Container id="main-content" className="relative z-10">
         <div className="flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-between gap-12 pt-16 pb-20 md:flex-row md:pt-0 md:pb-0">
           
-          {/* 左側：文字內容 - 更寬鬆的間距與精緻的字體 */}
+          {/* 左側：文字內容 - 強化溫度與同理心 */}
           <div className="flex w-full flex-col items-center text-center md:w-3/5 md:items-start md:text-left">
             <motion.div
               variants={springSlideInUpAnimation}
@@ -184,26 +185,27 @@ export default function Hero() {
               className="space-y-10 md:space-y-12"
             >
               <div className="space-y-6">
-                <span className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-bold tracking-widest text-brand-700 uppercase ring-1 ring-brand-100 md:text-sm">
-                  Colorectal Surgery Specialist
+                <span className="inline-flex items-center gap-2 rounded-lg bg-care-50 px-3 py-1 text-xs font-bold tracking-widest text-care-600 uppercase ring-1 ring-care-100/50 md:text-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-care-500 animate-pulse" />
+                  Compassionate Colorectal Specialist
                 </span>
                 <h1 className="text-4xl font-bold tracking-tight text-neutral-900 leading-snug sm:text-5xl lg:text-6xl xl:text-7xl">
-                  <span className="font-serif italic">{DOCTOR_COPY.heroTitle}</span>
+                  <span className="font-serif italic text-brand-700">{DOCTOR_COPY.heroTitle}</span>
                   <br />
                   <span className="bg-linear-to-r from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent font-serif">
                     {DOCTOR_COPY.heroHighlight}
                   </span>
                 </h1>
-                <h2 className="text-lg font-semibold tracking-wide text-neutral-700 sm:text-xl lg:text-2xl">
+                <h2 className="text-lg font-semibold tracking-wide text-neutral-600 sm:text-xl lg:text-2xl">
                   {DOCTOR_COPY.heroSubtitle}
                 </h2>
               </div>
 
               <p className="max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg lg:text-xl lg:leading-9">
-                大腸直腸外科專科醫師徐彥勳（阿福醫師）運用先進微創技術，提供
-                <span className="mx-1 font-bold text-neutral-900 underline decoration-brand-200/50 underline-offset-8">LHP 雷射</span>與 
-                <span className="mx-1 font-bold text-neutral-900 underline decoration-brand-200/50 underline-offset-8">LigaSure</span>
-                精準治療。致力於低疼痛管理與快速恢復，陪您重拾自在生活。
+                大腸直腸外科專科醫師徐彥勳（阿福醫師）致力於
+                <span className="mx-1 font-bold text-neutral-900 underline decoration-care-200 underline-offset-8">溫暖診療</span>與 
+                <span className="mx-1 font-bold text-neutral-900 underline decoration-care-200 underline-offset-8">極致減痛</span>。
+                運用先進微創技術，陪您在安心與尊嚴中找回健康生活。
               </p>
 
               {/* 特色列表 - 更精簡 */}

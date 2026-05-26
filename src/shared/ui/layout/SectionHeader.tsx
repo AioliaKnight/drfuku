@@ -52,7 +52,7 @@ export default function SectionHeader({
           </div>
         </div>
       ) : null}
-      <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl [text-wrap:balance]">
+      <h2 className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl [text-wrap:balance] font-serif">
         {title}
       </h2>
       {description ? (

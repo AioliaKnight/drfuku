@@ -4,45 +4,53 @@
 
 /* Tailwind CSS v4 主題定義 */
 @theme {
-  --color-brand-50: #f0f9ff;
-  --color-brand-100: #e0f2fe;
-  --color-brand-200: #bae6fd;
-  --color-brand-300: #7dd3fc;
-  --color-brand-400: #38bdf8;
-  --color-brand-500: #0ea5e9;
-  --color-brand-600: #0284c7;
-  --color-brand-700: #0369a1;
-  --color-brand-800: #075985;
-  --color-brand-900: #0c4a6e;
-  --color-brand-950: #082f49;
+  /* 莫蘭迪藍色系 - 專業且沈穩，降低冷冽感 */
+  --color-brand-50: #f4f7fa;
+  --color-brand-100: #e9eff5;
+  --color-brand-200: #d2dee9;
+  --color-brand-300: #b0c6d8;
+  --color-brand-400: #85a6c3;
+  --color-brand-500: #5d86ab; /* 主色：沈穩藍 */
+  --color-brand-600: #4a6d8f;
+  --color-brand-700: #3d5875;
+  --color-brand-800: #354a61;
+  --color-brand-900: #2f3f52;
+  --color-brand-950: #1e2836;
 
-  /* 新增：溫暖輔助色 - 琥珀色（Trust & Warmth） */
-  --color-warm-50: #fff9ed;
-  --color-warm-100: #ffefd1;
-  --color-warm-200: #ffdaa3;
-  --color-warm-500: #f59e0b;
-  --color-warm-600: #d97706;
+  /* 溫暖象牙色系 - 作為全站溫暖底色 */
+  --color-warm-50: #fafaf9; /* Oatmeal/Ivory Base */
+  --color-warm-100: #f5f5f4;
+  --color-warm-200: #e7e5e4;
+  --color-warm-500: #78716c;
+  --color-warm-600: #57534e;
   
-  /* 新增：溫暖輔助色 - 柔和紅/粉（Care & Empathy） */
-  --color-care-50: #fff1f2;
-  --color-care-100: #ffe4e6;
-  --color-care-500: #f43f5e;
-  --color-care-600: #e11d48;
+  /* 柔和琥珀與粉橘 - 關懷輔色 */
+  --color-care-50: #fffbf7;
+  --color-care-100: #ffedd5;
+  --color-care-500: #f59e0b;
+  --color-care-600: #d97706;
 
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #525252;
-  --color-neutral-700: #404040;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
-  --color-neutral-950: #0a0a0a;
+  /* 中性色 - 偏暖灰 */
+  --color-neutral-50: #fafaf9;
+  --color-neutral-100: #f5f5f4;
+  --color-neutral-200: #e7e5e4;
+  --color-neutral-300: #d6d3d1;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-500: #78716c;
+  --color-neutral-600: #57534e;
+  --color-neutral-700: #44403c;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1c1917;
+  --color-neutral-950: #0c0a09;
 
   --font-family-sans: var(--font-noto-sans), system-ui, sans-serif;
   --font-family-serif: var(--font-noto-serif), georgia, serif;
+
+  /* 彌散暖色陰影 */
+  --shadow-warm-sm: 0 1px 2px 0 rgba(120, 113, 108, 0.05);
+  --shadow-warm-md: 0 4px 6px -1px rgba(120, 113, 108, 0.1), 0 2px 4px -2px rgba(120, 113, 108, 0.1);
+  --shadow-warm-lg: 0 10px 15px -3px rgba(120, 113, 108, 0.1), 0 4px 6px -4px rgba(120, 113, 108, 0.1);
+  --shadow-warm-xl: 0 20px 25px -5px rgba(120, 113, 108, 0.1), 0 8px 10px -6px rgba(120, 113, 108, 0.1);
 }
 
 @layer base {
@@ -57,8 +65,8 @@
     --container-max-width: 1280px;
 
     /* 間距 */
-    --section-spacing: 6rem;
-    --section-spacing-sm: 4rem;
+    --section-spacing: 7rem;
+    --section-spacing-sm: 5rem;
 
     /* 動畫優化 */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -79,10 +87,10 @@
   }
 
   body {
-    @apply text-neutral-800 antialiased bg-white;
+    @apply text-neutral-800 antialiased bg-warm-50;
     font-family: var(--font-noto-sans);
-    letter-spacing: 0.01em;
-    line-height: 1.75;
+    letter-spacing: 0.015em;
+    line-height: 1.85; /* 更寬鬆的行高增加舒適感 */
     /* 解決滾動條導致的抖動 */
     overflow-y: scroll;
   }
@@ -91,6 +99,7 @@
     font-family: var(--font-noto-serif);
     letter-spacing: -0.01em;
     color: var(--color-neutral-900);
+    line-height: 1.4;
     /* 強化標題斷行穩定性 */
     overflow-wrap: break-word;
     word-break: break-word;
@@ -98,40 +107,49 @@
 
   /* 平滑所有過渡效果 */
   * {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-300;
   }
 }
 
 /* 通用工具類 */
 @layer utilities {
   .container-app {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12;
   }
 
-  /* 更有溫度的卡片設計 */
+  /* 更有溫度的卡片設計 - 圓角與陰影全面升級 */
   .surface-card {
-    @apply rounded-3xl bg-white shadow-sm ring-1 ring-neutral-200/50 transition-all duration-300;
+    @apply rounded-[2.5rem] bg-white shadow-warm-md ring-1 ring-neutral-200/40 transition-all duration-300;
   }
 
   .surface-card-warm {
-    @apply rounded-3xl bg-warm-50/50 shadow-sm ring-1 ring-warm-100/50 transition-all duration-300;
+    @apply rounded-[2.5rem] bg-care-50 shadow-warm-md ring-1 ring-care-100/50 transition-all duration-300;
   }
 
   .surface-card-interactive {
-    @apply rounded-3xl bg-white shadow-sm ring-1 ring-neutral-200/50 transition-all duration-500 ease-[var(--ease-out-expo)];
+    @apply rounded-[2.5rem] bg-white shadow-warm-md ring-1 ring-neutral-200/40 transition-all duration-500 ease-[var(--ease-out-expo)];
   }
 
   .surface-card-interactive:hover {
-    @apply -translate-y-1.5 shadow-xl shadow-brand-900/5 ring-brand-100;
+    @apply -translate-y-2 shadow-warm-xl ring-brand-100/50;
   }
 
-  /* 漸層背景 - 增加輔色讓色彩更豐富 */
+  /* 漸層背景 - 更有溫度的關懷感 */
   .bg-warm-gradient {
-    background: linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-warm-50) 100%);
+    background: linear-gradient(135deg, var(--color-warm-50) 0%, #fffcf5 100%);
   }
 
   .bg-care-gradient {
     background: linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-care-50) 100%);
+  }
+
+  /* 文字強調效果 */
+  .text-highlight {
+    @apply relative inline-block;
+  }
+  .text-highlight::after {
+    content: "";
+    @apply absolute bottom-1 left-0 -z-10 h-3 w-full bg-care-100/60 transition-all;
   }
 }
 

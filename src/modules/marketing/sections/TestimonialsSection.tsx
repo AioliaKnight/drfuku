@@ -18,9 +18,9 @@ const RatingStars = memo(({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1" role="img" aria-label={`${rating}顆星評價`}>
     {[...Array(5)].map((_, index) => (
       index < rating ? (
-        <HiStar key={index} className="h-4 w-4 md:h-5 md:w-5 text-warm-500" aria-hidden="true" />
+        <HiStar key={index} className="h-4 w-4 md:h-5 md:w-5 text-care-500" aria-hidden="true" />
       ) : (
-        <HiOutlineStar key={index} className="h-4 w-4 md:h-5 md:w-5 text-warm-200" aria-hidden="true" />
+        <HiOutlineStar key={index} className="h-4 w-4 md:h-5 md:w-5 text-care-200" aria-hidden="true" />
       )
     ))}
   </div>
@@ -41,13 +41,13 @@ const TestimonialCard = memo(({ testimonial, index, isInView, variants }: {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       transition={{ ...baseTransition, duration: 0.6, delay: index * 0.1 }}
-      className="surface-card-interactive group h-full p-6 md:p-8 !rounded-3xl"
+      className="surface-card-interactive group h-full p-8 md:p-10"
       role="article"
       aria-label={`${testimonial.author}的治療心得`}
     >
-      <div className="mb-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+      <div className="mb-8 flex flex-col md:flex-row items-start md:items-center gap-5">
         <div className="flex items-center gap-4">
-          <div className="relative h-12 w-12 md:h-14 md:w-14 overflow-hidden rounded-full ring-2 ring-warm-100 transition-transform group-hover:scale-105">
+          <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-care-100/50 transition-transform group-hover:scale-105">
             <Image
               src={testimonial.avatar}
               alt={testimonial.author}
@@ -59,35 +59,35 @@ const TestimonialCard = memo(({ testimonial, index, isInView, variants }: {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-base md:text-lg font-bold text-neutral-900">
+              <h3 className="text-lg font-bold text-neutral-900 font-serif">
                 {testimonial.author}
               </h3>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-warm-600 bg-warm-50 px-2 py-0.5 rounded-full">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-care-600 bg-care-50 px-2.5 py-1 rounded-full ring-1 ring-care-100/50">
                 {testimonial.age}
               </span>
             </div>
-            <p className="text-xs font-medium text-neutral-400 mt-0.5">{testimonial.title}</p>
-            <div className="mt-1">
+            <p className="text-xs font-medium text-neutral-400 mt-1">{testimonial.title}</p>
+            <div className="mt-2">
               <RatingStars rating={testimonial.rating} />
             </div>
           </div>
         </div>
-        <span className="ml-0 md:ml-auto rounded-full bg-neutral-50 px-3 py-1 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
-          {testimonial.date}
-        </span>
       </div>
 
-      <div className="space-y-4">
-        <p className="text-base text-neutral-600 leading-relaxed italic">
-          「{testimonial.content.main}」
-        </p>
-        <div className="pt-4 border-t border-neutral-50">
-            <h4 className="mb-3 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">治療特色</h4>
-            <div className="flex flex-wrap gap-2">
+      <div className="space-y-6">
+        <div className="relative">
+          <p className="text-lg text-neutral-700 leading-loose italic font-serif">
+            「{testimonial.content.main}」
+          </p>
+        </div>
+        
+        <div className="pt-6 border-t border-neutral-100/50">
+            <h4 className="mb-4 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">治療特色</h4>
+            <div className="flex flex-wrap gap-2.5">
                 {testimonial.content.pros.map((pro, i) => (
                 <span
                     key={i}
-                    className="rounded-lg bg-warm-50/50 px-2.5 py-1 text-xs font-medium text-warm-700 ring-1 ring-warm-100/50 group-hover:bg-warm-100/50 transition-colors"
+                    className="rounded-xl bg-warm-50 px-3 py-1.5 text-xs font-medium text-brand-700 ring-1 ring-neutral-200/30 group-hover:bg-white group-hover:ring-brand-100 transition-all shadow-warm-sm"
                 >
                     #{pro}
                 </span>
@@ -110,7 +110,7 @@ export default function TestimonialsSection() {
       id="testimonials"
       role="region"
       aria-label="病患心得分享"
-      className={sectionTones.muted}
+      className={sectionTones.care}
     >
       <SectionBackdrop />
 
@@ -122,9 +122,9 @@ export default function TestimonialsSection() {
           transition={getTransition(0.1)}
         >
           <SectionHeader
-            title="病患心得分享"
-            description="聽聽其他病患的真實故事，了解我們如何透過專業與細心的照護，協助他們重拾健康生活。"
-            icon={<HiOutlineChatBubbleLeftRight className="h-7 w-7" aria-hidden="true" />}
+            title="真摯的復原故事"
+            description="聽聽其他病患的真實分享，了解我們如何與您並肩同行，重拾健康生活。"
+            icon={<HiOutlineChatBubbleLeftRight className="h-7 w-7 text-brand-600" aria-hidden="true" />}
             badge="真實回饋"
           />
         </motion.div>
