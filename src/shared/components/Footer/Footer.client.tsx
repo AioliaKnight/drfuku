@@ -29,7 +29,7 @@ import { cn } from '@/shared/lib/cn'
 const socialLinks = [
   {
     name: 'Facebook',
-    href: 'https://www.facebook.com/dr.hsu.care',
+    href: 'https://www.facebook.com/doctorfuku/',
     icon: <FaFacebook className="h-5 w-5" />,
     hoverColor: 'hover:text-[#1877F2]',
     ariaLabel: '前往Facebook粉絲專頁'

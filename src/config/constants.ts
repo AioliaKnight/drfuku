@@ -21,6 +21,7 @@ export const DOCTOR = {
   url: 'https://drfuku.com/about',
   sameAs: [
     'https://drfuku.com',
+    'https://www.facebook.com/doctorfuku/',
     'https://line.me/ti/p/~@772pable',
     'https://drbird.tw/doctor/yenhsunhsu'
   ],
