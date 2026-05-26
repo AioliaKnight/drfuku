@@ -5,7 +5,6 @@ import { format } from 'date-fns'
 import { zhTW } from 'date-fns/locale'
 import {
   HiOutlineClock,
-  HiOutlineTag,
   HiOutlineArrowRight,
   HiOutlineDocumentText,
   HiStar
@@ -13,7 +12,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { type Post } from '@/velite'
-import { motion, easeOut, type Transition } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { baseTransition, warmHoverAnimation } from '@/shared/animation'
 
 interface PostCardProps {

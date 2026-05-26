@@ -29,10 +29,10 @@ export const warmHoverAnimation = {
   whileHover: { 
     y: -5, 
     scale: 1.01,
-    transition: { duration: 0.3, ease: "easeOut" }
+    transition: { duration: 0.3, ease: [0.33, 1, 0.68, 1] } // easeOut
   },
   whileTap: { scale: 0.98 }
-}
+} as const
 
 /**
  * 內容展開：修正 height: 'auto' 可能導致的排版閃爍
@@ -51,7 +51,7 @@ export const expandAnimation = {
     height: 0, 
     opacity: 0,
     transition: { 
-      height: { duration: 0.3, ease: "easeInOut" },
+      height: { duration: 0.3, ease: [0.42, 0, 0.58, 1] }, // easeInOut
       opacity: { duration: 0.2 }
     }
   }

@@ -10,9 +10,9 @@ export const DOCTOR_COPY = {
   heroHighlight: '大腸直腸外科徐彥勳',
   heroSubtitle: '專精微創痔瘡與肛門疾病治療',
   yearsOfExperience: 10,
-  bio: '大腸直腸外科專科醫師徐彥勳（阿福醫師）致力於推廣「極致止痛、微創復原」的診療理念。身為中西醫雙學士，徐醫師不僅精進於雷射痔瘡消融與組織凝集儀等尖端技術，更重視從整體體質出發，為患者量身打造最合適的治療與術後管理方案，助您找回自在生活。',
+  bio: '大腸直腸外科專科醫師徐彥勳（阿福醫師）致力於推廣「低疼痛管理、微創復原」的診療理念。身為中西醫雙學士，徐醫師不僅精進於雷射痔瘡消融與組織凝集儀等尖端技術，更重視從整體體質出發，為患者量身打造最合適的治療與術後管理方案，助您找回自在生活。',
   summary: '擁有完整大腸直腸外科專科訓練與豐富臨床經驗，專精於各類肛門疾病微創手術，提供台北、台中、草屯地區專業醫療服務。',
-  footerBlurb: '大腸直腸外科專科醫師徐彥勳（阿福醫師），專精各類痔瘡微創手術與肛門疾患，致力於提供高品質、高隱私且極致止痛的專業診療服務。',
+  footerBlurb: '大腸直腸外科專科醫師徐彥勳（阿福醫師），專精各類痔瘡微創手術與肛門疾患，致力於提供高品質、高隱私且專業的微創診療服務。',
 }
 
 export type DoctorProfileSectionIcon = 'current' | 'education' | 'experience' | 'specialties'
@@ -156,6 +156,17 @@ export const PRACTICE_LOCATIONS: PracticeLocation[] = [
     role: 'specialist',
     region: '台北市',
   },
+]
+
+/** 首頁顯示的診所據點 */
+export const HERO_PRACTICE_LOCATIONS = PRACTICE_LOCATIONS.slice(0, 4)
+
+/** 醫師現任職務（簡化版） */
+export const DOCTOR_CURRENT_POSITIONS = [
+  '台中西屯顧家診所 大腸直腸外科主任',
+  '顧芳瑜泌尿科診所 大安分院 主治醫師',
+  '禾馨醫療 內湖民權婦幼 主治醫師',
+  '南投草屯佑民醫院 主治醫師'
 ]
 
 export const SERVICE_AREAS = ['台北市', '新北市', '台中市', '彰化縣', '南投縣'] as const

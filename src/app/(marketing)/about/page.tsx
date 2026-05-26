@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { AboutSection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
-import { SITE, DOCTOR_COPY } from '@/config/constants'
+import { SITE } from '@/config/constants'
 import { createPageMetadata } from '@/shared/lib/page-metadata'
 
 export const metadata: Metadata = createPageMetadata({

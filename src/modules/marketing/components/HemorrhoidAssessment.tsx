@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiOutlineCheckCircle, HiOutlineExclamationTriangle, HiOutlineChatBubbleLeftRight, HiArrowPath } from 'react-icons/hi2'
 import LineButton from '@/shared/components/common/LineButton'
@@ -115,11 +115,11 @@ export default function HemorrhoidAssessment() {
               </div>
               
               <h4 className="text-lg font-bold text-neutral-900 leading-relaxed">
-                {questions[currentStep].text}
+                {questions[currentStep]?.text}
               </h4>
 
               <div className="grid gap-3">
-                {questions[currentStep].options.map((option, idx) => (
+                {questions[currentStep]?.options.map((option, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleOptionSelect(option.score)}

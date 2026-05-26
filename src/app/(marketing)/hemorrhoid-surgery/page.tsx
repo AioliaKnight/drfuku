@@ -15,7 +15,7 @@ import Section from '@/shared/ui/layout/Section'
 import Container from '@/shared/ui/layout/Container'
 import LineButton from '@/shared/components/common/LineButton'
 import JsonLd from '@/shared/components/common/JsonLd'
-import { SITE, ASSETS, KEYWORDS, DOCTOR, CLINIC } from '@/config/constants'
+import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 import { cn } from '@/shared/lib/cn'
 import { buttonVariants } from '@/shared/ui/primitives'
 
@@ -134,9 +134,9 @@ export default function HemorrhoidSurgeryPage() {
         
         <Container>
           <div className="mx-auto max-w-4xl text-center">
-            <motion-span className="mb-6 inline-block rounded-full bg-brand-100 px-4 py-1.5 text-sm font-bold tracking-widest text-brand-700 uppercase ring-1 ring-brand-200">
+            <span className="mb-6 inline-block rounded-full bg-brand-100 px-4 py-1.5 text-sm font-bold tracking-widest text-brand-700 uppercase ring-1 ring-brand-200">
               Surgical Excellence
-            </motion-span>
+            </span>
             <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-6xl lg:text-7xl [text-wrap:balance]">
               從傳統到雷射：<br />
               <span className="bg-linear-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">

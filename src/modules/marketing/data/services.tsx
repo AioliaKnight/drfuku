@@ -2,8 +2,6 @@ import {
   HiOutlineHeart,
   HiOutlineShieldCheck,
   HiOutlineSparkles,
-  HiOutlineUserGroup,
-  HiOutlineClock,
   HiOutlineAcademicCap,
   HiOutlineMagnifyingGlassCircle,
   HiOutlineHandThumbUp

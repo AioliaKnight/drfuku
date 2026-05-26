@@ -59,7 +59,7 @@ export default function TestimonialsPage() {
       />
       <PageHeader
         title="真實的健康與喜悅"
-        description="每一個回饋背後都是一段重拾舒適生活的故事。我們珍視每位患者的信任，並致力於提供最高品質的醫療專業與關懷。"
+        description="每一個回饋背後都是一段重拾舒適生活的故事。我們珍視每位患者的信任，並致力於提供優質的醫療專業與關懷。"
         badge="Testimonials"
         tone="warm"
       />
