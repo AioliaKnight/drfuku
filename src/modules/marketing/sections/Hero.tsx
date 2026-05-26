@@ -204,7 +204,7 @@ export default function Hero() {
               <p className="max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg lg:text-xl lg:leading-9">
                 大腸直腸外科專科醫師徐彥勳（阿福醫師）致力於
                 <span className="mx-1 font-bold text-neutral-900 underline decoration-care-200 underline-offset-8">溫暖診療</span>與 
-                <span className="mx-1 font-bold text-neutral-900 underline decoration-care-200 underline-offset-8">極致減痛</span>。
+                <span className="mx-1 font-bold text-neutral-900 underline decoration-care-200 underline-offset-8">專業止痛</span>。
                 運用先進微創技術，陪您在安心與尊嚴中找回健康生活。
               </p>
 

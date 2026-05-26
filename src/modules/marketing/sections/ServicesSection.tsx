@@ -157,12 +157,18 @@ export default function ServicesSection() {
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-brand-600">專業醫療保障</h4>
                 <ul className="space-y-2 text-sm text-neutral-600">
-                  <li>• 中西醫雙學位專業背景</li>
-                  <li>• 15年以上豐富臨床經驗</li>
-                  <li>• 5000+ 成功治療案例</li>
-                  <li>• 98% 患者滿意度評價</li>
+                  <li>• <strong>中西醫雙學位</strong>：結合西醫解剖精準度與中醫整體調理，提供更全面的照護建議。</li>
+                  <li>• <strong>十五年臨床積累</strong>：歷經醫學中心專科訓練，專精複雜性瘻管與重度痔瘡治療。</li>
+                  <li>• <strong>低疼痛管理 SOP</strong>：從麻醉方式選擇到術後預防性止痛，建立完善的疼痛管理流程。</li>
+                  <li>• <strong>數位化術後追蹤</strong>：透過 LINE 官方帳號提供一對一恢復諮詢，確保返家照護無死角。</li>
                 </ul>
               </div>
+            </div>
+            <div className="mt-8 border-t border-neutral-100 pt-8 text-center">
+              <p className="text-sm leading-relaxed text-neutral-500">
+                我們理解每一位患者的擔憂。除了技術的精進，阿福醫師團隊更重視「就醫的尊嚴」與「隱私的保護」，<br className="hidden md:block" />
+                從診間評估到術後回診，陪您在溫暖且專業的氛圍中重拾舒適生活。
+              </p>
             </div>
           </div>
         </motion.div>
