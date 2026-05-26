@@ -93,6 +93,7 @@ expertise:
 
 ## 延伸閱讀
 
+- [猛健樂使用者的腸道守護指南：預防便秘、血便與痔瘡](/blog/mounjaro-bowel-care-guide)
 - [痔瘡微創手術：雷射 vs 組織凝集刀，哪種適合忙碌的您？](/blog/hemorrhoid-treatment)
 - [腸道保養全攻略：益生菌真的有用嗎？](/blog/intestinal-health-guide)
 - [阿福醫師：如何透過中西醫整合預防便秘？](/blog/tcm-hemorrhoid-treatment)
