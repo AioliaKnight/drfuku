@@ -21,6 +21,7 @@ export const DOCTOR = {
   sameAs: [
     'https://drfuku.com',
     'https://line.me/ti/p/~@772pable',
+    'https://drbird.tw/doctor/yenhsunhsu'
   ],
 } as const
 

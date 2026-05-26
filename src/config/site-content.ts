@@ -80,6 +80,7 @@ export type PracticeLocation = {
   address?: string
   telephone?: string
   mapUrl?: string
+  websiteUrl?: string
   /** 服務範圍說明（選填，用於首頁／頁尾） */
   serviceAreaNote?: string
   role: PracticeLocationRole
@@ -105,6 +106,7 @@ export const PRACTICE_LOCATIONS: readonly PracticeLocation[] = [
     address: '407台中市西屯區大隆路185號',
     telephone: '04-2310-8588',
     mapUrl: 'https://maps.app.goo.gl/cJ9YozSLjiapbtHFA',
+    websiteUrl: 'https://drbird.tw/doctor/yenhsunhsu',
     serviceAreaNote:
       '鄰近台中七期，服務大台中、彰化、南投地區，提供泌尿及大腸直腸相關問題的隱密舒適就診空間。',
     role: 'director',
@@ -123,6 +125,7 @@ export const PRACTICE_LOCATIONS: readonly PracticeLocation[] = [
     name: '顧芳瑜泌尿科診所 大安分院',
     address: '106臺北市大安區信義路三段192-1號4樓',
     mapUrl: 'https://maps.app.goo.gl/1FsNbydSNMxLC9ci8',
+    websiteUrl: 'https://drbird.tw/doctor/yenhsunhsu',
     role: 'attending',
     region: '台北市',
   },

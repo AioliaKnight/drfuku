@@ -41,6 +41,7 @@ const clinics = PRACTICE_LOCATIONS.map((loc) => ({
   address: loc.address ?? '',
   telephone: loc.telephone ?? '',
   mapUrl: loc.mapUrl ?? '',
+  websiteUrl: loc.websiteUrl ?? '',
   serviceAreaNote: loc.serviceAreaNote ?? '',
   type: getPracticeRoleLabel(loc.role),
 }))
@@ -119,6 +120,19 @@ const ClinicCard = memo(function ClinicCard({ clinic, index }: { clinic: typeof 
           <HiOutlinePhone className="h-4 w-4 shrink-0" aria-hidden="true" />
           <a href={toTelHref(clinic.telephone)} className="font-medium text-brand-600 hover:underline">
             {clinic.telephone}
+          </a>
+        </div>
+      ) : null}
+      {clinic.websiteUrl ? (
+        <div className="mt-2 flex items-center gap-2 text-sm text-neutral-600">
+          <HiOutlineChatBubbleOvalLeft className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <a
+            href={clinic.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-brand-600 hover:underline"
+          >
+            前往官網
           </a>
         </div>
       ) : null}
