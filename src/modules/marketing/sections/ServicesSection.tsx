@@ -163,6 +163,15 @@ export default function ServicesSection() {
                   <li>• <strong>數位化術後追蹤</strong>：透過 LINE 官方帳號提供一對一恢復諮詢，確保返家照護無死角。</li>
                 </ul>
               </div>
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-brand-600">診療體驗與環境</h4>
+                <ul className="space-y-2 text-sm text-neutral-600">
+                  <li>• <strong>一對一隱私門診</strong>：獨立且溫馨的診間環境，保護您的就醫隱私。</li>
+                  <li>• <strong>無壓力評估流程</strong>：細心傾聽與圖像化解說，讓您在充分了解的情況下做決定。</li>
+                  <li>• <strong>全預約制服務</strong>：有效分流病患，減少診間等候的焦慮感。</li>
+                  <li>• <strong>舒暖術後休養區</strong>：提供高品質的手術後休憩空間，由護理師全程陪伴觀察。</li>
+                </ul>
+              </div>
             </div>
             <div className="mt-8 border-t border-neutral-100 pt-8 text-center">
               <p className="text-sm leading-relaxed text-neutral-500">

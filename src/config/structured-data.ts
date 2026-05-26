@@ -1,5 +1,6 @@
 import { SITE, DOCTOR, CLINIC, DISEASE } from './constants'
 import { DOCTOR_CREDENTIALS, PRACTICE_LOCATIONS, SERVICE_AREAS } from './site-content'
+import { testimonials } from '@/modules/marketing/data/testimonials'
 import type { StructuredData } from './types'
 
 /** 共用地址結構化資料 */
@@ -19,6 +20,25 @@ const clinicLogoObject = {
   url: CLINIC.logo,
   width: 512,
   height: 512,
+}
+
+/** 進階醫療程序定義 */
+export const MEDICAL_PROCEDURES = {
+  lhp: {
+    '@type': 'MedicalProcedure' as const,
+    name: 'LHP® 雷射痔瘡消融術',
+    description: '利用 1470nm 雷射能量使痔核萎縮，無大傷口且能保留肛門襯墊功能。',
+    relevantSpecialty: { '@type': 'MedicalSpecialty' as const, name: 'Colorectal Surgery' },
+    preparation: '需由專科醫師評估，部分患者需配合清腸。',
+    procedureType: 'Minimally Invasive'
+  },
+  ligasure: {
+    '@type': 'MedicalProcedure' as const,
+    name: 'LigaSure™ 組織凝集微創手術',
+    description: '智慧型能量反饋系統，精準封合血管並切割，大幅降低熱損傷與術後疼痛。',
+    relevantSpecialty: { '@type': 'MedicalSpecialty' as const, name: 'Colorectal Surgery' },
+    procedureType: 'Minimally Invasive'
+  }
 }
 
 // 結構化數據配置
@@ -66,7 +86,7 @@ export const structuredData: Record<string, StructuredData> = {
       image: DOCTOR.image,
       telephone: CLINIC.telephone,
       description: '阿福醫師（徐彥勳）提供專業大腸直腸外科診療，專精 LHP 雷射痔瘡微創手術與 LigaSure 組織凝集儀手術。',
-      medicalSpecialty: 'http://www.nlm.nih.gov/mesh/D003107', // Colorectal Surgery
+      medicalSpecialty: 'http://www.nlm.nih.gov/mesh/D003107',
       address: clinicAddress,
       geo: {
         '@type': 'GeoCoordinates',
@@ -91,11 +111,15 @@ export const structuredData: Record<string, StructuredData> = {
         '@type': 'AdministrativeArea',
         name: city,
       })),
-      availableService: CLINIC.services.map(service => ({
-        '@type': 'MedicalProcedure',
-        name: service.name,
-        description: service.description,
-      })),
+      availableService: [
+        ...CLINIC.services.map(service => ({
+          '@type': 'MedicalProcedure' as const,
+          name: service.name,
+          description: service.description,
+        })),
+        MEDICAL_PROCEDURES.lhp,
+        MEDICAL_PROCEDURES.ligasure
+      ],
       priceRange: '$$',
       currenciesAccepted: 'TWD',
       paymentAccepted: '健保, 現金, 信用卡, LINE Pay',
@@ -152,6 +176,13 @@ export const structuredData: Record<string, StructuredData> = {
           ...(loc.telephone ? { telephone: loc.telephone } : {}),
         }))
       ],
+      review: testimonials.map(t => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: t.author },
+        reviewRating: { '@type': 'Rating', ratingValue: t.rating },
+        reviewBody: t.content.main,
+        datePublished: '2024-12-20',
+      }))
     }
   },
   medicalPage: {

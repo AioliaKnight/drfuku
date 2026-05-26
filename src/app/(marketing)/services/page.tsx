@@ -4,6 +4,7 @@ import { ServicesSection, TechnologyShowcase, CTASection } from '@/modules/marke
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
+import { MEDICAL_PROCEDURES } from '@/config/structured-data'
 
 export const metadata: Metadata = {
   title: '診療服務 | 微創痔瘡治療與大腸直腸照護',
@@ -55,6 +56,19 @@ export default function ServicesPage() {
           '@type': 'BreadcrumbList',
           name: '診療服務',
           itemListElement: breadcrumbItems
+        }}
+      />
+      <JsonLd
+        type="MedicalWebPage"
+        data={{
+          '@type': 'MedicalWebPage',
+          name: '全方位大腸直腸健康方案 | 阿福醫師',
+          description: '深入了解微創痔瘡手術、無痛大腸鏡與專業術後照護。',
+          lastReviewed: new Date().toISOString().slice(0, 10),
+          mainEntity: [
+            MEDICAL_PROCEDURES.lhp,
+            MEDICAL_PROCEDURES.ligasure
+          ]
         }}
       />
       <PageHeader

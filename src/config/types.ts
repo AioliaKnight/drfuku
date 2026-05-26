@@ -10,6 +10,7 @@ export type JsonLdType =
   | 'FAQPage'
   | 'Article'
   | 'ItemList'
+  | 'MedicalProcedure'
 
 // Schema.org 通用類型
 export type Thing = {
@@ -49,6 +50,12 @@ export type AdministrativeArea = Thing & {
 // 醫療程序類型
 export type MedicalProcedure = Thing & {
   '@type': 'MedicalProcedure'
+  relevantSpecialty?: {
+    '@type': 'MedicalSpecialty'
+    name: string
+  }
+  preparation?: string
+  procedureType?: string
 }
 
 // 醫療治療類型
@@ -129,6 +136,7 @@ export type Person = Thing & {
   familyName?: string
   alternateName?: string
   jobTitle?: string
+  description?: string
   image?: string
   sameAs?: readonly string[]
   medicalSpecialty?: string
@@ -138,31 +146,8 @@ export type Person = Thing & {
     credentialCategory: string
     name: string
   }>
-  worksFor?:
-    | {
-        '@type': string
-        name: string
-        url?: string
-        telephone?: string
-        address?: {
-          '@type': string
-          streetAddress?: string
-          addressLocality?: string
-          addressCountry?: string
-        }
-      }
-    | Array<{
-        '@type': string
-        name: string
-        url?: string
-        telephone?: string
-        address?: {
-          '@type': string
-          streetAddress?: string
-          addressLocality?: string
-          addressCountry?: string
-        }
-      }>
+  worksFor?: any[]
+  review?: any[]
 }
 
 // 醫療網頁類型
@@ -175,6 +160,7 @@ export type MedicalWebPage = Thing & {
     '@type': 'MedicalAudience'
     audienceType: string
   }
+  mainEntity?: any[] | any
 }
 
 export type ListItem = Thing & {
@@ -254,6 +240,7 @@ export type StructuredDataTypeMap = {
   FAQPage: FAQPage
   Article: Article
   ItemList: ItemList
+  MedicalProcedure: MedicalProcedure
 }
 
 // 結構化數據類型

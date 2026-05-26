@@ -5,6 +5,7 @@ import { HiOutlineBolt, HiOutlineBeaker, HiOutlineVariable } from 'react-icons/h
 import Container from '@/shared/ui/layout/Container'
 import Section from '@/shared/ui/layout/Section'
 import { getTransition } from '@/shared/animation'
+import JsonLd from '@/shared/components/common/JsonLd'
 
 const technologies = [
   {
@@ -33,6 +34,26 @@ const technologies = [
 export default function TechnologyShowcase() {
   return (
     <Section className="bg-white">
+      <JsonLd
+        type="MedicalProcedure"
+        data={{
+          '@type': 'MedicalProcedure' as const,
+          name: 'LHP® 雷射痔瘡消融技術',
+          description: '利用 1470nm 特殊波長雷射消融痔瘡組織，不切除皮膚與黏膜，有效保留肛門功能決。',
+          relevantSpecialty: { '@type': 'MedicalSpecialty' as const, name: 'Colorectal Surgery' },
+          procedureType: 'Minimally Invasive'
+        }}
+      />
+      <JsonLd
+        type="MedicalProcedure"
+        data={{
+          '@type': 'MedicalProcedure' as const,
+          name: 'LigaSure™ 組織凝集刀',
+          description: '智慧型能量反饋系統封合血管，降低熱擴散損傷，縮短術後癒合時間。',
+          relevantSpecialty: { '@type': 'MedicalSpecialty' as const, name: 'Colorectal Surgery' },
+          procedureType: 'Minimally Invasive'
+        }}
+      />
       <Container>
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
