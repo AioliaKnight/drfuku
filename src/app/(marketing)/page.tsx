@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import nextDynamic from 'next/dynamic'
 
-import { HeroSection as Hero, AboutSection, ServicesSection } from '@/modules/marketing'
+import { HeroSection as Hero, AboutSection, ServicesSection, HemorrhoidAssessment } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import SectionSkeleton from '@/shared/ui/layout/SectionSkeleton'
+import Container from '@/shared/ui/layout/Container'
+import Section from '@/shared/ui/layout/Section'
+import SectionHeader from '@/shared/ui/layout/SectionHeader'
+import { HiOutlineMagnifyingGlassCircle } from 'react-icons/hi2'
 import { SITE } from '@/config/constants'
 import { faqCategories } from '@/modules/marketing/data/faq'
 import { createPageMetadata } from '@/shared/lib/page-metadata'
@@ -88,6 +92,21 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <ServicesSection />
+      
+      <Section className="bg-neutral-50/50">
+        <Container>
+          <SectionHeader
+            title="症狀自我檢測"
+            description="不確定自己的狀況是否嚴重？透過快速檢測初步了解您的分級與建議。"
+            icon={<HiOutlineMagnifyingGlassCircle className="h-7 w-7" />}
+            badge="快速評估"
+          />
+          <div className="mt-12">
+            <HemorrhoidAssessment />
+          </div>
+        </Container>
+      </Section>
+
       <BlogSection />
       <TestimonialsSection />
       <FAQSection />

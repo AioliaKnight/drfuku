@@ -171,6 +171,9 @@ export function toTelHref(phone: string): string {
 /** 專科資格（JSON-LD hasCredential） */
 export const DOCTOR_CREDENTIALS = [
   '中華民國大腸直腸外科專科醫師',
-  '台灣外科醫學會專科醫師',
+  '中華民國外科專科醫師',
   '中國醫藥大學中西醫雙學士',
+  '台灣微創手術醫學會會員',
+  '亞洲大腸直腸外科醫學會 (APFCP) 會員',
+  '彰化基督教醫院大腸直腸外科受訓醫師',
 ] as const

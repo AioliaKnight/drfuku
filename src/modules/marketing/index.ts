@@ -5,6 +5,7 @@ export { default as BlogSection } from './sections/BlogSection'
 export { default as FAQSection } from './sections/FAQSection'
 export { default as CTASection } from './sections/CTASection'
 export { default as TestimonialsSection } from './sections/TestimonialsSection'
+export { default as HemorrhoidAssessment } from './components/HemorrhoidAssessment'
 
 
 

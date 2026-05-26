@@ -4,7 +4,9 @@ import {
   HiOutlineSparkles,
   HiOutlineUserGroup,
   HiOutlineClock,
-  HiOutlineAcademicCap
+  HiOutlineAcademicCap,
+  HiOutlineMagnifyingGlassCircle,
+  HiOutlineHandThumbUp
 } from 'react-icons/hi2'
 
 export interface Service {
@@ -30,57 +32,57 @@ export const services: Service[] = [
   },
   {
     icon: <HiOutlineShieldCheck className="h-8 w-8" />,
-    title: '肛門裂隙與疼痛治療',
-    description: '針對急性與慢性肛門裂隙，提供藥物、溫水坐浴及微創擴約肌處置，快速緩解疼痛。',
+    title: '肛門裂隙 (肛裂) 治療',
+    description: '針對急慢性肛裂導致的劇烈排便疼痛與出血，提供藥物調節、肉毒桿菌素注射或微創擴約肌放鬆術。',
     features: [
-      '精確判定急慢性成因',
-      '無痛化門診處置建議',
-      '專業術後傷口護理指導',
-      '有效預防復發與便祕管理'
+      '精確判定急慢性成因與癒合機率',
+      '無痛化診間處置與專業止痛建議',
+      '肉毒桿菌素注射減少括約肌痙攣',
+      '有效預防復發與長期的便祕管理'
     ]
   },
   {
     icon: <HiOutlineSparkles className="h-8 w-8" />,
-    title: '肛門廔管精準手術',
-    description: '運用高階診斷與微創保留肌肉技術，在徹底清除廔管的同時，最大限度保護排便功能。',
+    title: '肛門廔管保留括約肌手術',
+    description: '運用高階診斷與微創技術，在徹底清除廔管發炎組織的同時，最大限度保護排便控制功能。',
     features: [
-      '保留括約肌功能技術',
-      '減少術後感染與併發症',
-      '大幅降低復發風險',
-      '精準定位廔管走徑'
+      '保留括約肌功能技術 (LIFT/VAAFT)',
+      '減少術後感染與長期併發症',
+      '大幅降低復發風險與縮短換藥期',
+      '精準定位廔管走徑與內口位置'
     ]
   },
   {
-    icon: <HiOutlineUserGroup className="h-8 w-8" />,
-    title: '大腸癌篩檢與腸道健康',
-    description: '提供無痛大腸鏡評估諮詢、息肉處置建議及腸道發炎性疾病的長期管理與健康追蹤。',
+    icon: <HiOutlineMagnifyingGlassCircle className="h-8 w-8" />,
+    title: '大腸鏡檢查與息肉處置',
+    description: '提供無痛大腸鏡評估諮詢、息肉切除後追蹤建議，並針對腸道發炎性疾病提供長期健康管理。',
     features: [
-      '大腸鏡檢查前中後專業諮詢',
-      '息肉切除後定期追蹤策略',
-      '腸躁症與功能性排便障礙診斷',
-      '完整大腸直腸預防醫學規劃'
+      '低焦慮的大腸鏡前中後專業諮詢',
+      '息肉切除後定期監測與病理判讀',
+      '腸躁症 (IBS) 與功能性排便障礙診斷',
+      '完整的大腸直腸癌預防醫學規劃'
     ]
   },
   {
-    icon: <HiOutlineClock className="h-8 w-8" />,
-    title: '術前麻醉與風險評估',
-    description: '由專科醫師親自詳細評估心肺功能與用藥史，確保手術過程的極致安全與病患安心感。',
+    icon: <HiOutlineHandThumbUp className="h-8 w-8" />,
+    title: '藏毛竇 (Pilonidal Cyst) 處置',
+    description: '針對尾椎部位反覆發炎腫痛的藏毛竇，提供微創清創或皮瓣轉移手術，降低術後復發率。',
     features: [
-      '詳盡的既有疾病風險管理',
-      '針對焦慮病患的精準鎮靜建議',
-      '個人化止痛方案預先規劃',
-      '術前準備與作息優化建議'
+      '精準移除感染源與毛髮組織',
+      '個人化傷口癒合方案規劃',
+      '術後換藥指導與預防復發衛教',
+      '針對運動族群的特殊照護建議'
     ]
   },
   {
     icon: <HiOutlineAcademicCap className="h-8 w-8" />,
     title: '數位化術後恢復追蹤',
-    description: '結合線上諮詢與專業衛教，確保病患在返家後的恢復過程中都能獲得即時的指導。',
+    description: '結合線上諮詢與專業衛教 SOP，確保病患在返家後的恢復過程中都能獲得即時且專業的醫學指導。',
     features: [
-      '一對一 LINE 官方專人追蹤',
-      '客製化飲食與排便衛教',
-      '突發狀況快速評估分流',
-      '詳盡的居家傷口照護 SOP'
+      '一對一 LINE 官方專人恢復追蹤',
+      '客製化高纖飲食與排便習慣衛教',
+      '突發狀況 (出血、腫脹) 快速評估',
+      '詳盡的居家坐浴與傷口照護 SOP'
     ]
   }
 ]
