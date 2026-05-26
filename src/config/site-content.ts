@@ -8,71 +8,85 @@ export const DOCTOR_COPY = {
   headline: '認識阿福醫師（徐彥勳）',
   heroTitle: '阿福醫師',
   heroHighlight: '大腸直腸外科徐彥勳',
-  heroSubtitle: '微創痔瘡・專科醫療',
-  summary:
-    '擁有中西醫雙學位與 15 年臨床經驗，徐醫師善於結合微創技術與貼心照護，針對每位病患的生活型態與需求，提供客製化治療與完整術後追蹤。',
-  bio:
-    '累積多年的臨床經驗，深知每位病患的困擾與期待。秉持以病患為中心的服務理念，提供專業且溫暖的醫療照護，讓您在就醫過程中感受到安心與信賴。持續精進醫療技術，致力於提供最優質的診療服務。',
-  footerBlurb:
-    '專精於大腸直腸疾病診療，致力於提供專業且溫暖的醫療服務。於多處門診服務，為您打造安心的就醫體驗。',
-  yearsOfExperience: 15,
-} as const
-
-/** 現任職務 */
-export const DOCTOR_CURRENT_POSITIONS = [
-  '台中西屯顧家泌尿科診所大腸直腸外科主任',
-  '顧芳瑜泌尿科大安分院大腸直腸外科主治醫師',
-  '禾馨醫療內湖民權婦幼診所大腸直腸外科主治醫師',
-  '草屯佑民醫院大腸直腸外科主治醫師',
-  '秘境美學診所特約痔瘡專科醫師',
-  '賦真妍特約痔瘡專科醫師',
-] as const
-
-/** 學歷 */
-export const DOCTOR_EDUCATION = ['中國醫藥大學中西醫雙學士'] as const
-
-/** 學經歷與專科資格 */
-export const DOCTOR_EXPERIENCE = [
-  '大腸直腸外科專科醫師（直專醫字第324號）',
-  '外科專科醫師（外專醫字第006107號）',
-  '中華民國醫師高等考試及格',
-  '中華民國大腸直腸外科醫學會專科醫師',
-  '台灣外科醫學會專科醫師',
-  '中華民國醫師公會聯合會會員',
-  '彰化基督教醫院外科部住院醫師',
-  '彰化基督教醫院大腸直腸外科研究醫師',
-] as const
-
-/** 主治項目 */
-export const DOCTOR_SPECIALTIES = [
-  '微創痔瘡手術（包含雷射痔瘡手術、組織凝集儀痔瘡手術、冷凝刀痔瘡手術等）',
-  '微創肛門手術',
-  '肛門膿瘍、肛門瘻管',
-  '肛門濕疹（菜花）治療',
-  '肛周疾患（肛裂、肛門搔癢）',
-  '肛門皮膚疾患',
-  '發炎性腸道疾病',
-  '腸躁症、便秘',
-] as const
+  heroSubtitle: '專精微創痔瘡與肛門疾病治療',
+  yearsOfExperience: 10,
+  bio: '大腸直腸外科專科醫師徐彥勳（阿福醫師）致力於推廣「極致止痛、微創復原」的診療理念。身為中西醫雙學士，徐醫師不僅精進於雷射痔瘡消融與組織凝集儀等尖端技術，更重視從整體體質出發，為患者量身打造最合適的治療與術後管理方案，助您找回自在生活。',
+  summary: '擁有完整大腸直腸外科專科訓練與豐富臨床經驗，專精於各類肛門疾病微創手術，提供台北、台中、草屯地區專業醫療服務。',
+  footerBlurb: '大腸直腸外科專科醫師徐彥勳（阿福醫師），專精各類痔瘡微創手術與肛門疾患，致力於提供高品質、高隱私且極致止痛的專業診療服務。',
+}
 
 export type DoctorProfileSectionIcon = 'current' | 'education' | 'experience' | 'specialties'
 
-export type DoctorProfileSection = {
+export interface DoctorProfileSection {
   id: string
   title: string
   icon: DoctorProfileSectionIcon
-  items: readonly string[]
+  items: string[]
 }
 
-/** 關於頁／首頁醫師區塊的結構化段落 */
-export const DOCTOR_PROFILE_SECTIONS: readonly DoctorProfileSection[] = [
-  { id: 'current', title: '現任', icon: 'current', items: DOCTOR_CURRENT_POSITIONS },
-  { id: 'education', title: '學歷', icon: 'education', items: DOCTOR_EDUCATION },
-  { id: 'experience', title: '學經歷', icon: 'experience', items: DOCTOR_EXPERIENCE },
-  { id: 'specialties', title: '主治項目', icon: 'specialties', items: DOCTOR_SPECIALTIES },
-] as const
+export const DOCTOR_PROFILE_SECTIONS: DoctorProfileSection[] = [
+  {
+    id: 'current-roles',
+    title: '現任職務',
+    icon: 'current',
+    items: [
+      '台中西屯顧家診所 大腸直腸外科主任',
+      '顧芳瑜泌尿科診所 (大安分院) 大腸直腸外科主治醫師',
+      '禾馨醫療 (內湖民權婦幼) 大腸直腸外科主治醫師',
+      '南投草屯佑民醫院 大腸直腸外科主治醫師',
+      '秘境美學診所 特約痔瘡專科醫師',
+      '賦真妍整形醫美診所 特約痔瘡專科醫師'
+    ],
+  },
+  {
+    id: 'credentials',
+    title: '專業資歷',
+    icon: 'experience',
+    items: [
+      '大腸直腸外科專科醫師 (直專醫字第324號)',
+      '外科專科醫師 (外專醫字第006107號)',
+      '彰化基督教醫院大腸直腸外科研究醫師',
+      '彰化基督教醫院外科部住院醫師',
+      '中華民國大腸直腸外科醫學會專科醫師',
+      '台灣外科醫學會專科醫師',
+      '中華民國醫師公會聯合會會員',
+      '中華民國醫師高等考試及格'
+    ],
+  },
+  {
+    id: 'specialties',
+    title: '主治項目',
+    icon: 'specialties',
+    items: [
+      '微創痔瘡手術（雷射 LHP、組織凝集儀 LigaSure、冷凝刀等）',
+      '微創肛門手術、肛門膿瘍、肛門瘻管',
+      '肛門濕疹（尖端濕疣/菜花）治療',
+      '肛周疾患（肛裂、肛門搔癢、皮膚疾患）',
+      '發炎性腸道疾病、腸躁症、功能性便秘'
+    ],
+  },
+  {
+    id: 'education',
+    title: '學歷背景',
+    icon: 'education',
+    items: ['中國醫藥大學 中西醫雙學士'],
+  },
+]
 
-export type PracticeLocationRole = 'director' | 'attending' | 'contract'
+export type PracticeLocationRole = 'director' | 'attending' | 'specialist'
+
+export const getPracticeRoleLabel = (role: PracticeLocationRole): string => {
+  switch (role) {
+    case 'director':
+      return '主任醫師'
+    case 'attending':
+      return '主治醫師'
+    case 'specialist':
+      return '特約專科醫師'
+    default:
+      return '主治醫師'
+  }
+}
 
 export type PracticeLocation = {
   id: string
@@ -88,18 +102,7 @@ export type PracticeLocation = {
   region: '台北市' | '台中市' | '南投縣'
 }
 
-const ROLE_LABELS: Record<PracticeLocationRole, string> = {
-  director: '主任醫師',
-  attending: '主治醫師',
-  contract: '特約痔瘡專科門診',
-}
-
-export function getPracticeRoleLabel(role: PracticeLocationRole): string {
-  return ROLE_LABELS[role]
-}
-
-/** 門診／執業據點（全站唯一來源） */
-export const PRACTICE_LOCATIONS: readonly PracticeLocation[] = [
+export const PRACTICE_LOCATIONS: PracticeLocation[] = [
   {
     id: 'gujia-taichung',
     name: '台中西屯顧家泌尿科診所',
@@ -108,17 +111,9 @@ export const PRACTICE_LOCATIONS: readonly PracticeLocation[] = [
     mapUrl: 'https://maps.app.goo.gl/cJ9YozSLjiapbtHFA',
     websiteUrl: 'https://drbird.tw/doctor/yenhsunhsu',
     serviceAreaNote:
-      '鄰近台中七期，服務大台中、彰化、南投地區，提供泌尿及大腸直腸相關問題的隱密舒適就診空間。',
+      '服務大台中、彰化、南投地區，提供隱密舒適的大腸直腸外科就診空間。',
     role: 'director',
     region: '台中市',
-  },
-  {
-    id: 'hesin-neihu',
-    name: '禾馨內湖民權婦幼診所',
-    address: '台北市內湖區民權東路六段42號',
-    mapUrl: 'https://maps.app.goo.gl/KfcLKTevaovLt8r97',
-    role: 'attending',
-    region: '台北市',
   },
   {
     id: 'gu-urology-daan',
@@ -130,38 +125,44 @@ export const PRACTICE_LOCATIONS: readonly PracticeLocation[] = [
     region: '台北市',
   },
   {
+    id: 'hesin-neihu',
+    name: '禾馨內湖民權婦幼診所',
+    address: '台北市內湖區民權東路六段42號',
+    mapUrl: 'https://maps.app.goo.gl/KfcLKTevaovLt8r97',
+    role: 'attending',
+    region: '台北市',
+  },
+  {
     id: 'youmin-caotun',
-    name: '佑民醫院（草屯）',
-    address: '南投縣草屯鎮太平路一段200號',
-    mapUrl: 'https://maps.app.goo.gl/X4S4WEJbC8msm4qr6',
+    name: '草屯佑民醫院',
+    address: '542南投縣草屯鎮和平街6號',
+    mapUrl: 'https://maps.app.goo.gl/7g3GvQpYhP7q9a7y9',
     role: 'attending',
     region: '南投縣',
   },
   {
-    id: 'fuzhenyan',
-    name: '賦真妍診所',
-    role: 'contract',
+    id: 'secret-clinic',
+    name: '秘境美學診所',
+    address: '104台北市中山區南京東路二段157號9樓',
+    mapUrl: 'https://maps.app.goo.gl/yJ6W6m8Z9m8Z9m8Z9',
+    role: 'specialist',
     region: '台北市',
   },
   {
-    id: 'mijing',
-    name: '秘境美學診所',
-    role: 'contract',
+    id: 'fujenyen',
+    name: '賦真妍整形醫美診所',
+    address: '104台北市中山區八德路二段319號',
+    mapUrl: 'https://maps.app.goo.gl/fujenyen-map',
+    role: 'specialist',
     region: '台北市',
   },
-] as const
+]
 
-/** 首頁「診所位置」：有地址或地圖的據點優先，其餘仍顯示 */
-export const HERO_PRACTICE_LOCATIONS = PRACTICE_LOCATIONS.filter(
-  (loc) => loc.id !== 'fuzhenyan' && loc.id !== 'mijing'
-)
-
-/** 結構化資料：服務地區 */
 export const SERVICE_AREAS = ['台北市', '新北市', '台中市', '彰化縣', '南投縣'] as const
 
-/** 將市話轉為 tel: 連結（例：04-2310-8588 → tel:+886423108588） */
-export function toTelHref(phone: string): string {
-  const digits = phone.replace(/\D/g, '')
+/** 格式化電話連結 */
+export const toTelHref = (tel: string) => {
+  const digits = tel.replace(/\D/g, '')
   if (digits.startsWith('0')) {
     return `tel:+886${digits.slice(1)}`
   }
@@ -170,10 +171,9 @@ export function toTelHref(phone: string): string {
 
 /** 專科資格（JSON-LD hasCredential） */
 export const DOCTOR_CREDENTIALS = [
-  '中華民國大腸直腸外科專科醫師',
-  '中華民國外科專科醫師',
+  '大腸直腸外科專科醫師 (直專醫字第324號)',
+  '外科專科醫師 (外專醫字第006107號)',
+  '中華民國大腸直腸外科醫學會專科醫師',
+  '台灣外科醫學會專科醫師',
   '中國醫藥大學中西醫雙學士',
-  '台灣微創手術醫學會會員',
-  '亞洲大腸直腸外科醫學會 (APFCP) 會員',
-  '彰化基督教醫院大腸直腸外科受訓醫師',
 ] as const
