@@ -6,11 +6,11 @@ updatedAt: '2024-12-24'
 image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '疾病警訊'
-tags: ['血便', '下消化道出血', '大腸癌篩檢', '大腸鏡', '直腸出血', '臨床診斷', '醫師指南']
+tags: ['血便', '大便', '痔瘡', '猛健樂', '下消化道出血', '大腸癌篩檢', '大腸鏡', '診斷流程']
 featured: true
 draft: false
 seo:
-  keywords: ['血便', '便血原因', '大便出血', '下消化道出血', '大腸癌前兆', '血便顏色', '糞便潛血檢查', '大腸鏡檢查', '血便看哪科', '直腸出血']
+  keywords: ['猛健樂', '大便', '血便', '痔瘡', '血便原因', '大便出血', '猛健樂副作用', '大腸癌警訊', '血便顏色', '診斷流程']
   canonical: 'https://drfuku.com/blog/blood-in-stool-guide'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，專精消化道出血診治'

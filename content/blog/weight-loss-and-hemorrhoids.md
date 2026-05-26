@@ -10,7 +10,7 @@ tags: ['猛健樂', '瘦瘦針', 'GLP-1', '痔瘡', '便秘', '運動生理學',
 featured: true
 draft: false
 seo:
-  keywords: ['瘦瘦針副作用', '猛健樂便秘', '減重痔瘡', 'GLP-1副作用', '減重藥物痔瘡', '阿福醫師', '徐彥勳醫師', 'Ozempic便秘', '瘦瘦筆痔瘡', '減重期間便秘']
+  keywords: ['猛健樂', '大便', '血便', '痔瘡', '猛健樂副作用', '猛健樂便秘', '減重痔瘡', 'GLP-1副作用', '減重藥物痔瘡', '阿福醫師']
   canonical: 'https://drfuku.com/blog/weight-loss-and-hemorrhoids'
 expertise:
   credentials: '中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士'
