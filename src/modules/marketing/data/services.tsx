@@ -1,7 +1,6 @@
 import {
   HiOutlineHeart,
   HiOutlineShieldCheck,
-  HiOutlineSparkles,
   HiOutlineAcademicCap,
   HiOutlineMagnifyingGlassCircle,
   HiOutlineHandThumbUp
@@ -19,46 +18,35 @@ export const services: Service[] = [
   {
     icon: <HiOutlineHeart className="h-8 w-8" />,
     title: '痔瘡微創手術 (LHP/LigaSure)',
-    description: '專精 LHP 雷射痔瘡消融與組織凝集儀 (LigaSure) 微創技術，提供極低疼痛、出血量少且恢復快速的治療方案。',
+    description: '專精 LHP 雷射痔瘡消融與組織凝集儀 (LigaSure) 微創技術，並提供「複合式手術」方案，針對內外痔嚴重度量身打造低疼痛、恢復快速的治療計劃。',
     features: [
-      '微創雷射技術 (LHP) 無需大面積切除',
-      '組織凝集儀 LigaSure 減少熱損傷與疼痛',
-      '術後不需長期住院，當日或隔日可返家',
-      '量身打造最適合的手術方案'
+      '微創雷射技術 (LHP) 無需大面積切除，保留肛門功能',
+      '組織凝集儀 LigaSure 減少熱損傷，大幅降低術後痛感',
+      '日間手術 (Day Surgery) 流程，多數病患當日即可返家',
+      '客製化止痛 SOP，縮短 50% 以上的術後恢復期'
     ],
     highlight: true
   },
   {
     icon: <HiOutlineShieldCheck className="h-8 w-8" />,
-    title: '肛門裂隙 (肛裂) 治療',
-    description: '針對急慢性肛裂導致的劇烈排便疼痛與出血，提供藥物調節、肉毒桿菌素注射或微創擴約肌放鬆術。',
+    title: '肛門裂隙與瘻管精準治療',
+    description: '針對肛裂劇痛與複雜性瘻管，運用高階門診微創技術與括約肌保留手術，解決反覆感染與腫痛困擾。',
     features: [
-      '精確判定急慢性成因與癒合機率',
-      '無痛化診間處置與專業止痛建議',
-      '肉毒桿菌素注射減少括約肌痙攣',
-      '有效預防復發與長期的便祕管理'
-    ]
-  },
-  {
-    icon: <HiOutlineSparkles className="h-8 w-8" />,
-    title: '肛門廔管保留括約肌手術',
-    description: '運用高階診斷與微創技術，在徹底清除廔管發炎組織的同時，最大限度保護排便控制功能。',
-    features: [
-      '保留括約肌功能技術 (LIFT/VAAFT)',
-      '減少術後感染與長期併發症',
-      '大幅降低復發風險與縮短換藥期',
-      '精準定位廔管走徑與內口位置'
+      '保留括約肌功能技術 (LIFT/VAAFT) 降低失禁風險',
+      '精確判定急慢性成因，提供無痛化診間處置',
+      '肉毒桿菌素注射輔助治療，緩解括約肌痙攣',
+      '針對瘻管內口精準定位，大幅降低術後復發率'
     ]
   },
   {
     icon: <HiOutlineMagnifyingGlassCircle className="h-8 w-8" />,
-    title: '大腸鏡檢查與息肉處置',
-    description: '提供無痛大腸鏡評估諮詢、息肉切除後追蹤建議，並針對腸道發炎性疾病提供長期健康管理。',
+    title: '無痛舒眠大腸鏡檢查',
+    description: '提供醫學中心等級的無痛大腸鏡篩檢，由專業麻醉團隊全程守護，在舒適睡眠中完成癌症預防與息肉處置。',
     features: [
-      '低焦慮的大腸鏡前中後專業諮詢',
-      '息肉切除後定期監測與病理判讀',
-      '腸躁症 (IBS) 與功能性排便障礙診斷',
-      '完整的大腸直腸癌預防醫學規劃'
+      '專業舒眠麻醉團隊，全程生理監測保障安全',
+      '高解析度窄頻顯像技術 (NBI)，細微病灶不遺漏',
+      '息肉切除當日完成，免去二次檢查的繁瑣',
+      '個人化清腸衛教指引，提升檢查精準度與舒適感'
     ]
   },
   {

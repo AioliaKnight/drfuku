@@ -41,6 +41,11 @@ export type City = Thing & {
   '@type': 'City'
 }
 
+// 行政區域類型
+export type AdministrativeArea = Thing & {
+  '@type': 'AdministrativeArea'
+}
+
 // 醫療程序類型
 export type MedicalProcedure = Thing & {
   '@type': 'MedicalProcedure'
@@ -55,6 +60,10 @@ export type MedicalTherapy = Thing & {
 export type MedicalCondition = Thing & {
   '@type': 'MedicalCondition'
   alternateName?: readonly string[]
+  relevantSpecialty?: {
+    '@type': 'MedicalSpecialty'
+    name: string
+  }
   possibleTreatment?: MedicalTherapy[]
 }
 
@@ -98,12 +107,14 @@ export type MedicalClinic = Thing & {
   '@type': 'MedicalClinic'
   alternateName?: readonly string[]
   logo?: string | ImageObject
+  image?: string
   telephone?: string
   address?: PostalAddress
   geo?: GeoCoordinates
-  areaServed?: City[]
+  areaServed?: Array<City | AdministrativeArea>
   availableService?: MedicalProcedure[]
   medicalSpecialty?: string
+  openingHoursSpecification?: any[]
   priceRange?: string
   currenciesAccepted?: string
   paymentAccepted?: string
@@ -121,6 +132,7 @@ export type Person = Thing & {
   image?: string
   sameAs?: readonly string[]
   medicalSpecialty?: string
+  knowsAbout?: string[]
   hasCredential?: Array<{
     '@type': 'EducationalOccupationalCredential'
     credentialCategory: string
@@ -157,6 +169,7 @@ export type Person = Thing & {
 export type MedicalWebPage = Thing & {
   '@type': 'MedicalWebPage'
   about?: MedicalCondition
+  breadcrumb?: BreadcrumbList | { '@type': 'BreadcrumbList'; itemListElement: any[] }
   lastReviewed?: string
   medicalAudience?: {
     '@type': 'MedicalAudience'
