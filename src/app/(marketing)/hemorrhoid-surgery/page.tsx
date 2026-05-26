@@ -288,7 +288,7 @@ export default function HemorrhoidSurgeryPage() {
             
             <h2 className="text-3xl font-bold md:text-5xl">不只是手術，<br className="sm:hidden" />更是生活品質的重建</h2>
             <p className="mt-6 text-lg text-brand-50 opacity-90 md:text-xl">
-              醫師的職責不只是解決生理病灶，更是協助您在最短時間內找回自信與舒適。
+              醫師的職責不只是解決生理病灶，更是協助您在理想時間內找回自信與舒適。
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <LineButton text="與醫師對話諮詢" variant="default" className="!bg-white !text-[#06C755] !ring-white hover:!bg-brand-50" />

@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: '阿福醫師-大腸直腸外科徐彥勳',
     short_name: '阿福醫師',
-    description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）專精痔瘡微創手術、肛門與大腸直腸疾病診療，在台北、台中提供專業診療服務。採用先進微創技術，免開刀、恢復快、術後不復發。重視隱私、專業保密。',
+    description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）專精痔瘡微創手術、肛門與大腸直腸疾病診療，在台北、台中提供專業診療服務。採用先進微創技術，具有疼痛低、恢復快、復發率低等特色。重視隱私、專業保密。',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
