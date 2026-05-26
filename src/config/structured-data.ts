@@ -63,17 +63,32 @@ export const structuredData: Record<string, StructuredData> = {
       alternateName: CLINIC.alternateName,
       url: SITE.url,
       logo: clinicLogoObject,
+      image: DOCTOR.image,
       telephone: CLINIC.telephone,
-      description: '大腸直腸外科專科診療，提供痔瘡微創手術、大腸直腸與肛門疾病診治及完整術後照護。',
-      medicalSpecialty: 'Colorectal Surgery',
+      description: '阿福醫師（徐彥勳）提供專業大腸直腸外科診療，專精 LHP 雷射痔瘡微創手術與 LigaSure 組織凝集儀手術。',
+      medicalSpecialty: 'http://www.nlm.nih.gov/mesh/D003107', // Colorectal Surgery
       address: clinicAddress,
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: 25.0579,
-        longitude: 121.5234,
+        latitude: 24.1541,
+        longitude: 120.6508,
       },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '21:00'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Saturday',
+          opens: '09:00',
+          closes: '12:00'
+        }
+      ],
       areaServed: SERVICE_AREAS.map((city) => ({
-        '@type': 'City',
+        '@type': 'AdministrativeArea',
         name: city,
       })),
       availableService: CLINIC.services.map(service => ({
@@ -83,7 +98,7 @@ export const structuredData: Record<string, StructuredData> = {
       })),
       priceRange: '$$',
       currenciesAccepted: 'TWD',
-      paymentAccepted: '健保, 現金, 信用卡',
+      paymentAccepted: '健保, 現金, 信用卡, LINE Pay',
       isAcceptingNewPatients: true,
     }
   },
@@ -100,36 +115,58 @@ export const structuredData: Record<string, StructuredData> = {
       image: DOCTOR.image,
       url: DOCTOR.url,
       sameAs: DOCTOR.sameAs,
-      medicalSpecialty: 'Colorectal Surgery',
+      medicalSpecialty: 'http://www.nlm.nih.gov/mesh/D003107',
+      knowsAbout: [
+        'Hemorrhoids',
+        'Proctology',
+        'Minimally Invasive Surgery',
+        'Laser Surgery',
+        'Colorectal Cancer Screening'
+      ],
       hasCredential: DOCTOR_CREDENTIALS.map((name, index) => ({
         '@type': 'EducationalOccupationalCredential',
         credentialCategory: index === DOCTOR_CREDENTIALS.length - 1 ? 'degree' : 'board certification',
         name,
       })),
-      worksFor: PRACTICE_LOCATIONS.map((loc) => ({
-        '@type': 'MedicalOrganization',
-        name: loc.name,
-        ...(loc.address
-          ? {
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: loc.address,
-                addressLocality: loc.region,
-                addressCountry: 'TW',
-              },
-            }
-          : {}),
-        ...(loc.mapUrl ? { url: loc.mapUrl } : {}),
-        ...(loc.telephone ? { telephone: loc.telephone } : {}),
-      })),
+      worksFor: [
+        {
+          '@type': 'MedicalClinic',
+          name: CLINIC.name,
+          address: clinicAddress,
+          telephone: CLINIC.telephone,
+        },
+        ...PRACTICE_LOCATIONS.map((loc) => ({
+          '@type': 'MedicalOrganization',
+          name: loc.name,
+          ...(loc.address
+            ? {
+                address: {
+                  '@type': 'PostalAddress',
+                  streetAddress: loc.address,
+                  addressLocality: loc.region,
+                  addressCountry: 'TW',
+                },
+              }
+            : {}),
+          ...(loc.mapUrl ? { url: loc.mapUrl } : {}),
+          ...(loc.telephone ? { telephone: loc.telephone } : {}),
+        }))
+      ],
     }
   },
   medicalPage: {
     type: 'MedicalWebPage',
     data: {
       '@type': 'MedicalWebPage',
-      name: '大腸直腸外科診療資訊',
+      name: '大腸直腸外科診療資訊 | 阿福醫師',
       description: '提供大腸直腸外科專業診療資訊、痔瘡治療方案與預防建議。',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '首頁', item: SITE.url },
+          { '@type': 'ListItem', position: 2, name: '診療項目', item: `${SITE.url}/services` }
+        ]
+      },
       lastReviewed: new Date().toISOString().slice(0, 10),
       medicalAudience: {
         '@type': 'MedicalAudience',
@@ -140,6 +177,10 @@ export const structuredData: Record<string, StructuredData> = {
         name: DISEASE.name,
         alternateName: DISEASE.alternateName,
         description: DISEASE.description,
+        relevantSpecialty: {
+          '@type': 'MedicalSpecialty',
+          name: 'Colorectal Surgery'
+        },
         possibleTreatment: DISEASE.treatments.map(treatment => ({
           '@type': 'MedicalTherapy',
           name: treatment.name,
@@ -155,7 +196,9 @@ export const articlePublisher = {
   '@type': 'MedicalClinic' as const,
   name: CLINIC.name,
   logo: clinicLogoObject,
+  image: DOCTOR.image,
   telephone: CLINIC.telephone,
+  address: clinicAddress,
   url: SITE.url,
 }
 
@@ -163,8 +206,11 @@ export const articlePublisher = {
 export const articleAuthor = {
   '@type': 'Physician' as const,
   name: DOCTOR.name,
+  givenName: DOCTOR.givenName,
+  familyName: DOCTOR.familyName,
   jobTitle: DOCTOR.title,
   image: DOCTOR.image,
   url: DOCTOR.url,
-  medicalSpecialty: 'Colorectal Surgery',
+  medicalSpecialty: 'http://www.nlm.nih.gov/mesh/D003107',
+  sameAs: DOCTOR.sameAs,
 }
