@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { FAQSection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
+import PageHeader from '@/shared/ui/layout/PageHeader'
 import { faqCategories } from '@/modules/marketing/data/faq'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
     '整理患者最常詢問的痔瘡治療、術後照護、費用與預約問題，提供清楚解答，讓就醫前的準備更安心。',
   keywords: [
     ...KEYWORDS.primary.slice(0, 6),
-    ...KEYWORDS.concerns.slice(0, 6),
     '痔瘡常見問題',
     '痔瘡就醫準備'
   ],
@@ -77,6 +77,12 @@ export default function FAQPage() {
           name: '痔瘡與肛門疾病常見問題',
           mainEntity: faqs
         }}
+      />
+      <PageHeader
+        title="常見問題解答"
+        description="我們彙整了診間最常被問到的各類疑問，包含診療流程、技術差異、保險理賠與術後恢復，幫助您在就醫前做好充分準備。"
+        badge="FAQ"
+        tone="brand"
       />
       <FAQSection />
     </main>

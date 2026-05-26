@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { ServicesSection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
+import PageHeader from '@/shared/ui/layout/PageHeader'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
 
 export const metadata: Metadata = {
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
     '了解大腸直腸外科專科醫師徐彥勳（阿福醫師）提供的痔瘡微創手術、肛門與大腸直腸疾病治療及術後照護服務，從評估到復原皆由專業團隊完整陪伴。',
   keywords: [
     ...KEYWORDS.treatments.slice(0, 8),
-    ...KEYWORDS.primary.slice(0, 4),
     '痔瘡微創手術',
     '肛門疾病治療'
   ],
@@ -56,6 +56,12 @@ export default function ServicesPage() {
           name: '診療服務',
           itemListElement: breadcrumbItems
         }}
+      />
+      <PageHeader
+        title="全方位大腸直腸健康方案"
+        description="從極致止痛的痔瘡微創手術到精準的大腸鏡檢查，我們結合尖端技術與人性化照護，為您的腸道健康保駕護航。"
+        badge="Our Services"
+        tone="brand"
       />
       <ServicesSection />
     </main>
