@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { ServicesSection } from '@/modules/marketing'
+import { ServicesSection, TechnologyShowcase, CTASection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
@@ -48,7 +48,7 @@ export default function ServicesPage() {
   ]
 
   return (
-    <main className="bg-white">
+    <main className="bg-warm-50">
       <JsonLd
         type="BreadcrumbList"
         data={{
@@ -64,8 +64,8 @@ export default function ServicesPage() {
         tone="brand"
       />
       <ServicesSection />
+      <TechnologyShowcase />
+      <CTASection />
     </main>
   )
 }
-
-

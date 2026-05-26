@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { AboutSection } from '@/modules/marketing'
+import { AboutSection, DoctorPhilosophySection, CTASection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
 import { SITE } from '@/config/constants'
@@ -22,7 +22,7 @@ export default function AboutPage() {
   ]
 
   return (
-    <main className="bg-white">
+    <main className="bg-warm-50">
       <JsonLd
         type="BreadcrumbList"
         data={{
@@ -38,6 +38,8 @@ export default function AboutPage() {
         tone="warm"
       />
       <AboutSection />
+      <DoctorPhilosophySection />
+      <CTASection />
     </main>
   )
 }

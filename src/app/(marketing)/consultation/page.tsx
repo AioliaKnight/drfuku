@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { CTASection } from '@/modules/marketing'
+import { CTASection, ClinicGridSection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
 import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
@@ -49,7 +49,7 @@ export default function ConsultationPage() {
   ]
 
   return (
-    <main className="bg-white">
+    <main className="bg-warm-50">
       <JsonLd
         type="BreadcrumbList"
         data={{
@@ -65,8 +65,7 @@ export default function ConsultationPage() {
         tone="care"
       />
       <CTASection />
+      <ClinicGridSection />
     </main>
   )
 }
-
-

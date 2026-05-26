@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { FAQSection } from '@/modules/marketing'
+import { FAQSection, CTASection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
 import { faqCategories } from '@/modules/marketing/data/faq'
@@ -61,7 +61,7 @@ export default function FAQPage() {
   )
 
   return (
-    <main className="bg-white">
+    <main className="bg-warm-50">
       <JsonLd
         type="BreadcrumbList"
         data={{
@@ -85,8 +85,7 @@ export default function FAQPage() {
         tone="brand"
       />
       <FAQSection />
+      <CTASection />
     </main>
   )
 }
-
-

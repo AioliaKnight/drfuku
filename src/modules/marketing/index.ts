@@ -5,6 +5,9 @@ export { default as BlogSection } from './sections/BlogSection'
 export { default as FAQSection } from './sections/FAQSection'
 export { default as CTASection } from './sections/CTASection'
 export { default as TestimonialsSection } from './sections/TestimonialsSection'
+export { default as DoctorPhilosophySection } from './sections/DoctorPhilosophySection'
+export { default as ClinicGridSection } from './sections/ClinicGridSection'
+export { default as TechnologyShowcase } from './sections/TechnologyShowcase'
 export { default as HemorrhoidAssessment } from './components/HemorrhoidAssessment'
 
 
