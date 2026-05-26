@@ -3,7 +3,7 @@ title: '痔瘡吃什麼好得快？阿福醫師的飲食原則、高纖清單與
 summary: '痔瘡發作時該怎麼吃？本文由徐彥勳醫師（阿福醫師）親自彙整，提供臨床實證的高纖飲食 SOP、適合與禁忌食物清單，幫助您用「吃」來有效緩解並預防痔瘡問題。'
 publishedAt: '2024-01-10'
 updatedAt: '2024-12-19'
-image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '飲食保健'
 tags: ['痔瘡飲食', '腸胃保健', '預防醫學', '實證醫學', '營養指導', '健康飲食']

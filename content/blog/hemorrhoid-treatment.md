@@ -3,7 +3,7 @@ title: '痔瘡治療全攻略：從藥物到微創，大腸直腸醫師教您做
 summary: '痔瘡一定要開刀嗎？本文由徐彥勳醫師從臨床分級出發，深度對比保守治療、傳統手術與現代微創技術（LHP/LigaSure），助您在疼痛與效果間找到平衡點。'
 publishedAt: '2024-01-15'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1576091160607-21c93db0821d?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '治療方法'
 tags: ['痔瘡手術', '微創技術', 'LHP雷射', 'LigaSure', '疼痛管理', '門診手術', '阿福醫師']

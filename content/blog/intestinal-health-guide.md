@@ -3,7 +3,7 @@ title: '腸道保養怎麼做？大腸專科醫師教您：結合中西醫智慧
 summary: '腸道健康直接影響免疫力與情緒。本文由具備中西醫背景的專科醫師徐彥勳撰寫，詳解排便指標自我檢測、益生菌選擇原則與高纖飲食計畫，助您建立穩定的腸道微生態。'
 publishedAt: '2024-01-10'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '預防保健'
 tags: ['腸道保養', '益生菌', '膳食纖維', '布里斯托分類', '中西醫整合', '預防醫學', '阿福醫師']

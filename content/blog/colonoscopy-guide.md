@@ -3,7 +3,7 @@ title: '大腸鏡檢查要準備什麼？流程、清腸與「安心檢查」的
 summary: '大腸鏡檢查是篩檢大腸癌最關鍵的工具。本文由大腸直腸專科醫師說明檢查前準備、清腸方式、當天流程與術後照護，助您放下焦慮，安心守護腸道健康。'
 publishedAt: '2024-01-20'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '疾病衛教'
 tags: ['大腸鏡檢查', '腸道健康', '癌症篩檢', '清腸準備', '無痛檢查', '預防醫學', '阿福醫師']

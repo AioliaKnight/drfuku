@@ -3,7 +3,7 @@ title: '痔瘡不治療會怎樣？專科醫師談「沉默代價」與身心健
 summary: '痔瘡不只是「小毛病」。本文從大腸直腸外科專科醫師視角，深度分析痔瘡對長期健康、心理壓力及生活品質的影響，並提供打破恐懼、重拾尊嚴的專業建議。'
 publishedAt: '2024-01-18'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '預防保健'
 tags: ['痔瘡心理學', '健康管理', '貧血風險', '術前焦慮', '生活品質', '阿福醫師']

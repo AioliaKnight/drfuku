@@ -3,7 +3,7 @@ title: '孕婦、運動員、長輩痔瘡怎麼辦？專科醫師教您：特殊
 summary: '不同族群的痔瘡成因與顧慮大不相同。本文由徐彥勳醫師針對孕產期安全、重訓族腹壓管理及高齡者共病照護，提供由臨床實證支持的個人化建議。'
 publishedAt: '2024-01-25'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '預防保健'
 tags: ['孕婦痔瘡', '運動員健康', '銀髮族照護', '特殊族群', '安全用藥', '生活型態', '阿福醫師']

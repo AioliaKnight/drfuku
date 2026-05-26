@@ -3,7 +3,7 @@ title: '痔瘡在家怎麼顧？阿福醫師的清潔、用藥、坐浴居家照
 summary: '痔瘡還沒到需要手術的程度，或是術後返家該如何護理？本文由徐彥勳醫師親自撰寫，涵蓋臨床護理 SOP、藥膏正確用法、溫水坐浴步驟與排便記錄，助您在家也能掌握 80% 的康復關鍵。'
 publishedAt: '2024-01-26'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '居家照護'
 tags: ['居家護理', '痔瘡藥膏', '溫水坐浴', '清潔技巧', '自我檢測', '保守治療', '阿福醫師']

@@ -3,7 +3,7 @@ title: '血便怎麼辦？醫師深度解析：從「紅色恐慌」到理性的
 summary: '發現馬桶水變紅，大多數人的第一反應是恐懼。本文由徐彥勳醫師教您如何透過顏色、頻率與伴隨症狀進行風險分層，並詳解大腸鏡在預防大腸癌中的關鍵角色。'
 publishedAt: '2024-01-15'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1579153196606-a1507d824244?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '疾病警訊'
 tags: ['血便', '大腸癌篩檢', '痔瘡出血', '下消化道出血', '大腸鏡', '診斷流程', '阿福醫師']

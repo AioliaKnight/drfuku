@@ -3,7 +3,7 @@ title: '痔瘡出血、血栓怎麼辦？醫師詳解：面對緊急併發症的
 summary: '大量的鮮血、突如其來的劇烈腫痛，往往是痔瘡併發症的警訊。本文由徐彥勳醫師教您如何判斷血栓、嵌頓與大出血的危急程度，並提供臨床急救 SOP，陪您度過不安時刻。'
 publishedAt: '2024-01-16'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '疾病警訊'
 tags: ['痔瘡併發症', '血栓痔瘡', '緊急處置', '大量出血', '自救指南', '診斷流程', '阿福醫師']

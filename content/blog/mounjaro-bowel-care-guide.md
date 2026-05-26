@@ -3,7 +3,7 @@ title: '猛健樂使用者的腸道守護指南：預防便秘、血便與痔瘡
 summary: '使用猛健樂 (Mounjaro) 期間出現大便變硬、血便或痔瘡發作？本文由大腸直腸專科醫師徐彥勳解析 GLP-1/GIP 藥物對腸道動力的影響，並提供科學化的補水、纖維攝取與用藥指引。'
 publishedAt: '2025-02-10'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1579126457109-85d056d8ec50?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '預防保健'
 tags: ['猛健樂', '大便', '血便', '痔瘡', 'GLP-1', '副作用管理', '阿福醫師']

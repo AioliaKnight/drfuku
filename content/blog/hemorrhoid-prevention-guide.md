@@ -3,7 +3,7 @@ title: '痔瘡怎麼預防？大腸專科醫師教您：從生理規律建立全
 summary: '最好的治療是預防。本文由徐彥勳醫師結合排便解剖學與臨床數據，為現代久坐族、上班族提供一套可執行的科學預防方案，涵蓋纖維攝取、姿勢調整與生理規律重塑。'
 publishedAt: '2024-01-22'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1024'
 author: '徐彥勳醫師'
 category: '預防保健'
 tags: ['痔瘡預防', '排便習慣', '上班族健康', '纖維攝取', '生活型態', '布里斯托分類', '阿福醫師']
