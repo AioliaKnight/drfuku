@@ -104,7 +104,7 @@ export const PRACTICE_LOCATIONS: readonly PracticeLocation[] = [
     name: '台中西屯顧家泌尿科診所',
     address: '407台中市西屯區大隆路185號',
     telephone: '04-2310-8588',
-    mapUrl: 'https://share.google/Sy15rgJv13xJdHkgx',
+    mapUrl: 'https://maps.app.goo.gl/cJ9YozSLjiapbtHFA',
     serviceAreaNote:
       '鄰近台中七期，服務大台中、彰化、南投地區，提供泌尿及大腸直腸相關問題的隱密舒適就診空間。',
     role: 'director',
