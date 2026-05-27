@@ -3,7 +3,7 @@ title: '內痔、外痔、混合痔差在哪？大腸直腸醫師教您精準判
 summary: '屁股痛就是痔瘡嗎？本文由徐彥勳醫師以解剖結構與臨床數據為基礎，深度解析三種痔瘡類型的症狀差異、診斷流程與對應治療策略，幫助您在正確時機尋求專業協助。'
 publishedAt: '2024-01-15'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1504813184591-01592f2bb94f?q=80&w=1024&auto=format&fit=crop'
 author: '徐彥勳醫師'
 category: '疾病衛教'
 tags: ['內痔', '外痔', '混合痔', '痔瘡分級', '解剖結構', '症狀分辨', '診斷指引', '阿福醫師']
@@ -29,7 +29,7 @@ expertise:
 
 要解決問題，首先要精準定位。這篇文章將帶您按解剖構造，讀懂三種痔瘡的不同語言。
 
-![高清內視鏡與解剖影像分析](https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1024)
+![高清內視鏡與解剖影像分析](https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1024&auto=format&fit=crop)
 
 ---
 

@@ -3,7 +3,7 @@ title: '瘦瘦針副作用：減重藥物（猛健樂、瘦瘦筆）引發便秘
 summary: '體重輕了，腸子卻慢了？本文由大腸直腸專科醫師解析 GLP-1 類減重藥物對腸道動力的影響機轉，並針對便秘、血便與痔瘡發作提供科學化的預防與臨床處理建議。'
 publishedAt: '2025-11-20'
 updatedAt: '2025-02-10'
-image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1024'
+image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1024&auto=format&fit=crop'
 author: '徐彥勳醫師'
 category: '預防保健'
 tags: ['瘦瘦針', '猛健樂', '減重副作用', '便秘', '痔瘡', '腸道動力', '阿福醫師']
@@ -28,7 +28,7 @@ expertise:
 
 減重不應以犧牲排便自由為代價。這篇文章將揭開減重藥物對腸道的隱形衝擊，並教您如何建立一套科學的防護網。
 
-![平衡減重與腸道健康的科學策略](https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1024)
+![平衡減重與腸道健康的科學策略](https://images.unsplash.com/photo-1550831107-155398cb1144?q=80&w=1024&auto=format&fit=crop)
 
 ---
 
