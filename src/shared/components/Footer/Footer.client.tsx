@@ -261,16 +261,25 @@ export default function Footer() {
                 </div>
               </motion.div>
 
-              {/* 2. 門診據點 (佔比 2/5) */}
+              {/* 2. 醫療服務與據點 Sitemap (佔比 2/5) */}
               <motion.div variants={variants.slideInUp} className="lg:col-span-2">
                 <div className="mb-6 flex items-center gap-3">
                   <div className="h-1 w-8 rounded-full bg-brand-500" />
-                  <h3 className="text-lg font-bold text-neutral-900">門診據點</h3>
+                  <h3 className="text-lg font-bold text-neutral-900">服務據點與專業診療</h3>
                 </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4">
                   {clinics.map((clinic, index) => (
                     <ClinicCard key={clinic.name} clinic={clinic} index={index} />
                   ))}
+                </div>
+                <div className="mt-8 border-t border-neutral-100 pt-6">
+                   <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-4">專業診療分佈</h4>
+                   <nav className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-neutral-500">
+                      <Link href="/hemorrhoid-surgery" className="hover:text-brand-600 transition-colors">台北 LHP 雷射痔瘡</Link>
+                      <Link href="/hemorrhoid-surgery" className="hover:text-brand-600 transition-colors">台中 LigaSure 微創</Link>
+                      <Link href="/services" className="hover:text-brand-600 transition-colors">草屯大腸鏡檢查</Link>
+                      <Link href="/blog/mounjaro-bowel-care-guide" className="hover:text-brand-600 transition-colors">猛健樂副作用諮詢</Link>
+                   </nav>
                 </div>
               </motion.div>
 
