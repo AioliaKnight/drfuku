@@ -60,7 +60,7 @@ const posts = defineCollection({
     }),
 })
 
-export default defineConfig({
+const config = defineConfig({
   root: 'content',
   output: {
     data: '.velite',
@@ -74,3 +74,5 @@ export default defineConfig({
     remarkPlugins: [remarkGfm],
   },
 })
+
+export default config as any

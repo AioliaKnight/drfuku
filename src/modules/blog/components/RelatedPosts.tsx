@@ -16,7 +16,7 @@ export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProp
       // 同分類 +3
       if (post.category === currentPost.category) score += 3
       // 共同標籤每個 +2
-      const commonTagCount = post.tags.filter((tag) =>
+      const commonTagCount = post.tags.filter((tag: string) =>
         currentTagSet.has(tag)
       ).length
       score += commonTagCount * 2

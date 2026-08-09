@@ -117,7 +117,7 @@ export default function BlogPageContent() {
         !q ||
         post.title.toLowerCase().includes(q) ||
         post.summary.toLowerCase().includes(q) ||
-        post.tags.some((tag) => tag.toLowerCase().includes(q))
+        post.tags.some((tag: string) => tag.toLowerCase().includes(q))
       const matchesCategory =
         selectedCategory === 'all' || post.category === selectedCategory
       const matchesTag =

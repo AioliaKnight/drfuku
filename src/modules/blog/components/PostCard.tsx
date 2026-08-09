@@ -102,7 +102,7 @@ export default function PostCard({
             {/* 標籤 */}
             {post.tags.length > 0 && (
               <div className="mb-6 flex flex-wrap gap-2">
-                {post.tags.slice(0, 3).map((tag) => (
+                {post.tags.slice(0, 3).map((tag: string) => (
                   <span
                     key={tag}
                     className="inline-flex items-center gap-1 rounded-lg bg-neutral-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-400 ring-1 ring-neutral-200/50 transition-colors group-hover:bg-warm-50 group-hover:text-warm-600"
