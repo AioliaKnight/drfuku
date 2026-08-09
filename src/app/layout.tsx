@@ -7,6 +7,7 @@ import { Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google'
 import ErrorFallback from '@/shared/components/common/ErrorFallback'
 import Monitoring from '@/shared/components/common/Monitoring'
 import StructuredData from '@/shared/components/common/StructuredData'
+import StickyMobileBottomBar from '@/shared/components/common/StickyMobileBottomBar'
 import Footer from '@/shared/components/Footer'
 import Header from '@/shared/components/Header'
 import { metadata as metadataConfig } from '@/config/metadata'
@@ -64,10 +65,11 @@ export default function RootLayout({
             <Monitoring />
           </Suspense>
           <Header />
-          <main id="main-content" className="pt-[var(--header-height)] md:pt-[var(--header-height-md)]">
+          <main id="main-content" className="pt-[var(--header-height)] md:pt-[var(--header-height-md)] pb-16 md:pb-0">
             {children}
           </main>
           <Footer />
+          <StickyMobileBottomBar />
           <StructuredData />
         </ErrorBoundary>
       </body>
