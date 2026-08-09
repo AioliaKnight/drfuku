@@ -11,7 +11,8 @@ import {
   HiOutlineChatBubbleBottomCenterText,
   HiOutlineMapPin,
   HiOutlineDocumentCheck,
-  HiOutlineQuestionMarkCircle
+  HiOutlineQuestionMarkCircle,
+  HiOutlineUserGroup
 } from "react-icons/hi2"
 
 import Section from "@/shared/ui/layout/Section"
@@ -27,7 +28,7 @@ import { buttonVariants } from "@/shared/ui/primitives"
 export const metadata: Metadata = {
   title: "20年臨床經驗微創痔瘡手術全攻略：LHP雷射與LigaSure技術解析 | 阿福醫師大腸直腸外科",
   description:
-    "由20年臨床經驗大腸直腸外科專科醫師徐彥勳（阿福醫師）親自診置。深入解析 LHP 雷射痔瘡消融與 LigaSure 組織凝集儀微創手術，提供低疼痛管理、保險理賠指引與無痛日間手術評估。",
+    "由20年臨床經驗大腸直腸外科專科醫師徐彥勳（阿福醫師）親自診置。深入解析 LHP 雷射痔瘡消融與 LigaSure 組織凝集儀微創手術，提供低疼痛管理、台灣保險理賠指引與無痛日間手術評估。",
   keywords: [
     ...KEYWORDS.treatments,
     "20年臨床經驗",
@@ -109,6 +110,34 @@ const hemorrhoidGrades = [
     grade: "第四級",
     symptom: "痔瘡長期卡在肛門外無法推回，或推回後立刻脫出",
     desc: "易伴隨嚴重腫痛、血栓形成或黏膜潰瘍，需立即進行微創減壓切除。"
+  }
+]
+
+// 4大高頻率情境族群
+const targetAudiences = [
+  {
+    title: "辦公室久坐 / 高壓工程師族群",
+    tag: "久坐少動",
+    desc: "每日久坐 8-12 小時，下腹靜脈壓力高，肛門血液回流受阻，常伴隨習慣性便秘。",
+    solution: "建議採取 0.2cm 微孔 LHP 雷射消融術，無大切口、術後痛感極低，1-2 天即可回歸日常辦公。"
+  },
+  {
+    title: "孕婦與產後媽媽",
+    tag: "孕產調理",
+    desc: "孕期因黃體素與子宮壓迫致靜脈充血；分娩時用力過度常引發產後急性痔瘡脫垂。",
+    solution: "結合阿福醫師中西醫雙學士背景，孕期先給予安全性極高之緩和調理，產後安排微創修復。"
+  },
+  {
+    title: "台灣外食族與減重藥物使用者",
+    tag: "腸道調理",
+    desc: "外食膳食纖維不足、手搖飲多，或使用猛健樂/瘦瘦針 (GLP-1) 延緩腸道蠕動造成糞便硬結爆血。",
+    solution: "提供個人化高纖飲食處方、水溶性纖維建議與門診日間微創消融，一站式徹底解決出血困擾。"
+  },
+  {
+    title: "急性血栓性外痔與劇痛患者",
+    tag: "急診減壓",
+    desc: "熬夜、飲酒或吃麻辣鍋後，肛門口突冒紫藍色劇痛硬塊，坐立難安、嚴重影響作息。",
+    solution: "門診即刻進行微創抽吸或 LigaSure 組織凝集，15 分鐘快速釋放高壓劇痛，當日恢復舒適。"
   }
 ]
 
@@ -278,8 +307,39 @@ export default function HemorrhoidSurgeryPage() {
         </Container>
       </Section>
 
-      {/* 痔瘡分級與自我檢測 */}
+      {/* 4大常見情境族群分析 */}
       <Section className="bg-white py-16 md:py-24">
+        <Container>
+          <div className="text-center mb-16">
+            <span className="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-md">Target Audiences</span>
+            <h2 className="mt-3 text-3xl font-bold text-neutral-900 md:text-5xl font-serif">您是哪一種痔瘡困擾族群？</h2>
+            <p className="mt-4 text-neutral-600 text-lg max-w-2xl mx-auto">阿福醫師團隊針對不同生活情境，提供精準客製化改善路徑</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {targetAudiences.map((aud, idx) => (
+              <div key={idx} className="rounded-3xl border border-neutral-200/60 bg-warm-50/40 p-8 flex flex-col justify-between hover:bg-white hover:shadow-warm-xl transition-all">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="rounded-md bg-brand-100 px-3 py-1 text-xs font-bold text-brand-800">
+                      {aud.tag}
+                    </span>
+                    <HiOutlineUserGroup className="h-6 w-6 text-brand-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-900 font-serif mb-3">{aud.title}</h3>
+                  <p className="text-sm leading-relaxed text-neutral-600 mb-4">{aud.desc}</p>
+                </div>
+                <div className="rounded-2xl bg-white p-4 ring-1 ring-neutral-200/50 text-xs leading-relaxed text-neutral-800 font-semibold">
+                  <span className="text-brand-600 font-bold">💡 專科處置建議：</span> {aud.solution}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* 痔瘡分級與自我檢測 */}
+      <Section className="bg-warm-50/60 py-16 md:py-24">
         <Container>
           <div className="text-center mb-16">
             <span className="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-md">Symptom Self-Check</span>
@@ -289,7 +349,7 @@ export default function HemorrhoidSurgeryPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {hemorrhoidGrades.map((item, idx) => (
-              <div key={idx} className="rounded-3xl border border-neutral-200/60 bg-warm-50/40 p-8 flex flex-col justify-between hover:bg-white hover:shadow-warm-xl transition-all">
+              <div key={idx} className="rounded-3xl border border-neutral-200/60 bg-white p-8 flex flex-col justify-between hover:shadow-warm-xl transition-all">
                 <div>
                   <span className="inline-block rounded-lg bg-brand-700 px-3 py-1 text-xs font-bold text-white mb-4">
                     {item.grade}
