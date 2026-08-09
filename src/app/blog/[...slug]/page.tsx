@@ -96,41 +96,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function extractFAQs(html: string): Array<{ question: string; answer: string }> {
   const faqs: Array<{ question: string; answer: string }> = []
 
-  // 找到 FAQ 區塊（以 "常見問題" 或 "FAQ" 為標題的 H2 之後）
-  const faqSectionMatch = html.match(/<h2[^>]*>.*?(?:常見問題|FAQ).*?<\/h2>([\s\S]*?)(?=<h2[^>]|$)/i)
-  if (!faqSectionMatch?.[1]) return faqs
-
-  const faqSection = faqSectionMatch[1]
-
-  // 解析每個 Q&A 段落
-  const paragraphs = faqSection.match(/<p>([\s\S]*?)<\/p>/g) || []
-
-  for (const p of paragraphs) {
-    const content = p.replace(/<\/?p>/g, '')
-
-    // 擷取問題：支援 <strong>Q：question</strong> 和 **Q：question**
-    const qMatch = content.match(/(?:<strong>)?Q[：:]\s*(.*?)(?:<\/strong>|\*\*)/s)
-    if (!qMatch?.[1]) continue
-
-    const question = qMatch[1].replace(/<[^>]*>/g, '').trim()
-
-    // 擷取答案：從 A： 之後的內容
-    const brSplit = content.split(/<br\s*\/?>/)
-    let answer = ''
-
-    if (brSplit.length > 1) {
-      answer = brSplit.slice(1).join(' ')
-    }
-
-    // 清除 A 前綴和 HTML 標籤
-    answer = answer
-      .replace(/<strong>A[：:]\s*<\/strong>/g, '')
-      .replace(/\*\*A[：:]\*\*/g, '')
-      .replace(/^\s*A[：:]\s*/s, '')
-      .replace(/<[^>]*>/g, '')
-      .trim()
-
+  // 模式 1: <h3> / <h4> 標題標註之 Q&A
+  const headingMatches = html.matchAll(/<h[34][^>]*>(?:Q[0-9]*[：:]|問[：:]|\*\*Q[0-9]*[：:]\*\*)\s*(.*?)<\/h[34]>\s*<p>(?:<strong>)?(?:A[：:]|答[：:]|阿福醫師解答[：:])?\s*(.*?)<\/p>/gi)
+  
+  for (const match of headingMatches) {
+    const qRaw = match[1] || ""
+    const aRaw = match[2] || ""
+    const question = qRaw.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").trim()
+    const answer = aRaw.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").trim()
     if (question && answer) {
+      faqs.push({ question, answer })
+    }
+  }
+
+  // 模式 2: <p> 段落標註之 Q&A
+  const pMatches = html.matchAll(/(?:<p>|<li>)(?:<strong>)?(?:Q[0-9]*[：:]|問[：:])\s*(.*?)(?:<\/strong>|<br\s*\/?>)\s*(?:A[：:]|答[：:]|阿福醫師解答[：:])?\s*(.*?)(?:<\/p>|<\/li>)/gi)
+  for (const match of pMatches) {
+    const qRaw = match[1] || ""
+    const aRaw = match[2] || ""
+    const question = qRaw.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").trim()
+    const answer = aRaw.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").trim()
+    if (question && answer && !faqs.some(f => f.question === question)) {
       faqs.push({ question, answer })
     }
   }
@@ -200,6 +186,23 @@ export default async function PostPage({ params }: Props) {
         }}
       />
       <JsonLd type="Article" data={articleSchema} />
+      <JsonLd
+        type="MedicalWebPage"
+        data={{
+          "@type": "MedicalWebPage",
+          name: post.title,
+          description: post.summary,
+          url: canonicalUrl,
+          inLanguage: "zh-TW",
+          lastReviewed: post.updatedAt || post.publishedAt,
+          medicalAudience: {
+            "@type": "MedicalAudience",
+            audienceType: "Patient",
+          },
+          author: articleAuthor,
+          reviewedBy: articleAuthor,
+        }}
+      />
       {faqs.length > 0 && (
         <JsonLd
           type="FAQPage"

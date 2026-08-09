@@ -153,6 +153,9 @@ export type Person = Thing & {
 // 醫療網頁類型
 export type MedicalWebPage = Thing & {
   '@type': 'MedicalWebPage'
+  inLanguage?: string
+  author?: any
+  reviewedBy?: any
   about?: MedicalCondition
   breadcrumb?: BreadcrumbList | { '@type': 'BreadcrumbList'; itemListElement: any[] }
   lastReviewed?: string
