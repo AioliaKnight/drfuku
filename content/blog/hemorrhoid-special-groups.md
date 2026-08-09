@@ -1,8 +1,8 @@
 ---
 title: "孕婦、產後媽媽與高齡長者痔瘡照護：大腸直腸外科醫師的客製化安全指南"
 summary: "「懷孕後期痔瘡爆發痛到睡不著，不敢吃藥怎麼辦？年紀大的長者做痔瘡手術安全嗎？」20年大腸直腸外科徐彥勳醫師（阿福醫師）針對孕婦、產後媽媽與高齡長者提供安全的專科照護與微創技術評估。"
-publishedAt: "2024-12-05"
-updatedAt: "2025-02-12"
+publishedAt: "2026-05-28"
+updatedAt: "2026-08-04"
 image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "特殊照護"

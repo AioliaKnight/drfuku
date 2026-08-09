@@ -1,8 +1,8 @@
 ---
 title: "痔瘡術後飲食與排便指南：水溶性纖維比例、軟便劑用法與防便秘食物推薦"
 summary: "「痔瘡手術後第一次排便會痛嗎？該吃什麼才不會便秘撕裂傷口？軟便劑要吃多久？」20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細拆解術後黃金飲食比例、飲水量計算公式與軟便藥正確停藥眉角。"
-publishedAt: "2025-02-12"
-updatedAt: "2025-02-12"
+publishedAt: "2026-08-01"
+updatedAt: "2026-08-09"
 image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "飲食保健"

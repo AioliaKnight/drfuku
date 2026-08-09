@@ -1,8 +1,8 @@
 ---
 title: "2026 痔瘡手術保險理賠與費用全攻略：LHP雷射微創、門診實支實付與診斷書注意事項"
 summary: "做 LHP 雷射痔瘡微創手術保險會理賠嗎？門診手術實支實付怎麼理賠？20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細整理台灣醫療險給付條款、自費微創費用區間與診斷證明書開立眉角。"
-publishedAt: "2025-02-12"
-updatedAt: "2025-02-12"
+publishedAt: "2026-08-02"
+updatedAt: "2026-08-09"
 image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "治療方法"

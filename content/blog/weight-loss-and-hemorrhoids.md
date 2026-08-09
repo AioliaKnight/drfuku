@@ -1,8 +1,8 @@
 ---
 title: "減重減出痔瘡來？大腸直腸外科醫師教你減重期間護腸防痔攻略"
 summary: "「為了減重少吃東西，結果便秘連續好幾天，一排便痔瘡大爆發怎麼辦？」20年大腸直腸外科徐彥勳醫師（阿福醫師）解析減重飲食、生酮/極低熱量飲食對腸道蠕動的影響與防痔觀念。"
-publishedAt: "2024-10-05"
-updatedAt: "2025-02-12"
+publishedAt: "2026-04-05"
+updatedAt: "2026-08-01"
 image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "特殊照護"

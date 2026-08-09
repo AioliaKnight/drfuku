@@ -1,8 +1,8 @@
 ---
 title: "肛門搔癢濕濕的？大腸直腸外科醫師解析：5大發癢原因與正確清洗照護"
 summary: "「肛門總是又濕又癢，甚至晚上睡覺抓到破皮流血，越用肥皂洗反而越癢？」20年大腸直腸外科徐彥勳醫師（阿福醫師）透過診間真實案例，詳細解析痔瘡分泌物、肛門濕疹、黴菌感染與過度清潔引發的搔癢困擾，提供極具實用度的日常照護指南。"
-publishedAt: "2025-02-12"
-updatedAt: "2025-02-12"
+publishedAt: "2026-08-05"
+updatedAt: "2026-08-09"
 image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病衛教"

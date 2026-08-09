@@ -1,8 +1,8 @@
 ---
 title: "血便怎麼辦？醫師深度解析：從「紅色恐慌」到理性的分級診斷"
 summary: "「發現馬桶水整片變紅，擦拭時衛生紙全滿是血，我是得了大腸癌嗎？」20年大腸直腸外科徐彥勳醫師（阿福醫師）透過診間案例教您從血便顏色、出血型態與伴隨症狀做精準風險分層，並詳解大腸鏡篩檢關鍵作用。"
-publishedAt: "2025-01-15"
-updatedAt: "2025-02-12"
+publishedAt: "2026-07-28"
+updatedAt: "2026-08-09"
 image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病警訊"

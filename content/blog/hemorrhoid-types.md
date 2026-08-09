@@ -1,8 +1,8 @@
 ---
 title: "內痔、外痔、混合痔怎麼分？大腸直腸外科醫師教你從症狀與齒狀線自我判讀"
 summary: "「我的痔瘡會痛但沒流血，是外痔還是內痔？什麼是齒狀線？」20年大腸直腸外科徐彥勳醫師（阿福醫師）深入解析內痔、外痔與混合痔解剖學差異、Goligher 分級與精準處置策略。"
-publishedAt: "2024-11-15"
-updatedAt: "2025-02-12"
+publishedAt: "2026-05-12"
+updatedAt: "2026-08-03"
 image: "https://images.unsplash.com/photo-1579153196606-a1507d824244?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病衛教"

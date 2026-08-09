@@ -1,8 +1,8 @@
 ---
 title: "使用猛健樂/瘦瘦針便秘爆痔瘡？大腸直腸外科醫師教你GLP-1腸道保健SOP"
 summary: "「打瘦瘦針（猛健樂 Mounjaro / 易瘦偶）減重，卻連好幾天沒大便，排便時痔瘡大噴血怎麼辦？」20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細解析 GLP-1 受體促劑腸道機制與預防處方。"
-publishedAt: "2025-02-01"
-updatedAt: "2025-02-12"
+publishedAt: "2026-07-22"
+updatedAt: "2026-08-08"
 image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "特殊照護"

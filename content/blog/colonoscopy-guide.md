@@ -1,8 +1,8 @@
 ---
 title: "無痛大腸鏡檢查全攻略：什麼時候做？低殘渣飲食與檢查流程解析"
 summary: "做大腸鏡會痛嗎？清腸藥怎麼喝？低殘渣飲食怎麼吃？20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細解析無痛大腸鏡檢查適應症、衛福部大腸癌篩檢數據、清腸衛教與術後恢復細節。"
-publishedAt: "2025-01-20"
-updatedAt: "2025-02-12"
+publishedAt: "2026-07-20"
+updatedAt: "2026-08-08"
 image: "https://images.unsplash.com/photo-1579153196606-a1507d824244?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病衛教"

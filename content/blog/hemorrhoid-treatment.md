@@ -1,8 +1,8 @@
 ---
 title: "痔瘡手術方式全解析：LHP雷射消融、LigaSure與傳統手術優缺點評比"
 summary: "「雷射痔瘡手術跟傳統手術差在哪裡？費用多少？會不會復發？」20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細比較 LHP 雷射消融、LigaSure 組織凝集、冷凝刀與傳統手術之疼痛度、傷口與恢復期。"
-publishedAt: "2024-11-28"
-updatedAt: "2025-02-12"
+publishedAt: "2026-05-20"
+updatedAt: "2026-08-04"
 image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "治療方法"

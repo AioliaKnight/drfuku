@@ -1,8 +1,8 @@
 ---
 title: "預防痔瘡復發懶人包！大腸直腸外科醫師教你 5 大日常習慣與姿勢"
 summary: "做完痔瘡手術或消腫後如何避免再次復發？20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細拆解久坐族、上班族與司機必學的防痔排便姿勢、運動與飲食預防指南。"
-publishedAt: "2024-12-10"
-updatedAt: "2025-02-12"
+publishedAt: "2026-06-10"
+updatedAt: "2026-08-05"
 image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "預防保健"

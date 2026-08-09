@@ -1,8 +1,8 @@
 ---
 title: "吃對食物告別痔瘡！大腸直腸外科醫師親授：水溶性纖維與高纖飲食地圖"
 summary: "「為什麼我每天都有吃蔬菜，還是便秘爆痔瘡？」20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細拆解水溶性與非水溶性膳食纖維 1:3 黃金比例，提供台灣外食族防痔飲食地圖與每日水量計算公式。"
-publishedAt: "2025-01-10"
-updatedAt: "2025-02-12"
+publishedAt: "2026-07-15"
+updatedAt: "2026-08-08"
 image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "飲食保健"

@@ -1,8 +1,8 @@
 ---
 title: "不開刀也能有效舒緩！大腸直腸外科醫師教你 6 大痔瘡居家照護與坐浴技巧"
 summary: "「得了痔瘡一定要做手術嗎？平時在家可以怎麼做來消腫止痛？」20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細解析溫水坐浴黃金 SOP、飲食潤滑技巧與避免痔瘡惡化的日常生活習慣。"
-publishedAt: "2024-12-20"
-updatedAt: "2025-02-12"
+publishedAt: "2026-06-25"
+updatedAt: "2026-08-06"
 image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "居家照護"

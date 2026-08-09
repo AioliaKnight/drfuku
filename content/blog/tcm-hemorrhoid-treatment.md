@@ -1,8 +1,8 @@
 ---
 title: "中西醫雙學士看痔瘡！大腸直腸外科醫師談體質調理與微創手術的完美結合"
 summary: "「中醫調理能治好痔瘡嗎？微創手術後可以吃中藥補身體嗎？」擁有中國醫藥大學中西醫雙學士、20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細解析中西醫整合觀點與術後體質修復。"
-publishedAt: "2024-10-20"
-updatedAt: "2025-02-12"
+publishedAt: "2026-04-18"
+updatedAt: "2026-08-02"
 image: "https://images.unsplash.com/photo-1512290900676-26c2a4d48dc1?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "中醫治療"

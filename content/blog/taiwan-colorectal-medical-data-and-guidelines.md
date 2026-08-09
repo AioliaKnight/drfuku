@@ -1,8 +1,8 @@
 ---
 title: "2026 台灣大腸直腸醫學權威文獻與臨床數據解析：從健保資料庫看痔瘡盛行率、大腸癌篩檢與微創雷射實證"
 summary: "引用衛福部國民健康署（NAHSIT 營養調查）、台灣大腸直腸外科醫學會 (TSCR) 與健保資料庫最新實證數據。20年專科徐彥勳醫師（阿福醫師）解析國人纖維攝取缺口、痔瘡盛行率與德國 LHP 雷射微創臨床滿意度。"
-publishedAt: "2025-02-12"
-updatedAt: "2025-02-12"
+publishedAt: "2026-08-07"
+updatedAt: "2026-08-09"
 image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病衛教"

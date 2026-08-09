@@ -1,8 +1,8 @@
 ---
 title: "痔瘡會自己好嗎？藥膏坐浴有用嗎？大腸直腸外科醫師教你黃金判斷與居家自救"
 summary: "「痔瘡不開刀會自己消嗎？」這是門診被問最多次的問題。本文由20年經驗大腸直腸外科徐彥勳醫師（阿福醫師）引用台灣大腸直腸外科醫學會與臨床實證，解析痔瘡自癒可能性、市售藥膏與溫水坐浴正確用法，以及何時必須就醫。"
-publishedAt: "2025-02-12"
-updatedAt: "2025-02-12"
+publishedAt: "2026-08-03"
+updatedAt: "2026-08-09"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "預防保健"

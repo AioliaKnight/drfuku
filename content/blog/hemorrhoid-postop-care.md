@@ -1,8 +1,8 @@
 ---
 title: "微創痔瘡術後照護全攻略：如何減痛、快速恢復與飲食坐浴SOP"
 summary: "做完微創痔瘡手術後回家怎麼照顧？傷口流血正常嗎？20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細拆解術後頭幾天的止痛、坐浴、清潔與飲食照護指南，陪伴您安心度過恢復期。"
-publishedAt: "2024-12-15"
-updatedAt: "2025-02-12"
+publishedAt: "2026-06-18"
+updatedAt: "2026-08-06"
 image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "術後照護"

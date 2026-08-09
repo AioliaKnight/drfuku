@@ -1,8 +1,8 @@
 ---
 title: "忽視肛門健康代價大！大腸直腸外科醫師談「預防勝於治療」的私密照護"
 summary: "許多人因為害羞不敢就醫，忍受痔瘡出血、肛門腫痛多年，直到貧血休克或病灶惡化才送急診。20年專科徐彥勳醫師（阿福醫師）詳細解析肛門健康對生活品質的關鍵影響與定期檢查的重要性。"
-publishedAt: "2024-12-28"
-updatedAt: "2025-02-12"
+publishedAt: "2026-07-10"
+updatedAt: "2026-08-07"
 image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病衛教"

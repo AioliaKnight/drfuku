@@ -1,8 +1,8 @@
 ---
 title: "痔瘡發炎腫大怎麼辦？大腸直腸外科醫師拆解：血栓、嵌頓與急性併發症自救處理"
 summary: "「肛門口突冒出一顆紫藍色硬塊，痛到坐立難安、連走路都發抖？」20年大腸直腸外科徐彥勳醫師（阿福醫師）解析急性血栓性外痔與痔瘡嵌頓的臨床病因、急診切開減壓與微創手術自救處置。"
-publishedAt: "2025-01-05"
-updatedAt: "2025-02-12"
+publishedAt: "2026-07-02"
+updatedAt: "2026-08-07"
 image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "疾病治療"

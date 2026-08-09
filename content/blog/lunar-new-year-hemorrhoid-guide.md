@@ -1,8 +1,8 @@
 ---
 title: "春節連假防痔大作戰！大腸直腸外科醫師教你避開長途塞車與麻辣過年地雷"
 summary: "年節連假聚餐吃大餐、圍爐麻辣鍋、搭車返鄉塞車久坐，是急性痔瘡爆發的高峰期！20年大腸直腸外科徐彥勳醫師（阿福醫師）提供春節假期腸道保健、急救備藥與避雷指南。"
-publishedAt: "2025-01-25"
-updatedAt: "2025-02-12"
+publishedAt: "2026-02-15"
+updatedAt: "2026-08-02"
 image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "預防保健"

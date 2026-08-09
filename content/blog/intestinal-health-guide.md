@@ -1,8 +1,8 @@
 ---
 title: "腸道健康與全身免疫！大腸直腸外科醫師教你打造優質腸道菌叢環境"
 summary: "「腸道是人體的第二個大腦，更是全身70%免疫細胞的所在地。」20年大腸直腸外科徐彥勳醫師（阿福醫師）詳細解析腸道菌叢、益生菌、膳食纖維與預防大腸癌的實用保養指南。"
-publishedAt: "2024-11-01"
-updatedAt: "2025-02-12"
+publishedAt: "2026-05-02"
+updatedAt: "2026-08-03"
 image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=1024&auto=format&fit=crop"
 author: "徐彥勳醫師"
 category: "預防保健"
