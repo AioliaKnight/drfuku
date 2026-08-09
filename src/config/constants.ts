@@ -2,7 +2,7 @@
 export const SITE = {
   name: '阿福醫師-大腸直腸外科徐彥勳',
   shortName: '阿福醫師',
-  description: '專精 LHP 雷射痔瘡微創手術與 LigaSure 組織凝集儀手術。阿福醫師（徐彥勳）提供台北、台中地區專業的痔瘡治療、大腸直腸疾病診療與術後全程追蹤，致力於低疼痛管理與快速恢復。',
+  description: '專精 LHP 雷射痔瘡微創手術與 LigaSure 組織凝集儀手術。阿福醫師（徐彥勳）具備20年臨床經驗，提供顧家醫療（台中西屯、大安）、草屯佑民醫院、秘境美學診所及賦真妍整形醫美診所專業的痔瘡治療、大腸直腸疾病診療與術後全程追蹤，致力於低疼痛管理與快速恢復。',
   url: 'https://drfuku.com',
   locale: 'zh_TW',
   themeColor: '#0ea5e9'
@@ -16,7 +16,7 @@ export const DOCTOR = {
   alternateName: '阿福醫師',
   title: '大腸直腸外科主任 / 主治醫師',
   specialty: '大腸直腸外科、微創痔瘡手術',
-  description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）致力於推廣「低疼痛管理、微創復原」的診療理念。',
+  description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）擁有20年臨床經驗，專精微創手術，致力於推廣「止痛先行、溫暖診療」的診療理念。',
   image: 'https://drfuku.com/doctor-profile3.jpg',
   url: 'https://drfuku.com/about',
   sameAs: [
