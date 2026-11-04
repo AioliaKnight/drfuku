@@ -1,6 +1,3 @@
-'use client'
-
-import Script from 'next/script'
 import type { JsonLdType, StructuredDataTypeMap, Thing } from '@/config/types'
 
 type JsonLdProps = {
@@ -25,13 +22,12 @@ function isValidStructuredData(data: Thing): boolean {
 }
 
 /**
- * JSON-LD 結構化數據組件
- * 用於向頁面添加結構化數據，以提升搜索引擎對網站內容的理解
- * @see https://schema.org/
- * @see https://developers.google.com/search/docs/advanced/structured-data
+ * JSON-LD 結構化數據組件（Server-First 原生輸出）
+ * 直接在靜態 HTML 中輸出標準 <script type="application/ld+json">，
+ * 確保 Googlebot、Bingbot、AI 搜尋爬蟲（GPTBot / PerplexityBot / ClaudeBot）無需執行客戶端 JS 即可完整解析。
+ * @see https://nextjs.org/docs/app/guides/json-ld
  */
 export default function JsonLd({ type, data }: JsonLdProps) {
-  // 在開發環境下進行數據驗證
   if (process.env.NODE_ENV === 'development') {
     if (!isValidStructuredData(data)) {
       console.warn(
@@ -41,17 +37,16 @@ export default function JsonLd({ type, data }: JsonLdProps) {
     }
   }
 
+  const jsonString = JSON.stringify({
+    '@context': 'https://schema.org',
+    ...data,
+  }).replace(/</g, '\\u003c')
+
   return (
-    <Script
-      id={`jsonld-${type}`}
+    <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          ...data
-        })
-      }}
-      strategy="beforeInteractive"
+      dangerouslySetInnerHTML={{ __html: jsonString }}
     />
   )
 }
+

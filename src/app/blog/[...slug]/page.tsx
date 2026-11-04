@@ -3,7 +3,8 @@ import { Metadata } from 'next'
 import { posts as allPosts } from '@/velite'
 import JsonLd from '@/shared/components/common/JsonLd'
 import { SITE, DOCTOR, ASSETS } from '@/config/constants'
-import { articlePublisher, articleAuthor } from '@/config/structured-data'
+import { articlePublisher, articleAuthor, defaultMedicalCondition } from '@/config/structured-data'
+import { buildCanonicalUrl } from '@/shared/lib/page-metadata'
 import {
   ArticleContent,
   BackToTop,
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = image || new URL(ASSETS.ogImage, SITE.url).toString()
   const publishedTime = new Date(post.publishedAt).toISOString()
   const modifiedTime = new Date(post.updatedAt || post.publishedAt).toISOString()
-  const canonical = post.seo?.canonical || `${SITE.url}/blog/${slug}`
+  const canonical = buildCanonicalUrl(post.seo?.canonical || `${SITE.url}/blog/${slug}/`)
 
   return {
     metadataBase: new URL(SITE.url),
@@ -57,6 +58,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: fullTitle,
       description: summary,
+      url: canonical,
+      siteName: SITE.name,
       type: 'article',
       locale: SITE.locale,
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
@@ -131,7 +134,22 @@ export default async function PostPage({ params }: Props) {
 
   if (!post) notFound()
 
-  const canonicalUrl = post.seo?.canonical || `${SITE.url}/blog/${post.slug}`
+  const canonicalUrl = buildCanonicalUrl(post.seo?.canonical || `${SITE.url}/blog/${post.slug}/`)
+
+  // 若文章 frontmatter 含有 expertise 專科資歷，整合至作者 E-E-A-T 結構化資料
+  const enrichedAuthor = {
+    ...articleAuthor,
+    ...(post.expertise?.experience ? { description: post.expertise.experience } : {}),
+    ...(post.expertise?.certifications
+      ? {
+          hasCredential: post.expertise.certifications.map((cert: string) => ({
+            '@type': 'EducationalOccupationalCredential' as const,
+            credentialCategory: 'board certification',
+            name: cert,
+          })),
+        }
+      : {}),
+  }
 
   const articleSchema = {
     '@type': 'Article' as const,
@@ -148,7 +166,7 @@ export default async function PostPage({ params }: Props) {
     url: canonicalUrl,
     inLanguage: 'zh-TW',
     wordCount: post.wordCount,
-    author: articleAuthor,
+    author: enrichedAuthor,
     publisher: articlePublisher,
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -156,14 +174,15 @@ export default async function PostPage({ params }: Props) {
     },
     isPartOf: {
       '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
       name: SITE.name,
-      url: SITE.url,
+      url: `${SITE.url}/`,
     },
   }
 
   const breadcrumbItems = [
-    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
-    { '@type': 'ListItem' as const, position: 2, name: '部落格', item: `${SITE.url}/blog` },
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: `${SITE.url}/` },
+    { '@type': 'ListItem' as const, position: 2, name: '部落格', item: `${SITE.url}/blog/` },
     {
       '@type': 'ListItem' as const,
       position: 3,
@@ -199,8 +218,9 @@ export default async function PostPage({ params }: Props) {
             "@type": "MedicalAudience",
             audienceType: "Patient",
           },
-          author: articleAuthor,
-          reviewedBy: articleAuthor,
+          author: enrichedAuthor,
+          reviewedBy: enrichedAuthor,
+          about: defaultMedicalCondition,
         }}
       />
       {faqs.length > 0 && (

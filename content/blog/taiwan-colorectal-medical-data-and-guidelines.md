@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ["台灣痔瘡盛行率", "衛福部纖維建議", "國健署大腸癌篩檢數據", "TSCR臨床指引", "健保痔瘡手術統計", "徐彥勳醫師", "阿福醫師", "台中痔瘡文獻", "台北大安大腸鏡", "草屯痔瘡數據"]
-  canonical: "https://drfuku.com/blog/taiwan-colorectal-medical-data-and-guidelines"
+  canonical: "https://drfuku.com/blog/taiwan-colorectal-medical-data-and-guidelines/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

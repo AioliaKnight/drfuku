@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ["LHP雷射痔瘡費用", "LigaSure痔瘡手術優點", "傳統痔瘡手術痛多久", "微創痔瘡推薦", "痔瘡手術比較", "徐彥勳醫師", "阿福醫師", "台中微創痔瘡", "台北大安痔瘡", "草屯痔瘡"]
-  canonical: "https://drfuku.com/blog/hemorrhoid-treatment"
+  canonical: "https://drfuku.com/blog/hemorrhoid-treatment/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

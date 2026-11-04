@@ -34,6 +34,11 @@ const posts = defineCollection({
         keywords: s.array(s.string()).optional(),
         canonical: s.string().optional(),
       }).optional(),
+      expertise: s.object({
+        credentials: s.string().optional(),
+        certifications: s.array(s.string()).optional(),
+        experience: s.string().optional(),
+      }).optional(),
       content: s.mdx(),
       body: s.markdown(),
     })
@@ -53,7 +58,7 @@ const posts = defineCollection({
       return {
         ...data,
         slug,
-        url: `/blog/${slug}`,
+        url: `/blog/${slug}/`,
         readingTime: Math.max(1, readingTime), // 至少1分鐘
         wordCount: chineseChars + englishWords,
       }

@@ -11,7 +11,7 @@ featured: false
 draft: false
 seo:
   keywords: ["痔瘡居家治療", "溫水坐浴方法", "痔瘡消腫技巧", "痔瘡不能吃什麼", "預防痔瘡惡化", "徐彥勳醫師", "阿福醫師", "台中西屯痔瘡", "台北大安痔瘡", "草屯痔瘡"]
-  canonical: "https://drfuku.com/blog/hemorrhoid-home-care"
+  canonical: "https://drfuku.com/blog/hemorrhoid-home-care/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

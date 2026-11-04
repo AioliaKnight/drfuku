@@ -19,16 +19,20 @@ import Section from "@/shared/ui/layout/Section"
 import Container from "@/shared/ui/layout/Container"
 import LineButton from "@/shared/components/common/LineButton"
 import JsonLd from "@/shared/components/common/JsonLd"
-import { SITE, ASSETS, KEYWORDS, DOCTOR, CLINIC } from "@/config/constants"
+import { SITE, KEYWORDS, CLINIC } from "@/config/constants"
+import { MEDICAL_PROCEDURES, articleAuthor, defaultMedicalCondition } from "@/config/structured-data"
 import { PRACTICE_LOCATIONS } from "@/config/site-content"
 import { FAQPage } from "@/config/types"
 import { cn } from "@/shared/lib/cn"
+import { createPageMetadata } from "@/shared/lib/page-metadata"
 import { buttonVariants } from "@/shared/ui/primitives"
 
-export const metadata: Metadata = {
-  title: "20年臨床經驗微創痔瘡手術全攻略：LHP雷射與LigaSure技術解析 | 阿福醫師大腸直腸外科",
+export const metadata: Metadata = createPageMetadata({
+  title: "20年臨床經驗微創痔瘡手術全攻略：LHP雷射與LigaSure技術解析",
   description:
-    "由20年臨床經驗大腸直腸外科專科醫師徐彥勳（阿福醫師）親自診置。深入解析 LHP 雷射痔瘡消融與 LigaSure 組織凝集儀微創手術，提供低疼痛管理、台灣保險理賠指引與無痛日間手術評估。",
+    "由20年臨床經驗大腸直腸外科專科醫師徐彥勳（阿福醫師）親自診治。深入解析 LHP 雷射痔瘡消融與 LigaSure 組織凝集儀微創手術，提供低疼痛管理、台灣保險理賠指引與無痛日間手術評估。",
+  path: "/hemorrhoid-surgery/",
+  openGraphType: "article",
   keywords: [
     ...KEYWORDS.treatments,
     "20年臨床經驗",
@@ -41,17 +45,7 @@ export const metadata: Metadata = {
     "台北痔瘡診所",
     "草屯痔瘡手術"
   ],
-  authors: [{ name: DOCTOR.alternateName, url: DOCTOR.url }],
-  alternates: {
-    canonical: `${SITE.url}/hemorrhoid-surgery`
-  },
-  openGraph: {
-    title: "20年臨床經驗微創痔瘡手術全攻略：LHP雷射與LigaSure技術解析 | 阿福醫師",
-    description: "20年大腸直腸外科專科經驗。深入解析雷射與微創痔瘡手術，提供客製化止痛、保險理賠與日間微創處置。",
-    type: "article",
-    images: [{ url: new URL(ASSETS.ogImage, SITE.url).toString() }]
-  }
-}
+})
 
 // 治療方式詳細對比
 const treatmentComparison = [
@@ -235,9 +229,29 @@ export default function HemorrhoidSurgeryPage() {
           "@type": "BreadcrumbList",
           name: "痔瘡手術與微創技術解析",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "首頁", item: SITE.url },
-            { "@type": "ListItem", position: 2, name: "痔瘡微創手術", item: `${SITE.url}/hemorrhoid-surgery` }
+            { "@type": "ListItem", position: 1, name: "首頁", item: `${SITE.url}/` },
+            { "@type": "ListItem", position: 2, name: "痔瘡微創手術", item: `${SITE.url}/hemorrhoid-surgery/` }
           ]
+        }}
+      />
+      <JsonLd
+        type="MedicalWebPage"
+        data={{
+          "@type": "MedicalWebPage",
+          name: "20年臨床經驗微創痔瘡手術全攻略：LHP雷射與LigaSure技術解析",
+          description:
+            "由20年臨床經驗大腸直腸外科專科醫師徐彥勳（阿福醫師）親自診治。深入解析 LHP 雷射痔瘡消融與 LigaSure 組織凝集儀微創手術。",
+          url: `${SITE.url}/hemorrhoid-surgery/`,
+          inLanguage: "zh-TW",
+          lastReviewed: "2026-08-09",
+          medicalAudience: {
+            "@type": "MedicalAudience",
+            audienceType: "Patient"
+          },
+          author: articleAuthor,
+          reviewedBy: articleAuthor,
+          about: defaultMedicalCondition,
+          mainEntity: [MEDICAL_PROCEDURES.lhp, MEDICAL_PROCEDURES.ligasure]
         }}
       />
       <JsonLd type="FAQPage" data={faqJsonLd} />

@@ -1,35 +1,46 @@
 import { MetadataRoute } from 'next'
 import { posts as allPosts } from '@/velite'
 import { SITE } from '@/config/constants'
+import { buildCanonicalUrl } from '@/shared/lib/page-metadata'
 
 export const dynamic = 'force-static'
 export const revalidate = false
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 單一來源：使用 SITE.url，避免被舊的環境變數覆蓋成測試網域
-  const siteUrl = SITE.url
+  const publishedPosts = allPosts.filter((post) => !post.draft)
 
-  const staticRoutes: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
-    { path: '', priority: 1, changeFrequency: 'daily' },
-    { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
-    { path: '/services', priority: 0.7, changeFrequency: 'monthly' },
-    { path: '/hemorrhoid-surgery', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/faq', priority: 0.7, changeFrequency: 'monthly' },
-    { path: '/consultation', priority: 0.7, changeFrequency: 'monthly' }
+  // 取最新文章更新時間作為全站內容基準，避免無意義變動
+  const latestPostTimestamp = publishedPosts.reduce((latest, post) => {
+    const t = new Date(post.updatedAt || post.publishedAt).getTime()
+    return t > latest ? t : latest
+  }, new Date('2026-08-09').getTime())
+  const latestSiteDate = new Date(latestPostTimestamp).toISOString()
+
+  const staticRoutes: Array<{
+    path: string
+    priority: number
+    changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
+  }> = [
+    { path: '/', priority: 1.0, changeFrequency: 'daily' },
+    { path: '/hemorrhoid-surgery/', priority: 0.95, changeFrequency: 'weekly' },
+    { path: '/services/', priority: 0.85, changeFrequency: 'monthly' },
+    { path: '/blog/', priority: 0.85, changeFrequency: 'weekly' },
+    { path: '/faq/', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/about/', priority: 0.75, changeFrequency: 'monthly' },
+    { path: '/consultation/', priority: 0.75, changeFrequency: 'monthly' },
+    { path: '/testimonials/', priority: 0.7, changeFrequency: 'monthly' },
   ]
 
   const routes = staticRoutes.map(({ path, priority, changeFrequency }) => ({
-    url: `${siteUrl}${path}`,
-    lastModified: new Date().toISOString(),
+    url: buildCanonicalUrl(path),
+    lastModified: latestSiteDate,
     changeFrequency,
     priority,
   }))
 
-  // 部落格文章：優先使用 updatedAt，SEO 優先級提升至 0.8
-  const blogPosts = allPosts.filter(post => !post.draft).map((post) => ({
-    url: post.seo?.canonical || `${siteUrl}/blog/${post.slug}`,
+  // 部落格文章：確保結尾斜線與 trailingSlash: true 完全一致
+  const blogPosts = publishedPosts.map((post) => ({
+    url: buildCanonicalUrl(post.seo?.canonical || `${SITE.url}/blog/${post.slug}/`),
     lastModified: new Date(post.updatedAt || post.publishedAt).toISOString(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
@@ -37,3 +48,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...routes, ...blogPosts]
 }
+

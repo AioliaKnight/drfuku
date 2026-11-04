@@ -11,7 +11,7 @@ featured: false
 draft: false
 seo:
   keywords: ["減重便秘", "減肥痔瘡出血", "極低熱量飲食便秘", "減重飲食痔瘡", "徐彥勳醫師", "阿福醫師", "台中減重痔瘡", "台北大安痔瘡", "草屯痔瘡"]
-  canonical: "https://drfuku.com/blog/weight-loss-and-hemorrhoid-care"
+  canonical: "https://drfuku.com/blog/weight-loss-and-hemorrhoids/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

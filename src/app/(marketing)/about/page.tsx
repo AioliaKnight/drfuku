@@ -17,8 +17,8 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function AboutPage() {
   const breadcrumbItems = [
-    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
-    { '@type': 'ListItem' as const, position: 2, name: '關於醫師', item: `${SITE.url}/about` },
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: `${SITE.url}/` },
+    { '@type': 'ListItem' as const, position: 2, name: '關於醫師', item: `${SITE.url}/about/` },
   ]
 
   return (

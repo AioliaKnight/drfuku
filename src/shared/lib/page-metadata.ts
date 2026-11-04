@@ -11,7 +11,19 @@ type PageMetadataInput = {
 }
 
 /**
- * 產生各行銷頁一致的 Metadata（canonical、OG、Twitter）
+ * 將網站路徑或網址正規化為與 next.config.mjs (trailingSlash: true) 一致的標準網址
+ */
+export function buildCanonicalUrl(pathOrUrl: string): string {
+  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
+    return pathOrUrl.endsWith('/') ? pathOrUrl : `${pathOrUrl}/`
+  }
+  const cleanPath = pathOrUrl.startsWith('/') ? pathOrUrl : `/${pathOrUrl}`
+  const normalizedPath = cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`
+  return `${SITE.url}${normalizedPath}`
+}
+
+/**
+ * 產生各頁面一致的 Metadata（canonical、OG、Twitter、Robots）
  */
 export function createPageMetadata({
   title,
@@ -20,7 +32,7 @@ export function createPageMetadata({
   keywords,
   openGraphType = 'website',
 }: PageMetadataInput): Metadata {
-  const canonical = `${SITE.url}${path.startsWith('/') ? path : `/${path}`}`
+  const canonical = buildCanonicalUrl(path)
   const resolvedKeywords = keywords ?? [
     ...KEYWORDS.primary.slice(0, 6),
     ...KEYWORDS.clinic.slice(0, 4),
@@ -56,5 +68,17 @@ export function createPageMetadata({
       description,
       images: [twitterImage],
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   }
 }
+

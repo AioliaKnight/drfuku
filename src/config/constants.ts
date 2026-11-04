@@ -18,9 +18,9 @@ export const DOCTOR = {
   specialty: '大腸直腸外科、微創痔瘡手術',
   description: '大腸直腸外科專科醫師徐彥勳（阿福醫師）擁有20年臨床經驗，專精微創手術，致力於推廣「止痛先行、溫暖診療」的診療理念。',
   image: 'https://drfuku.com/doctor-profile3.jpg',
-  url: 'https://drfuku.com/about',
+  url: 'https://drfuku.com/about/',
   sameAs: [
-    'https://drfuku.com',
+    'https://drfuku.com/',
     'https://www.facebook.com/doctorfuku/',
     'https://line.me/ti/p/~@772pable',
     'https://drbird.tw/doctor/yenhsunhsu'

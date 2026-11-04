@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     url: true
   },
   alternates: {
-    canonical: SITE.url
+    canonical: `${SITE.url}/`
   },
   openGraph: {
     type: 'website',
     locale: SITE.locale,
-    url: SITE.url,
+    url: `${SITE.url}/`,
     title: `${SITE.name} | 大腸直腸外科專業・安心就醫`,
     description: SITE.description,
     siteName: SITE.name,

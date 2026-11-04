@@ -41,20 +41,29 @@ export const MEDICAL_PROCEDURES = {
   }
 }
 
-// 結構化數據配置
+// 結構化數據配置（全站共用實體：WebSite、Organization、MedicalClinic、Physician）
 export const structuredData: Record<string, StructuredData> = {
   website: {
     type: 'WebSite',
     data: {
       '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
       name: SITE.name,
-      url: SITE.url,
+      url: `${SITE.url}/`,
       description: SITE.description,
       inLanguage: 'zh-TW',
       publisher: {
         '@type': 'Organization',
         name: SITE.name,
-        url: SITE.url,
+        url: `${SITE.url}/`,
+      },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${SITE.url}/blog/?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
       },
     }
   },
@@ -62,8 +71,9 @@ export const structuredData: Record<string, StructuredData> = {
     type: 'Organization',
     data: {
       '@type': 'Organization',
+      '@id': `${SITE.url}/#organization`,
       name: SITE.name,
-      url: SITE.url,
+      url: `${SITE.url}/`,
       logo: clinicLogoObject,
       telephone: CLINIC.telephone,
       address: clinicAddress,
@@ -79,9 +89,10 @@ export const structuredData: Record<string, StructuredData> = {
     type: 'MedicalClinic',
     data: {
       '@type': 'MedicalClinic',
+      '@id': `${SITE.url}/#clinic`,
       name: CLINIC.name,
       alternateName: CLINIC.alternateName,
-      url: SITE.url,
+      url: `${SITE.url}/`,
       logo: clinicLogoObject,
       image: DOCTOR.image,
       telephone: CLINIC.telephone,
@@ -130,6 +141,7 @@ export const structuredData: Record<string, StructuredData> = {
     type: 'Person',
     data: {
       '@type': 'Physician',
+      '@id': `${SITE.url}/#physician`,
       name: DOCTOR.name,
       givenName: DOCTOR.givenName,
       familyName: DOCTOR.familyName,
@@ -181,64 +193,49 @@ export const structuredData: Record<string, StructuredData> = {
         author: { '@type': 'Person', name: t.author },
         reviewRating: { '@type': 'Rating', ratingValue: t.rating },
         reviewBody: t.content.main,
-        datePublished: '2024-12-20',
+        datePublished: '2026-06-15',
       }))
     }
   },
-  medicalPage: {
-    type: 'MedicalWebPage',
-    data: {
-      '@type': 'MedicalWebPage',
-      name: '大腸直腸外科診療資訊 | 阿福醫師',
-      description: '提供大腸直腸外科專業診療資訊、痔瘡治療方案與預防建議。',
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: SITE.url },
-          { '@type': 'ListItem', position: 2, name: '診療項目', item: `${SITE.url}/services` }
-        ]
-      },
-      lastReviewed: new Date().toISOString().slice(0, 10),
-      medicalAudience: {
-        '@type': 'MedicalAudience',
-        audienceType: 'Patient',
-      },
-      about: {
-        '@type': 'MedicalCondition',
-        name: DISEASE.name,
-        alternateName: DISEASE.alternateName,
-        description: DISEASE.description,
-        relevantSpecialty: {
-          '@type': 'MedicalSpecialty',
-          name: 'Colorectal Surgery'
-        },
-        possibleTreatment: DISEASE.treatments.map(treatment => ({
-          '@type': 'MedicalTherapy',
-          name: treatment.name,
-          description: treatment.description,
-        })),
-      }
-    }
-  }
+}
+
+/** 預設醫療疾病與處置結構（供各頁面 MedicalWebPage 引用） */
+export const defaultMedicalCondition = {
+  '@type': 'MedicalCondition' as const,
+  name: DISEASE.name,
+  alternateName: DISEASE.alternateName,
+  description: DISEASE.description,
+  relevantSpecialty: {
+    '@type': 'MedicalSpecialty' as const,
+    name: 'Colorectal Surgery',
+  },
+  possibleTreatment: DISEASE.treatments.map((treatment) => ({
+    '@type': 'MedicalTherapy' as const,
+    name: treatment.name,
+    description: treatment.description,
+  })),
 }
 
 /** 共用的 publisher 資料（用於 Article schema） */
 export const articlePublisher = {
   '@type': 'MedicalClinic' as const,
+  '@id': `${SITE.url}/#clinic`,
   name: CLINIC.name,
   logo: clinicLogoObject,
   image: DOCTOR.image,
   telephone: CLINIC.telephone,
   address: clinicAddress,
-  url: SITE.url,
+  url: `${SITE.url}/`,
 }
 
-/** 共用的 author 資料（用於 Article schema） */
+/** 共用的 author 資料（用於 Article / MedicalWebPage schema） */
 export const articleAuthor = {
   '@type': 'Physician' as const,
+  '@id': `${SITE.url}/#physician`,
   name: DOCTOR.name,
   givenName: DOCTOR.givenName,
   familyName: DOCTOR.familyName,
+  alternateName: DOCTOR.alternateName,
   jobTitle: DOCTOR.title,
   image: DOCTOR.image,
   url: DOCTOR.url,

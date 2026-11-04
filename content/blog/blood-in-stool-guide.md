@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ["血便原因", "大便出血看哪科", "血便顏色意義", "痔瘡血便區分", "大腸癌前兆血便", "猛健樂血便", "阿福醫師血便解析", "徐彥勳醫師", "大腸鏡檢查必要性"]
-  canonical: "https://drfuku.com/blog/blood-in-stool-guide"
+  canonical: "https://drfuku.com/blog/blood-in-stool-guide/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

@@ -16,6 +16,7 @@ import Section from '@/shared/ui/layout/Section'
 import SectionHeader from '@/shared/ui/layout/SectionHeader'
 import { HiOutlineMagnifyingGlassCircle, HiOutlineShieldCheck, HiOutlineUserGroup, HiOutlineHeart } from 'react-icons/hi2'
 import { SITE } from '@/config/constants'
+import { articleAuthor, defaultMedicalCondition } from '@/config/structured-data'
 import { faqCategories } from '@/modules/marketing/data/faq'
 import { createPageMetadata } from '@/shared/lib/page-metadata'
 
@@ -57,7 +58,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Home() {
   const breadcrumbItems = [
-    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: `${SITE.url}/` },
   ]
 
   const faqs = faqCategories.flatMap((category) =>
@@ -80,6 +81,24 @@ export default function Home() {
           '@type': 'BreadcrumbList',
           name: '首頁',
           itemListElement: breadcrumbItems,
+        }}
+      />
+      <JsonLd
+        type="MedicalWebPage"
+        data={{
+          '@type': 'MedicalWebPage',
+          name: '阿福醫師-大腸直腸外科徐彥勳 | 台北台中大腸直腸外科・痔瘡治療',
+          description: SITE.description,
+          url: `${SITE.url}/`,
+          inLanguage: 'zh-TW',
+          lastReviewed: '2026-08-09',
+          medicalAudience: {
+            '@type': 'MedicalAudience',
+            audienceType: 'Patient',
+          },
+          author: articleAuthor,
+          reviewedBy: articleAuthor,
+          about: defaultMedicalCondition,
         }}
       />
       {faqs.length > 0 && (

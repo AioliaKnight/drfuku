@@ -11,7 +11,7 @@ featured: false
 draft: false
 seo:
   keywords: ["孕婦痔瘡怎麼辦", "懷孕痔瘡擦藥安全嗎", "產後痔瘡多久會好", "高齡長者痔瘡手術", "老年痔瘡治療", "徐彥勳醫師", "阿福醫師", "台中孕婦痔瘡", "台北大安痔瘡", "草屯痔瘡"]
-  canonical: "https://drfuku.com/blog/hemorrhoid-special-groups"
+  canonical: "https://drfuku.com/blog/hemorrhoid-special-groups/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

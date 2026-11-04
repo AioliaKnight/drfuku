@@ -11,7 +11,7 @@ featured: false
 draft: false
 seo:
   keywords: ["大腸鏡費用", "無痛大腸鏡會痛嗎", "低殘渣飲食清單", "清腸藥喝法", "大腸息肉切除", "徐彥勳醫師", "阿福醫師", "台中大腸鏡診所", "台北大安大腸鏡", "草屯大腸鏡"]
-  canonical: "https://drfuku.com/blog/colonoscopy-guide"
+  canonical: "https://drfuku.com/blog/colonoscopy-guide/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣內視鏡醫學會會員"]

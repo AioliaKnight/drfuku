@@ -11,7 +11,7 @@ featured: false
 draft: false
 seo:
   keywords: ["過年痔瘡發作", "長途塞車便秘", "麻辣鍋痔瘡出血", "春節備藥清單", "過年痔瘡怎麼辦", "徐彥勳醫師", "阿福醫師", "台中西屯痔瘡", "台北大安痔瘡", "草屯痔瘡"]
-  canonical: "https://drfuku.com/blog/lunar-new-year-hemorrhoid-guide"
+  canonical: "https://drfuku.com/blog/lunar-new-year-hemorrhoid-guide/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

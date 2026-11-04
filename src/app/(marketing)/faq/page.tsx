@@ -4,48 +4,25 @@ import { FAQSection, CTASection } from '@/modules/marketing'
 import JsonLd from '@/shared/components/common/JsonLd'
 import PageHeader from '@/shared/ui/layout/PageHeader'
 import { faqCategories } from '@/modules/marketing/data/faq'
-import { SITE, ASSETS, KEYWORDS, DOCTOR } from '@/config/constants'
+import { SITE, KEYWORDS } from '@/config/constants'
+import { createPageMetadata } from '@/shared/lib/page-metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: '常見問題 | 痔瘡治療、術後照護與預約資訊',
   description:
     '整理患者最常詢問的痔瘡治療、術後照護、費用與預約問題，提供清楚解答，讓就醫前的準備更安心。',
+  path: '/faq/',
   keywords: [
     ...KEYWORDS.primary.slice(0, 6),
     '痔瘡常見問題',
     '痔瘡就醫準備'
   ],
-  authors: [{ name: DOCTOR.alternateName, url: DOCTOR.url }],
-  alternates: {
-    canonical: `${SITE.url}/faq`
-  },
-  openGraph: {
-    title: '常見問題 | 痔瘡治療、術後照護與預約資訊',
-    description:
-      '整理患者最常詢問的痔瘡治療、術後照護、費用與預約問題，提供清楚解答，讓就醫前的準備更安心。',
-    type: 'website',
-    images: [
-      {
-        url: new URL(ASSETS.ogImage, SITE.url).toString(),
-        width: 1200,
-        height: 630,
-        alt: SITE.name
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: '常見問題 | 痔瘡治療、術後照護與預約資訊',
-    description:
-      '整理患者最常詢問的痔瘡治療、術後照護、費用與預約問題，提供清楚解答，讓就醫前的準備更安心。',
-    images: [new URL(ASSETS.twitterImage, SITE.url).toString()]
-  }
-}
+})
 
 export default function FAQPage() {
   const breadcrumbItems = [
-    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: SITE.url },
-    { '@type': 'ListItem' as const, position: 2, name: '常見問題', item: `${SITE.url}/faq` }
+    { '@type': 'ListItem' as const, position: 1, name: '首頁', item: `${SITE.url}/` },
+    { '@type': 'ListItem' as const, position: 2, name: '常見問題', item: `${SITE.url}/faq/` }
   ]
 
   const faqs = faqCategories.flatMap((category) =>

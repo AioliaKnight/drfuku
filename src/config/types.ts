@@ -15,15 +15,16 @@ export type JsonLdType =
 // Schema.org 通用類型
 export type Thing = {
   '@type': string
+  '@id'?: string
   name: string
   description?: string
   url?: string
 }
 
 // 搜索動作類型
-export type SearchAction = Thing & {
+export type SearchAction = {
   '@type': 'SearchAction'
-  target: string
+  target: string | { '@type': 'EntryPoint'; urlTemplate: string }
   'query-input': string
 }
 

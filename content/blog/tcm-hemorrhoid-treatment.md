@@ -11,7 +11,7 @@ featured: false
 draft: false
 seo:
   keywords: ["痔瘡中醫治療", "中西醫雙學士痔瘡", "痔瘡體質濕熱", "痔瘡中藥消腫", "徐彥勳醫師", "阿福醫師", "台中中西醫痔瘡", "台北大安痔瘡", "草屯痔瘡"]
-  canonical: "https://drfuku.com/blog/tcm-hemorrhoid-treatment"
+  canonical: "https://drfuku.com/blog/tcm-hemorrhoid-treatment/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]

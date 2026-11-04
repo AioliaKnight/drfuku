@@ -11,7 +11,7 @@ featured: true
 draft: false
 seo:
   keywords: ["痔瘡保險理賠", "LHP雷射費用", "痔瘡手術門診實支實付", "痔瘡診斷書寫法", "LigaSure費用", "徐彥勳醫師", "阿福醫師", "台中痔瘡診所", "台北痔瘡保險", "草屯痔瘡手術"]
-  canonical: "https://drfuku.com/blog/taiwan-insurance-and-laser-surgery-guide"
+  canonical: "https://drfuku.com/blog/taiwan-insurance-and-laser-surgery-guide/"
 expertise:
   credentials: "中華民國大腸直腸外科專科醫師，中國醫藥大學中西醫雙學士，20年臨床經驗"
   certifications: ["中華民國外科醫學會專科醫師", "中華民國大腸直腸外科醫學會專科醫師", "中國醫藥大學中西醫雙學士學位", "台灣微創手術醫學會會員"]
