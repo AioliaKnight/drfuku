@@ -14,6 +14,7 @@ import {
   PostHeader,
   AuthorInfo,
   RelatedPosts,
+  TableOfContents,
 } from '@/modules/blog'
 import { proseStyles } from '@/modules/blog/styles/prose'
 
@@ -99,8 +100,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function extractFAQs(html: string): Array<{ question: string; answer: string }> {
   const faqs: Array<{ question: string; answer: string }> = []
 
-  // 模式 1: <h3> / <h4> 標題標註之 Q&A
-  const headingMatches = html.matchAll(/<h[34][^>]*>(?:Q[0-9]*[：:]|問[：:]|\*\*Q[0-9]*[：:]\*\*)\s*(.*?)<\/h[34]>\s*<p>(?:<strong>)?(?:A[：:]|答[：:]|阿福醫師解答[：:])?\s*(.*?)<\/p>/gi)
+  // 模式 1: <h3> / <h4> 標題標註之 Q&A（支援跨行段落 s flag）
+  const headingMatches = html.matchAll(/<h[34][^>]*>(?:Q[0-9]*[：:]|問[：:]|\*\*Q[0-9]*[：:]\*\*)\s*([\s\S]*?)<\/h[34]>\s*<p>(?:<strong>)?(?:A[：:]|答[：:]|阿福醫師解答[：:])?\s*([\s\S]*?)<\/p>/gi)
   
   for (const match of headingMatches) {
     const qRaw = match[1] || ""
@@ -254,6 +255,7 @@ export default async function PostPage({ params }: Props) {
           title={post.title}
           author={post.author}
           publishedAt={post.publishedAt}
+          updatedAt={post.updatedAt}
           readingTime={post.readingTime}
           category={post.category}
           tags={post.tags}
@@ -263,9 +265,12 @@ export default async function PostPage({ params }: Props) {
         <div className="relative z-10 mt-10 pb-24 sm:mt-12 md:mt-16">
           <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             {/* 分享按鈕 */}
-            <div className="mb-10">
-              <ShareButtons title={post.title} url={`/blog/${post.slug}`} />
+            <div className="mb-8">
+              <ShareButtons title={post.title} url={`/blog/${post.slug}/`} />
             </div>
+
+            {/* 互動章節導覽目錄 (TOC) */}
+            <TableOfContents html={post.body} />
 
             {/* 文章本文 */}
             <article className="mx-auto">
@@ -276,13 +281,13 @@ export default async function PostPage({ params }: Props) {
 
             {/* 文章底部分享 */}
             <div className="mt-12 border-t border-gray-100 pt-8">
-              <ShareButtons title={post.title} url={`/blog/${post.slug}`} />
+              <ShareButtons title={post.title} url={`/blog/${post.slug}/`} />
             </div>
           </div>
 
-          {/* 作者資訊 */}
+          {/* 作者資訊與專科諮詢卡片 */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AuthorInfo author={post.author} />
+            <AuthorInfo author={post.author} expertise={post.expertise} />
           </div>
 
           {/* 相關文章 */}

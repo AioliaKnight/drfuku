@@ -8,3 +8,5 @@ export { default as PostCover } from './components/PostCover'
 export { default as PostHeader } from './components/PostHeader'
 export { default as AuthorInfo } from './components/AuthorInfo'
 export { default as RelatedPosts } from './components/RelatedPosts'
+export { default as TableOfContents } from './components/TableOfContents'
+

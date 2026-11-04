@@ -185,110 +185,147 @@ function enhanceEndSections(root: HTMLDivElement) {
 }
 
 /**
- * 偵測並增強 FAQ 區塊的 Q&A 呈現
+ * 偵測並增強 FAQ 區塊的 Q&A 呈現（同時支援 H3+P 與單一段落 P 格式）
  */
 function enhanceFAQSection(root: HTMLDivElement, signal: AbortSignal) {
   const allH2 = root.querySelectorAll('h2')
-  let faqHeading: HTMLElement | null = null
 
   for (const h2 of allH2) {
     const text = h2.textContent || ''
-    if (text.includes('常見問題') || text.includes('FAQ')) {
-      faqHeading = h2 as HTMLElement
-      break
+    if (!text.includes('常見問題') && !text.includes('FAQ') && !text.includes('常見疑慮')) {
+      continue
     }
-  }
 
-  if (!faqHeading) return
+    const faqHeading = h2 as HTMLElement
+    const qaItems: Array<{ question: string; answer: string; elementsToRemove: Element[] }> = []
+    let sibling = faqHeading.nextElementSibling
 
-  // 收集 FAQ 區塊的所有 Q&A 段落（支援 Q&A 在同一段落或分開段落）
-  const qaParagraphs: HTMLParagraphElement[] = []
-  let sibling = faqHeading.nextElementSibling
+    while (sibling) {
+      if (sibling.tagName === 'H2' || sibling.tagName === 'HR') break
 
-  while (sibling) {
-    if (sibling.tagName === 'H2') break
-    if (sibling.tagName === 'P') {
-      const text = sibling.textContent || ''
-      if (text.includes('Q：') || text.includes('Q:')) {
-        qaParagraphs.push(sibling as HTMLParagraphElement)
+      if (sibling.tagName === 'H3' || sibling.tagName === 'H4') {
+        const qText = (sibling.textContent || '').replace(/#$/, '').trim()
+        const nextEl = sibling.nextElementSibling
+        if (nextEl && nextEl.tagName === 'P' && (/^Q[0-9]*[：:]/i.test(qText) || /^問[：:]/.test(qText))) {
+          const elementsToRemove: Element[] = [sibling]
+          const answerParts: string[] = []
+          let cursor: Element | null = nextEl
+
+          while (
+            cursor &&
+            cursor.tagName !== 'H2' &&
+            cursor.tagName !== 'H3' &&
+            cursor.tagName !== 'H4' &&
+            cursor.tagName !== 'HR'
+          ) {
+            elementsToRemove.push(cursor)
+            const cleaned = cursor.innerHTML
+              .replace(/^<strong>(?:阿福醫師解答|A|答)[：:]\s*<\/strong>[：:]?\s*/i, '')
+              .replace(/^(?:阿福醫師解答|A|答)[：:]\s*/i, '')
+              .trim()
+            if (cursor.tagName === 'OL' || cursor.tagName === 'UL') {
+              answerParts.push(`<${cursor.tagName.toLowerCase()}>${cleaned}</${cursor.tagName.toLowerCase()}>`)
+            } else {
+              answerParts.push(cleaned)
+            }
+            cursor = cursor.nextElementSibling
+          }
+
+          qaItems.push({
+            question: qText,
+            answer: answerParts.join('<br/><br/>'),
+            elementsToRemove,
+          })
+          sibling = cursor
+          continue
+        }
+      } else if (sibling.tagName === 'P') {
+        const pText = sibling.textContent || ''
+        if (pText.includes('Q：') || pText.includes('Q:')) {
+          const { question, answer } = parseQA(sibling.innerHTML)
+          if (question) {
+            qaItems.push({
+              question,
+              answer,
+              elementsToRemove: [sibling],
+            })
+          }
+        }
       }
+
+      sibling = sibling.nextElementSibling
     }
-    sibling = sibling.nextElementSibling
+
+    const firstItem = qaItems[0]
+    const firstElement = firstItem?.elementsToRemove[0]
+    if (!firstItem || !firstElement) continue
+
+    const faqContainer = document.createElement('div')
+    faqContainer.className = 'faq-container not-prose'
+    faqContainer.setAttribute('role', 'list')
+    faqContainer.setAttribute('aria-label', '常見問題')
+
+    firstElement.parentNode?.insertBefore(faqContainer, firstElement)
+
+    qaItems.forEach((item, index) => {
+      const card = document.createElement('div')
+      card.className = 'faq-item'
+      card.setAttribute('role', 'listitem')
+
+      const questionBtn = document.createElement('button')
+      questionBtn.className = 'faq-question'
+      questionBtn.setAttribute('type', 'button')
+      questionBtn.setAttribute('aria-expanded', index === 0 ? 'true' : 'false')
+      const questionId = `faq-q-${Math.random().toString(36).slice(2, 7)}-${index}`
+      const answerId = `faq-a-${Math.random().toString(36).slice(2, 7)}-${index}`
+      questionBtn.setAttribute('id', questionId)
+      questionBtn.setAttribute('aria-controls', answerId)
+      questionBtn.innerHTML = `
+        <span class="faq-question-text">${item.question}</span>
+        <span class="faq-chevron" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      `
+
+      const answerDiv = document.createElement('div')
+      answerDiv.className = 'faq-answer'
+      answerDiv.setAttribute('id', answerId)
+      answerDiv.setAttribute('role', 'region')
+      answerDiv.setAttribute('aria-labelledby', questionId)
+
+      if (index === 0) {
+        answerDiv.classList.add('faq-answer--open')
+        answerDiv.setAttribute('aria-hidden', 'false')
+      } else {
+        answerDiv.setAttribute('aria-hidden', 'true')
+      }
+
+      const answerInner = document.createElement('div')
+      answerInner.className = 'faq-answer-inner'
+      answerInner.innerHTML = item.answer ? `<p>${item.answer}</p>` : ''
+      answerDiv.appendChild(answerInner)
+
+      questionBtn.addEventListener(
+        'click',
+        () => {
+          const isOpen = questionBtn.getAttribute('aria-expanded') === 'true'
+          const willOpen = !isOpen
+          questionBtn.setAttribute('aria-expanded', String(willOpen))
+          answerDiv.classList.toggle('faq-answer--open')
+          answerDiv.setAttribute('aria-hidden', String(!willOpen))
+        },
+        { signal }
+      )
+
+      card.appendChild(questionBtn)
+      card.appendChild(answerDiv)
+      faqContainer.appendChild(card)
+
+      item.elementsToRemove.forEach((el) => el.remove())
+    })
   }
-
-  const firstQA = qaParagraphs[0]
-  if (!firstQA) return
-
-  const faqContainer = document.createElement('div')
-  faqContainer.className = 'faq-container'
-  faqContainer.setAttribute('role', 'list')
-  faqContainer.setAttribute('aria-label', '常見問題')
-
-  firstQA.parentNode?.insertBefore(faqContainer, firstQA)
-
-  qaParagraphs.forEach((p, index) => {
-    const html = p.innerHTML
-    const { question, answer } = parseQA(html)
-
-    if (!question) return
-
-    const card = document.createElement('div')
-    card.className = 'faq-item'
-    card.setAttribute('role', 'listitem')
-
-    const questionBtn = document.createElement('button')
-    questionBtn.className = 'faq-question'
-    questionBtn.setAttribute('type', 'button')
-    questionBtn.setAttribute('aria-expanded', index === 0 ? 'true' : 'false')
-    const questionId = `faq-q-${index}`
-    const answerId = `faq-a-${index}`
-    questionBtn.setAttribute('id', questionId)
-    questionBtn.setAttribute('aria-controls', answerId)
-    questionBtn.innerHTML = `
-      <span class="faq-question-text">${question}</span>
-      <span class="faq-chevron" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-    `
-
-    const answerDiv = document.createElement('div')
-    answerDiv.className = 'faq-answer'
-    answerDiv.setAttribute('id', answerId)
-    answerDiv.setAttribute('role', 'region')
-    answerDiv.setAttribute('aria-labelledby', questionId)
-
-    // 第一個 FAQ 預設展開，其餘收合
-    if (index === 0) {
-      answerDiv.classList.add('faq-answer--open')
-      answerDiv.setAttribute('aria-hidden', 'false')
-    } else {
-      answerDiv.setAttribute('aria-hidden', 'true')
-    }
-
-    const answerInner = document.createElement('div')
-    answerInner.className = 'faq-answer-inner'
-    answerInner.innerHTML = answer
-      ? `<p>${answer}</p>`
-      : ''
-    answerDiv.appendChild(answerInner)
-
-    // 使用 signal 註冊事件，確保 cleanup 時自動移除
-    questionBtn.addEventListener('click', () => {
-      const isOpen = questionBtn.getAttribute('aria-expanded') === 'true'
-      const willOpen = !isOpen
-      questionBtn.setAttribute('aria-expanded', String(willOpen))
-      answerDiv.classList.toggle('faq-answer--open')
-      answerDiv.setAttribute('aria-hidden', String(!willOpen))
-    }, { signal })
-
-    card.appendChild(questionBtn)
-    card.appendChild(answerDiv)
-    faqContainer.appendChild(card)
-
-    p.remove()
-  })
 }
 
 /**

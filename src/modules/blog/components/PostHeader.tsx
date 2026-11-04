@@ -7,12 +7,14 @@ import {
   HiOutlineUser,
   HiOutlineChevronRight,
   HiOutlineCalendarDays,
+  HiOutlineCheckBadge,
 } from 'react-icons/hi2'
 
 interface PostHeaderProps {
   title: string
   author: string
   publishedAt: string
+  updatedAt?: string
   readingTime: number
   category: string
   tags: string[]
@@ -22,10 +24,13 @@ export default function PostHeader({
   title,
   author,
   publishedAt,
+  updatedAt,
   readingTime,
   category,
   tags,
 }: PostHeaderProps) {
+  const reviewDate = updatedAt || publishedAt
+
   return (
     <div className="relative z-10 -mt-48 sm:-mt-56 md:-mt-64">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,7 +50,7 @@ export default function PostHeader({
               </Link>
               <HiOutlineChevronRight className="h-3.5 w-3.5" />
               <Link
-                href="/blog"
+                href="/blog/"
                 className="transition-colors hover:text-brand-600"
               >
                 部落格
@@ -56,10 +61,14 @@ export default function PostHeader({
               </span>
             </nav>
 
-            {/* 分類標籤 */}
-            <div className="mb-4">
+            {/* 分類標籤與專科審閱標章 */}
+            <div className="mb-4 flex flex-wrap items-center gap-2.5">
               <span className="inline-flex items-center rounded-full bg-brand-100/80 px-3 py-1.5 text-sm font-semibold text-brand-800">
                 {category}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200/60">
+                <HiOutlineCheckBadge className="h-4 w-4 text-emerald-600" />
+                大腸直腸外科專科醫師親撰審閱
               </span>
             </div>
 
@@ -79,8 +88,8 @@ export default function PostHeader({
 
               <div className="flex items-center gap-2">
                 <HiOutlineCalendarDays className="h-4 w-4 text-brand-500" />
-                <time dateTime={publishedAt}>
-                  {format(new Date(publishedAt), 'yyyy 年 M 月 d 日', { locale: zhTW })}
+                <time dateTime={reviewDate}>
+                  醫學審閱更新：{format(new Date(reviewDate), 'yyyy 年 M 月 d 日', { locale: zhTW })}
                 </time>
               </div>
 

@@ -162,6 +162,95 @@
     max-width: 75ch;
 }
 
+/* 隱藏文章內重複的 H1（頁面主 H1 已由 PostHeader 呈現，確保單一 H1 SEO 結構） */
+.prose h1 {
+    display: none;
+}
+
+/* 響應式表格容器 */
+.prose .table-wrapper {
+    margin: 2rem 0;
+    overflow-x: auto;
+    border-radius: 1rem;
+    border: 1px solid var(--color-neutral-200);
+    background: #ffffff;
+    box-shadow: var(--shadow-warm-sm);
+}
+
+.prose .table-wrapper table {
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 標題錨點連結 */
+.prose .heading-anchor {
+    margin-left: 0.5rem;
+    opacity: 0;
+    color: var(--color-brand-400);
+    text-decoration: none;
+    border: none;
+    transition: opacity 0.2s ease;
+}
+
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor,
+.prose h4:hover .heading-anchor {
+    opacity: 1;
+}
+
+/* 文章內嵌 FAQ 互動手風琴樣式 */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0 2.5rem;
+}
+
+.faq-item {
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-neutral-200);
+    background-color: #ffffff;
+    box-shadow: var(--shadow-warm-sm);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: var(--color-brand-200);
+    box-shadow: var(--shadow-warm-md);
+}
+
+.faq-question {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-family: var(--font-noto-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-neutral-900);
+    background: transparent;
+    cursor: pointer;
+}
+
+.faq-question:hover {
+    background-color: var(--color-brand-50);
+}
+
+.faq-chevron {
+    flex-shrink: 0;
+    color: var(--color-brand-600);
+    transition: transform 0.3s ease;
+}
+
+.faq-question[aria-expanded="true"] .faq-chevron {
+    transform: rotate(180deg);
+}
+
 /* FAQ 修正：解決展開時的閃爍 */
 .faq-answer {
     display: grid;
@@ -175,6 +264,16 @@
 
 .faq-answer-inner {
     overflow: hidden;
+}
+
+.faq-answer-inner p {
+    margin: 0;
+    padding: 0 1.5rem 1.25rem;
+    border-top: 1px solid var(--color-neutral-100);
+    padding-top: 1rem;
+    font-size: 0.975rem;
+    line-height: 1.85;
+    color: var(--color-neutral-700);
 }
 
 /* 解決 Framer Motion 初始閃爍問題的全局修正 */
